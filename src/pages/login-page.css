@@ -39,38 +39,36 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 79px;
+  gap: clamp(40px, 8vw, 79px);
 }
 
 .loginPageHeader {
-  margin-top: 207px;
+  margin-top: clamp(80px, 15vw, 207px);
 
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  gap: 58px;
+  gap: clamp(30px, 6vw, 58px);
 }
 
 .logo {
-  width: 600px;
+  width: clamp(350px, 60%, 600px);
 }
 
 .loginPageHeader > p {
   color: #888888;
-  font-size: 32px;
+  font-size: clamp(16px, 4vw, 32px);
 }
 
 .loginPageMain {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: clamp(24px, 4vw, 40px);
 
-  width: 831px;
-  height: 699px;
+  width: clamp(300px, 70%, 831px);
 
-  padding: 80px 97px;
-  margin-bottom: 220px;
+  padding: clamp(20px, 10%, 80px) clamp(10px, 10%, 97px);
+  margin-bottom: clamp(100px, 20vw, 220px);
 
   border: solid 1px #d2d2d2;
   border-radius: 16px;
@@ -79,49 +77,48 @@ button {
 .loginInputBox {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(12px, 2.5vw, 20px);
 }
 
 #userId,
 #userPw,
 .remember,
 .findIdPw > * {
-  font-size: 22px;
+  font-size: clamp(16px, 2.5vw, 22px);
 }
 
 #userId,
 #userPw {
   width: 100%;
-  padding: 17px;
+  padding: clamp(12px, 2vw, 17px);
 
   color: #acacac;
 
   border: solid 1px #d2d2d2;
-
   cursor: text;
 }
 
 .remember {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(6px, 1.5vw, 10px);
 
   color: #6b6b6b;
 }
 
 #remember {
-  width: 38px;
-  height: 38px;
+  width: clamp(20px, 4vw, 38px);
+  height: clamp(20px, 4vw, 38px);
 
   cursor: pointer;
 }
 
 .loginSubmit,
 .joinBtn {
-  font-size: 26px;
+  font-size: clamp(18px, 3vw, 26px);
 
   width: 100%;
-  height: 75px;
+  height: clamp(60px, 8vw, 75px);
 
   border: solid 2px #fe7352;
   border-radius: 16px;
@@ -135,7 +132,7 @@ button {
 .findIdPw {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: clamp(12px, 2.5vw, 20px);
 }
 
 .findIdPw > * {
@@ -143,6 +140,6 @@ button {
 }
 
 .joinBtn {
-  margin-top: 35px;
+  margin-top: clamp(20px, 4vw, 35px);
   color: #fe7352;
 }
