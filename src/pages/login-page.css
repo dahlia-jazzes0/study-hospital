@@ -34,15 +34,8 @@ button {
   background: none;
 }
 
-input:focus {
-  cursor: text;
-  outline: none;
-}
-
 /* style.css */
-main {
-  margin-top: 207px;
-
+.loginPage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,6 +43,8 @@ main {
 }
 
 .loginPageHeader {
+  margin-top: 207px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,8 +86,11 @@ main {
 #userPw {
   width: 100%;
   padding: 17px;
-  font-size: 22px 34px;
+
+  font-size: 22px;
   color: #acacac;
+
+  cursor: text;
 }
 
 .remember {

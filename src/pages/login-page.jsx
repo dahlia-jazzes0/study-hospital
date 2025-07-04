@@ -2,14 +2,14 @@ import './login-page.css';
 
 export function LoginPage() {
   return (
-    <>
-      <div className="loginPageHeader">
+    <div className="loginPage">
+      <section className="loginPageHeader">
         <h1 className="logo">
           <img src="logo.png" alt="모두한의원 로고" />
         </h1>
 
         <p>모두한의원 홈페이지에 방문하신 걸 환영합니다</p>
-      </div>
+      </section>
 
       <div className="loginPageMain">
         <section className="loginInputBox">
@@ -41,6 +41,6 @@ export function LoginPage() {
 
         <button className="joinBtn">회원가입</button>
       </div>
-    </>
+    </div>
   );
 }
