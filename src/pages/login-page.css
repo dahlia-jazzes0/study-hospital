@@ -1,0 +1,143 @@
+/* reset.css */
+* {
+  padding: 0;
+  margin: 0;
+
+  text-decoration: none;
+  list-style: none;
+
+  color: #000;
+  font-family: 'Pretendard', 'sans-serif';
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+
+  box-sizing: border-box;
+}
+
+.sr-only {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+input,
+button {
+  cursor: pointer;
+  /* border: none; */
+}
+
+button {
+  background: none;
+}
+
+input:focus {
+  cursor: text;
+  outline: none;
+}
+
+/* style.css */
+main {
+  margin-top: 207px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 79px;
+}
+
+.loginPageHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 58px;
+}
+
+.logo {
+  width: 600px;
+}
+
+.loginPageHeader > p {
+  color: #888888;
+  font-size: 32px;
+}
+
+.loginPageMain {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  width: 831px;
+  height: 699px;
+
+  padding: 80px 97px;
+  margin-bottom: 220px;
+
+  border: solid 1px #d2d2d2;
+  border-radius: 16px;
+}
+
+.loginInputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#userId,
+#userPw {
+  width: 100%;
+  padding: 17px;
+  font-size: 22px 34px;
+  color: #acacac;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6b6b6b;
+}
+
+#remember {
+  width: 38px;
+  height: 38px;
+
+  cursor: pointer;
+}
+
+.loginSubmit {
+  font-size: 26px;
+
+  color: #fff;
+  background-color: #fe7352;
+
+  border: #fe7352;
+  border-radius: 16px;
+
+  width: 100%;
+  height: 79px;
+}
+
+.findIdPw {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  color: #6b6b6b;
+}
+
+.joinBtn {
+  width: 100%;
+  height: 75px;
+
+  margin-top: 35px;
+
+  border-radius: 16px;
+  border: solid 2px #fe7352;
+  color: #fe7352;
+}
