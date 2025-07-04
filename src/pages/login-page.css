@@ -83,12 +83,20 @@ button {
 }
 
 #userId,
+#userPw,
+.remember,
+.findIdPw > * {
+  font-size: 22px;
+}
+
+#userId,
 #userPw {
   width: 100%;
   padding: 17px;
 
-  font-size: 22px;
   color: #acacac;
+
+  border: solid 1px #d2d2d2;
 
   cursor: text;
 }
@@ -108,34 +116,33 @@ button {
   cursor: pointer;
 }
 
-.loginSubmit {
+.loginSubmit,
+.joinBtn {
   font-size: 26px;
 
+  width: 100%;
+  height: 75px;
+
+  border: solid 2px #fe7352;
+  border-radius: 16px;
+}
+
+.loginSubmit {
   color: #fff;
   background-color: #fe7352;
-
-  border: #fe7352;
-  border-radius: 16px;
-
-  width: 100%;
-  height: 79px;
 }
 
 .findIdPw {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
 
+.findIdPw > * {
   color: #6b6b6b;
 }
 
 .joinBtn {
-  width: 100%;
-  height: 75px;
-
   margin-top: 35px;
-
-  border-radius: 16px;
-  border: solid 2px #fe7352;
   color: #fe7352;
 }
