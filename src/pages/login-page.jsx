@@ -1,6 +1,13 @@
+import { useNavigate } from 'react-router';
 import './login-page.css';
 
 export function LoginPage() {
+  const moveToJoinPage = useNavigate();
+
+  const handleJoinClick = () => {
+    moveToJoinPage('/join');
+  };
+
   return (
     <div className="loginPage">
       <section className="loginPageHeader">
@@ -39,7 +46,9 @@ export function LoginPage() {
           <a href="#">비밀번호 찾기</a>
         </section>
 
-        <button className="joinBtn">회원가입</button>
+        <button className="joinBtn" onClick={handleJoinClick}>
+          회원가입
+        </button>
       </div>
     </div>
   );

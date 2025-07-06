@@ -1,0 +1,312 @@
+.joinMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(30px, 8vw, 55px);
+
+  margin-top: clamp(80px, 15vw, 176px);
+  margin-bottom: clamp(100px, 20vw, 220px);
+}
+
+.joinForm {
+  width: 1466px;
+}
+
+#joinStepNav {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+
+  width: 1466px;
+  height: clamp(80px, 10vw, 118px);
+}
+
+#joinStepNav li {
+  border: solid 1px #d9d9d9;
+  background-color: #f8f8f8;
+  color: #959595;
+
+  width: 33.333%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-size: clamp(18px, 3vw, 32px);
+  font-variation-settings: 'wght' 700;
+}
+
+#joinStepNav li span {
+  font-size: clamp(14px, 2.5vw, 20px);
+  font-variation-settings: 'wght' 500;
+}
+
+#joinStepNav li.joinActive {
+  border: solid 1px #fe7352;
+  background-color: #fe7352;
+  color: #ffffff;
+}
+
+.joinForm {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(36px, 4vw, 62px);
+}
+
+.joinForm section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 4vw, 28px);
+}
+
+.joinForm h3 {
+  font-size: clamp(24px, 4vw, 38px);
+  font-variation-settings: 'wght' 700;
+  color: #888888;
+}
+
+.termsBox,
+.privacyBox {
+  padding: clamp(15px, 3vw, 20px) clamp(20px, 5vw, 50px);
+  overflow-x: hidden;
+
+  border: 1px solid #d9d9d9;
+  background-color: #f8f8f8;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fcfcfc;
+  border: 1px solid #d9d9d9;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #fcfcfc;
+}
+
+.joinTextBox {
+  width: 1366px;
+  height: clamp(200px, 35vw, 410px);
+}
+
+.joinTextBox ul {
+  padding-left: 16px;
+}
+
+.termsBox,
+.privacyBox,
+.termsBox h5 {
+  font-size: clamp(16px, 2.5vw, 20px);
+  font-variation-settings: 'wght' 500;
+  color: #888888;
+}
+
+.agreeAllTerms {
+  margin-top: clamp(0px, 4vw, 63px);
+
+  display: flex;
+  flex-direction: row;
+  gap: clamp(8px, 1.5vw, 10px);
+  align-items: center;
+  align-self: center;
+}
+
+#agreeAllTerms {
+  width: clamp(20px, 4vw, 32px);
+  height: clamp(20px, 4vw, 32px);
+}
+
+#searchAddressBtn,
+.joinStepNext {
+  margin-top: clamp(6px, 1.5vw, 8px);
+
+  width: clamp(100px, 20vw, 135px);
+  height: clamp(40px, 6vw, 48px);
+
+  background-color: #222222;
+  color: #ffffff;
+
+  font-variation-settings: 'wght' 500;
+  font-size: clamp(16px, 2.5vw, 20px);
+}
+
+/* step2 */
+.joinTable {
+  width: 1466px;
+  border-top: solid 2px #535353;
+}
+
+.joinTable tbody tr {
+  border-bottom: solid 1px #535353;
+}
+
+.joinTable tr td:first-child {
+  background-color: #d9d9d945;
+  width: clamp(130px, 30vw, 260px);
+
+  font-variation-settings: 'wght' 500;
+  font-size: clamp(16px, 4vw, 20px);
+}
+
+.joinTable tr:not(.joinRoute, .interestDisease) td:first-child::after,
+.joinRoute td p::after,
+.interestDisease td span::after {
+  content: '•';
+  color: #d70b0b;
+
+  position: relative;
+  top: -10px;
+
+  font-size: 20px;
+}
+
+.joinTable tr td {
+  height: clamp(75px, 4vw, 88px);
+}
+
+.joinTable label,
+.joinTable
+  input:not(
+    .joinRoute input,
+    .interestDisease input,
+    .receiveEmail input,
+    .receiveSMS input
+  ),
+.joinRoute td p,
+.interestDisease td p {
+  margin-left: clamp(15px, 4vw, 30px);
+  cursor: default;
+}
+
+.joinRoute td:last-child,
+.interestDisease td:last-child,
+.receiveEmail td:last-child,
+.receiveSMS td:last-child,
+.receiveEmail td:last-child,
+.receiveSMS td:last-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.joinRoute label,
+.interestDisease label,
+.receiveEmail td:last-child label,
+.receiveSMS td:last-child label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.joinRoute input,
+.interestDisease input,
+.receiveEmail input,
+.receiveSMS input {
+  margin-right: 10px;
+}
+
+.joinRoute input[type='radio'],
+.interestDisease input[type='checkbox'],
+.receiveEmail input[type='radio'],
+.receiveSMS input[type='radio'] {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+  appearance: none;
+  border: 1px solid #d9d9d9;
+}
+
+.joinRoute input[type='radio']:checked,
+.interestDisease input[type='checkbox']:checked,
+.receiveEmail input[type='radio']:checked,
+.receiveSMS input[type='radio']:checked {
+  border: 7px solid black;
+  outline: none;
+}
+
+#joinEmailDomain,
+#searchAddressBtn {
+  margin-left: 9px;
+}
+
+.joinRoute label,
+.interestDisease label,
+.receiveEmail label,
+.receiveSMS label {
+  font-size: 20px;
+  font-variation-settings: 'wght' 500;
+}
+
+#joinEmailDomain,
+.joinTable
+  input:not(
+    .joinRoute input,
+    .interestDisease input,
+    .receiveEmail input,
+    .receiveSMS input
+  ) {
+  width: clamp(150px, 40vw, 477px);
+  height: clamp(35px, 4vw, 48px);
+  padding-left: clamp(10px, 4vw, 17px);
+
+  font-size: clamp(16px, 4vw, 20px);
+  font-variation-settings: 'wght' 500;
+}
+
+#joinEmailDomain,
+.joinTable input::placeholder {
+  color: #d0d0d0;
+}
+
+@media (max-width: 1600px) {
+  #joinStepNav,
+  .joinTable,
+  .joinForm {
+    width: 90vw;
+  }
+
+  .joinTable input {
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  #searchAddressBtn,
+  #joinEmailDomain {
+    margin-left: clamp(15px, 4vw, 30px);
+  }
+
+  .joinTable tr td:first-child span {
+    display: block;
+  }
+
+  .interestDisease td:last-child,
+  .joinRoute td:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    height: 200px;
+  }
+
+  .joinRoute input[type='radio'],
+  .interestDisease input[type='checkbox'],
+  .receiveEmail input[type='radio'],
+  .receiveSMS input[type='radio'] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .joinRoute input[type='radio']:checked,
+  .interestDisease input[type='checkbox']:checked,
+  .receiveEmail input[type='radio']:checked,
+  .receiveSMS input[type='radio']:checked {
+    border: 6px solid black;
+  }
+}
