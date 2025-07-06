@@ -238,8 +238,8 @@
 
 .joinRoute label,
 .interestDisease label,
-.receiveEmail label,
-.receiveSMS label {
+.receiveEmail td:not(:first-child) label,
+.receiveSMS td:not(:first-child) label {
   font-size: 20px;
   font-variation-settings: 'wght' 500;
 }
