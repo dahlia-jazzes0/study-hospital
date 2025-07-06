@@ -7,255 +7,269 @@ export function JoinPage() {
   const [formContent, setFormContent] = useState();
 
   const handleClear = () => {
-    setCurrentStep(2);
-    setFormContent(
-      <table className="joinTable">
-        <tbody>
-          <tr>
-            <td>
-              <label htmlFor="joinUserId">아이디</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                id="joinUserId"
-                name="userId"
-                placeholder="영문, 숫자만 입력가능, 최소 4자이상 입력"
-              />
-            </td>
-          </tr>
+    const agreeAllTermsInput = document.getElementById('agreeAllTerms');
 
-          <tr>
-            <td>
-              <label htmlFor="joinUserPw">비밀번호</label>
-            </td>
-            <td>
-              <input
-                type="password"
-                id="joinUserPw"
-                name="userPw"
-                placeholder="영문, 숫자 포험 6~20자리 구성, 특수기호 제외"
-              />
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label htmlFor="joinPwCheck">비밀번호확인</label>
-            </td>
-            <td>
-              <input type="password" id="joinPwCheck" name="passwordConfirm" />
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label htmlFor="joinUserName">성명</label>
-            </td>
-            <td>
-              <input type="text" id="joinUserName" name="userName" />
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label htmlFor="joinUserNumber">연락처</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                id="joinUserNumber"
-                name="userNumber"
-                placeholder="'-' 제외 숫자만 입력하세요."
-              />
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label htmlFor="joinUserEmail">이메일</label>
-            </td>
-            <td>
-              <input
-                type="email"
-                id="joinUserEmail"
-                name="userEmail"
-                placeholder="이메일 주소를 입력하세요"
-              />
-              <select id="joinEmailDomain" name="emailDomain">
-                <option value="">이메일 주소를 선택하세요.</option>
-                <option value="gmail.com">gmail.com</option>
-                <option value="naver.com">naver.com</option>
-                <option value="daum.net">daum.net</option>
-              </select>
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label htmlFor="searchAddressInput">주소</label>
-            </td>
-
-            <td>
-              <input
-                type="text"
-                id="searchAddressInput"
-                name="searchAddress"
-                placeholder="주소 검색"
-              />
-              <button type="button" id="searchAddressBtn">
-                주소찾기
-              </button>
-              <br />
-              <input
-                type="text"
-                id="userAddress"
-                name="userAddress"
-                placeholder="주소"
-                style={{ marginTop: '5px' }}
-              />
-              <br />
-              <input
-                type="text"
-                id="userDetailAddress"
-                name="userDetailAddress"
-                placeholder="상세주소"
-                style={{ marginTop: '5px' }}
-              />
-            </td>
-          </tr>
-
-          <tr>
-            <td>
-              <label htmlFor="joinBirth">생년월일</label>
-            </td>
-            <td>
-              <input
-                type="text"
-                id="joinBirth"
-                name="joinBirth"
-                placeholder="YYYYMMDD"
-              />
-            </td>
-          </tr>
-
-          <tr className="joinRoute">
-            <td>
-              <p>가입경로</p>
-            </td>
-            <td>
-              <label htmlFor="blog">
-                <input type="radio" id="blog" name="joinRoute" />
-                블로그
-              </label>
-
-              <label htmlFor="snsAdvertis">
-                <input type="radio" id="snsAdvertis" name="joinRoute" />
-                SNS광고
-              </label>
-
-              <label htmlFor="busAdvertis">
-                <input type="radio" id="busAdvertis" name="joinRoute" />
-                버스광고
-              </label>
-
-              <label htmlFor="nearHouse">
-                <input type="radio" id="nearHouse" name="joinRoute" />
-                집근처
-              </label>
-
-              <label htmlFor="friendRecommend">
-                <input type="radio" id="friendRecommend" name="joinRoute" />
-                지인추천
-              </label>
-            </td>
-          </tr>
-
-          <tr className="interestDisease">
-            <td>
-              <p>
-                관심질환 <span>(복수선택가능)</span>
-              </p>
-            </td>
-
-            <td>
-              <label htmlFor="internal">
-                <input type="checkbox" id="internal" name="internal" />
-                내과
-              </label>
-
-              <label htmlFor="carCrash">
-                <input type="checkbox" id="carCrash" name="carCrash" />
-                교통사고
-              </label>
-
-              <label htmlFor="bodyCorrection">
+    if (!agreeAllTermsInput.checked) {
+      agreeAllTermsInput.focus();
+    } else {
+      setCurrentStep(2);
+      setFormContent(
+        <table className="joinTable">
+          <tbody>
+            <tr>
+              <td>
+                <label htmlFor="joinUserId">아이디</label>
+              </td>
+              <td>
                 <input
-                  type="checkbox"
-                  id="bodyCorrection"
-                  name="bodyCorrection"
+                  type="text"
+                  id="joinUserId"
+                  name="userId"
+                  placeholder="영문, 숫자만 입력가능, 최소 4자이상 입력"
                 />
-                체형교정
-              </label>
+              </td>
+            </tr>
 
-              <label htmlFor="obstetrics">
-                <input type="checkbox" id="obstetrics" name="obstetrics" />
-                부인과
-              </label>
-
-              <label htmlFor="diet">
-                <input type="checkbox" id="diet" name="diet" />
-                다이어트
-              </label>
-            </td>
-          </tr>
-
-          <tr className="receiveEmail">
-            <td>
-              <label htmlFor="receiveEmailAgree">이메일 수신여부</label>
-            </td>
-
-            <td>
-              <label htmlFor="receiveEmailAgree">
+            <tr>
+              <td>
+                <label htmlFor="joinUserPw">비밀번호</label>
+              </td>
+              <td>
                 <input
-                  type="radio"
-                  id="receiveEmailAgree"
-                  name="receiveEmail"
+                  type="password"
+                  id="joinUserPw"
+                  name="userPw"
+                  placeholder="영문, 숫자 포험 6~20자리 구성, 특수기호 제외"
                 />
-                동의
-              </label>
+              </td>
+            </tr>
 
-              <label htmlFor="receiveEmailDisagree">
+            <tr>
+              <td>
+                <label htmlFor="joinPwCheck">비밀번호확인</label>
+              </td>
+              <td>
                 <input
-                  type="radio"
-                  id="receiveEmailDisagree"
-                  name="receiveEmail"
+                  type="password"
+                  id="joinPwCheck"
+                  name="passwordConfirm"
                 />
-                비동의
-              </label>
-            </td>
-          </tr>
+              </td>
+            </tr>
 
-          <tr className="receiveSMS">
-            <td>
-              <label htmlFor="receiveSMSAgree">SMS 수신여부</label>
-            </td>
+            <tr>
+              <td>
+                <label htmlFor="joinUserName">성명</label>
+              </td>
+              <td>
+                <input type="text" id="joinUserName" name="userName" />
+              </td>
+            </tr>
 
-            <td>
-              <label htmlFor="receiveSMSAgree">
-                <input type="radio" id="receiveSMSAgree" name="receiveSMS" />
-                동의
-              </label>
+            <tr>
+              <td>
+                <label htmlFor="joinUserNumber">연락처</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  id="joinUserNumber"
+                  name="userNumber"
+                  placeholder="'-' 제외 숫자만 입력하세요."
+                />
+              </td>
+            </tr>
 
-              <label htmlFor="receiveSMSDisagree">
-                <input type="radio" id="receiveSMSDisagree" name="receiveSMS" />
-                비동의
-              </label>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    );
+            <tr>
+              <td>
+                <label htmlFor="joinUserEmail">이메일</label>
+              </td>
+              <td>
+                <input
+                  type="email"
+                  id="joinUserEmail"
+                  name="userEmail"
+                  placeholder="이메일 주소를 입력하세요"
+                />
+                <select id="joinEmailDomain" name="emailDomain">
+                  <option value="">이메일 주소를 선택하세요.</option>
+                  <option value="gmail.com">gmail.com</option>
+                  <option value="naver.com">naver.com</option>
+                  <option value="daum.net">daum.net</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label htmlFor="searchAddressInput">주소</label>
+              </td>
+
+              <td>
+                <input
+                  type="text"
+                  id="searchAddressInput"
+                  name="searchAddress"
+                  placeholder="주소 검색"
+                />
+                <button type="button" id="searchAddressBtn">
+                  주소찾기
+                </button>
+                <br />
+                <input
+                  type="text"
+                  id="userAddress"
+                  name="userAddress"
+                  placeholder="주소"
+                  style={{ marginTop: '5px' }}
+                />
+                <br />
+                <input
+                  type="text"
+                  id="userDetailAddress"
+                  name="userDetailAddress"
+                  placeholder="상세주소"
+                  style={{ marginTop: '5px' }}
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <label htmlFor="joinBirth">생년월일</label>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  id="joinBirth"
+                  name="joinBirth"
+                  placeholder="YYYYMMDD"
+                />
+              </td>
+            </tr>
+
+            <tr className="joinRoute">
+              <td>
+                <p>가입경로</p>
+              </td>
+              <td>
+                <label htmlFor="blog">
+                  <input type="radio" id="blog" name="joinRoute" />
+                  블로그
+                </label>
+
+                <label htmlFor="snsAdvertis">
+                  <input type="radio" id="snsAdvertis" name="joinRoute" />
+                  SNS광고
+                </label>
+
+                <label htmlFor="busAdvertis">
+                  <input type="radio" id="busAdvertis" name="joinRoute" />
+                  버스광고
+                </label>
+
+                <label htmlFor="nearHouse">
+                  <input type="radio" id="nearHouse" name="joinRoute" />
+                  집근처
+                </label>
+
+                <label htmlFor="friendRecommend">
+                  <input type="radio" id="friendRecommend" name="joinRoute" />
+                  지인추천
+                </label>
+              </td>
+            </tr>
+
+            <tr className="interestDisease">
+              <td>
+                <p>
+                  관심질환 <span>(붕복선택가능)</span>
+                </p>
+              </td>
+
+              <td>
+                <label htmlFor="internal">
+                  <input type="checkbox" id="internal" name="internal" />
+                  내과
+                </label>
+
+                <label htmlFor="carCrash">
+                  <input type="checkbox" id="carCrash" name="carCrash" />
+                  교통사고
+                </label>
+
+                <label htmlFor="bodyCorrection">
+                  <input
+                    type="checkbox"
+                    id="bodyCorrection"
+                    name="bodyCorrection"
+                  />
+                  체형교정
+                </label>
+
+                <label htmlFor="obstetrics">
+                  <input type="checkbox" id="obstetrics" name="obstetrics" />
+                  부인과
+                </label>
+
+                <label htmlFor="diet">
+                  <input type="checkbox" id="diet" name="diet" />
+                  다이어트
+                </label>
+              </td>
+            </tr>
+
+            <tr className="receiveEmail">
+              <td>
+                <label htmlFor="receiveEmailAgree">이메일 수신여부</label>
+              </td>
+
+              <td>
+                <label htmlFor="receiveEmailAgree">
+                  <input
+                    type="radio"
+                    id="receiveEmailAgree"
+                    name="receiveEmail"
+                  />
+                  동의
+                </label>
+
+                <label htmlFor="receiveEmailDisagree">
+                  <input
+                    type="radio"
+                    id="receiveEmailDisagree"
+                    name="receiveEmail"
+                  />
+                  비동의
+                </label>
+              </td>
+            </tr>
+
+            <tr className="receiveSMS">
+              <td>
+                <label htmlFor="receiveSMSAgree">SMS 수신여부</label>
+              </td>
+
+              <td>
+                <label htmlFor="receiveSMSAgree">
+                  <input type="radio" id="receiveSMSAgree" name="receiveSMS" />
+                  동의
+                </label>
+
+                <label htmlFor="receiveSMSDisagree">
+                  <input
+                    type="radio"
+                    id="receiveSMSDisagree"
+                    name="receiveSMS"
+                  />
+                  비동의
+                </label>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      );
+    }
   };
 
   return (

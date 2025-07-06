@@ -154,9 +154,7 @@
   font-size: clamp(16px, 4vw, 20px);
 }
 
-.joinTable tr:not(.joinRoute, .interestDisease) td:first-child::after,
-.joinRoute td p::after,
-.interestDisease td span::after {
+.joinTable tr:not(.joinRoute, .interestDisease) td:first-child::after {
   content: '•';
   color: #d70b0b;
 
