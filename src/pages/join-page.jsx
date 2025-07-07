@@ -327,7 +327,22 @@ export function JoinPage() {
         return;
       } else {
         setCurrentStep(3);
-        setFormContent(<h2>Step3</h2>);
+        setFormContent(
+          <>
+            <section>
+              <p>회원가입을 진심으로 환영합니다</p>
+              <span>
+                모두한의원은 언제나 환자의 건강과 함께 하겠습니다. 문의사항은
+                언제든지 고객센터로 연락주세요
+              </span>
+            </section>
+
+            <section>
+              <button>로그인</button>
+              <button>메인으로</button>
+            </section>
+          </>
+        );
       }
     }
   };
