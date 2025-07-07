@@ -5,7 +5,6 @@ import '../shared/styles/base.css';
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formContent, setFormContent] = useState();
-  const [showButton, setShowButton] = useState();
 
   const handleClear = () => {
     if (currentStep === 1) {
@@ -327,8 +326,6 @@ export function JoinPage() {
         receiveSMSAgree.focus();
         return;
       } else {
-        setShowButton(false);
-
         setCurrentStep(3);
         setFormContent(<h2>Step3</h2>);
       }
@@ -821,7 +818,7 @@ export function JoinPage() {
         </div>
       )}
 
-      {showButton && (
+      {currentStep !== 3 && (
         <button className="joinStepNext" onClick={handleClear}>
           확인
         </button>
