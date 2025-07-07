@@ -41,10 +41,11 @@
   font-variation-settings: 'wght' 500;
 }
 
+#joinStepNav li.joinActive span,
 #joinStepNav li.joinActive {
+  color: #ffffff;
   border: solid 1px #fe7352;
   background-color: #fe7352;
-  color: #ffffff;
 }
 
 .joinForm {
@@ -193,7 +194,7 @@
   align-items: center;
 }
 
-.joinRoute label,
+.joinRoute td:last-child label,
 .interestDisease label,
 .receiveEmail td:last-child label,
 .receiveSMS td:last-child label {
@@ -234,7 +235,10 @@
   margin-left: 9px;
 }
 
-.joinRoute label,
+.joinTable tr td:first-child label,
+.joinTable tr td:first-child p,
+.joinTable tr td:first-child p span,
+.joinRoute td:not(:first-child) label,
 .interestDisease label,
 .receiveEmail td:not(:first-child) label,
 .receiveSMS td:not(:first-child) label {

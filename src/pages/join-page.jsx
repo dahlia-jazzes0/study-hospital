@@ -5,272 +5,333 @@ import '../shared/styles/base.css';
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formContent, setFormContent] = useState();
+  const [showButton, setShowButton] = useState();
 
   const handleClear = () => {
-    const agreeAllTermsInput = document.getElementById('agreeAllTerms');
+    if (currentStep === 1) {
+      // console.log("step1");
 
-    const JoinRouteOptions = [
-      { id: 'blog', name: 'joinRoute', label: '블로그' },
-      { id: 'snsAdvertis', name: 'joinRoute', label: 'SNS광고' },
-      { id: 'busAdvertis', name: 'joinRoute', label: '버스광고' },
-      { id: 'nearHouse', name: 'joinRoute', label: '집근처' },
-      { id: 'friendRecommend', name: 'joinRoute', label: '지인추천' },
-    ];
+      const agreeAllTermsInput = document.getElementById('agreeAllTerms');
 
-    const InterestDiseaseOptions = [
-      { id: 'internal', name: 'internal', label: '내과' },
-      { id: 'carCrash', name: 'carCrash', label: '교통사고' },
-      { id: 'bodyCorrection', name: 'bodyCorrection', label: '체형교정' },
-      { id: 'obstetrics', name: 'obstetrics', label: '부인과' },
-      { id: 'diet', name: 'diet', label: '다이어트' },
-    ];
+      const JoinRouteOptions = [
+        { id: 'blog', name: 'joinRoute', label: '블로그' },
+        { id: 'snsAdvertis', name: 'joinRoute', label: 'SNS광고' },
+        { id: 'busAdvertis', name: 'joinRoute', label: '버스광고' },
+        { id: 'nearHouse', name: 'joinRoute', label: '집근처' },
+        { id: 'friendRecommend', name: 'joinRoute', label: '지인추천' },
+      ];
 
-    const EmailReceiveOptions = [
-      { id: 'receiveEmailAgree', name: 'receiveEmail', label: '동의' },
-      { id: 'receiveEmailDisagree', name: 'receiveEmail', label: '비동의' },
-    ];
+      const InterestDiseaseOptions = [
+        { id: 'internal', name: 'internal', label: '내과' },
+        { id: 'carCrash', name: 'carCrash', label: '교통사고' },
+        { id: 'bodyCorrection', name: 'bodyCorrection', label: '체형교정' },
+        { id: 'obstetrics', name: 'obstetrics', label: '부인과' },
+        { id: 'diet', name: 'diet', label: '다이어트' },
+      ];
 
-    const SMSReceiveOptions = [
-      { id: 'receiveSMSAgree', name: 'receiveSMS', label: '동의' },
-      { id: 'receiveSMSDisagree', name: 'receiveSMS', label: '비동의' },
-    ];
+      const EmailReceiveOptions = [
+        { id: 'receiveEmailAgree', name: 'receiveEmail', label: '동의' },
+        { id: 'receiveEmailDisagree', name: 'receiveEmail', label: '비동의' },
+      ];
 
-    const DomainOptions = ['gmail.com', 'naver.com', 'daum.net'];
+      const SMSReceiveOptions = [
+        { id: 'receiveSMSAgree', name: 'receiveSMS', label: '동의' },
+        { id: 'receiveSMSDisagree', name: 'receiveSMS', label: '비동의' },
+      ];
 
-    const joinFormRow = [
-      {
-        type: 'input',
-        id: 'joinUserId',
-        name: 'userId',
-        inputType: 'text',
-        label: '아이디',
-        placeholder: '영문, 숫자만 입력가능, 최소 4자이상 입력',
-      },
-      {
-        type: 'input',
-        id: 'joinUserPw',
-        name: 'userPw',
-        inputType: 'password',
-        label: '비밀번호',
-        placeholder: '영문, 숫자 포험 6~20자리 구성, 특수기호 제외',
-      },
-      {
-        type: 'input',
-        id: 'joinPwCheck',
-        name: 'passwordConfirm',
-        inputType: 'password',
-        label: '비밀번호확인',
-        placeholder: '',
-      },
-      {
-        type: 'input',
-        id: 'joinUserName',
-        name: 'userName',
-        inputType: 'text',
-        label: '성명',
-        placeholder: '',
-      },
-      {
-        type: 'input',
-        id: 'joinUserNumber',
-        name: 'userNumber',
-        inputType: 'text',
-        label: '연락처',
-        placeholder: '' - ' 제외 숫자만 입력하세요.',
-      },
-      {
-        type: 'email',
-        id: 'joinUserEmail',
-        name: 'userEmail',
-        inputType: 'text',
-        label: '이메일',
-        placeholder: '이메일 주소를 입력하세요.',
-        domainOptions: DomainOptions,
-      },
-      {
-        type: 'address',
-        id: 'searchAddressInput',
-        name: 'searchAddress',
-        inputType: 'text',
-        label: '주소',
-        placeholder: '주소 검색',
-      },
-      {
-        type: 'input',
-        id: 'joinBirth',
-        name: 'joinBirth',
-        inputType: 'text',
-        label: '생년월일',
-        placeholder: 'YYYYMMDD',
-      },
-      {
-        type: 'radio',
-        className: 'joinRoute',
-        label: '가입경로',
-        options: JoinRouteOptions,
-      },
-      {
-        type: 'checkbox',
-        className: 'interestDisease',
-        label: '관심질환',
-        subLabel: '(복수선택가능)',
-        options: InterestDiseaseOptions,
-      },
-      {
-        type: 'radio',
-        className: 'receiveEmail',
-        label: '이메일 수신여부',
-        labelFor: 'receiveEmailAgree',
-        options: EmailReceiveOptions,
-      },
-      {
-        type: 'radio',
-        className: 'receiveSMS',
-        label: 'SMS 수신여부',
-        labelFor: 'receiveSMSAgree',
-        options: SMSReceiveOptions,
-      },
-    ];
+      const DomainOptions = ['gmail.com', 'naver.com', 'daum.net'];
 
-    const joinFormRowRender = () => {
-      const rows = [];
+      const joinFormRow = [
+        {
+          type: 'input',
+          id: 'joinUserId',
+          name: 'userId',
+          inputType: 'text',
+          label: '아이디',
+          placeholder: '영문, 숫자만 입력가능, 최소 4자이상 입력',
+        },
+        {
+          type: 'input',
+          id: 'joinUserPw',
+          name: 'userPw',
+          inputType: 'password',
+          label: '비밀번호',
+          placeholder: '영문, 숫자 포험 6~20자리 구성, 특수기호 제외',
+        },
+        {
+          type: 'input',
+          id: 'joinPwCheck',
+          name: 'passwordConfirm',
+          inputType: 'password',
+          label: '비밀번호확인',
+          placeholder: '',
+        },
+        {
+          type: 'input',
+          id: 'joinUserName',
+          name: 'userName',
+          inputType: 'text',
+          label: '성명',
+          placeholder: '',
+        },
+        {
+          type: 'input',
+          id: 'joinUserNumber',
+          name: 'userNumber',
+          inputType: 'text',
+          label: '연락처',
+          placeholder: '' - ' 제외 숫자만 입력하세요.',
+        },
+        {
+          type: 'email',
+          id: 'joinUserEmail',
+          name: 'userEmail',
+          inputType: 'text',
+          label: '이메일',
+          placeholder: '이메일 주소를 입력하세요.',
+          domainOptions: DomainOptions,
+        },
+        {
+          type: 'address',
+          id: 'searchAddressInput',
+          name: 'searchAddress',
+          inputType: 'text',
+          label: '주소',
+          placeholder: '주소 검색',
+        },
+        {
+          type: 'input',
+          id: 'joinBirth',
+          name: 'joinBirth',
+          inputType: 'text',
+          label: '생년월일',
+          placeholder: 'YYYYMMDD',
+        },
+        {
+          type: 'radio',
+          className: 'joinRoute',
+          label: '가입경로',
+          options: JoinRouteOptions,
+        },
+        {
+          type: 'checkbox',
+          className: 'interestDisease',
+          label: '관심질환',
+          subLabel: '(복수선택가능)',
+          options: InterestDiseaseOptions,
+        },
+        {
+          type: 'radio',
+          className: 'receiveEmail',
+          label: '이메일 수신여부',
+          labelFor: 'receiveEmailAgree',
+          options: EmailReceiveOptions,
+        },
+        {
+          type: 'radio',
+          className: 'receiveSMS',
+          label: 'SMS 수신여부',
+          labelFor: 'receiveSMSAgree',
+          options: SMSReceiveOptions,
+        },
+      ];
 
-      for (let i = 0; i < joinFormRow.length; i++) {
-        const row = joinFormRow[i];
+      const joinFormRowRender = () => {
+        const rows = [];
 
-        if (row.type === 'email') {
-          rows.push(
-            <tr key={row.id}>
-              <td>
-                <label htmlFor={row.id}>{row.label}</label>
-              </td>
+        for (let i = 0; i < joinFormRow.length; i++) {
+          const row = joinFormRow[i];
 
-              <td>
-                <input
-                  type={row.inputType}
-                  id={row.id}
-                  name={row.name}
-                  placeholder={row.placeholder || undefined}
-                />
-                <select id="joinEmailDomain" name="emailDomain">
-                  <option value="">이메일 주소를 선택하세요.</option>
-                  {row.domainOptions.map((domain) => (
-                    <option key={domain} value={domain}>
-                      {domain}
-                    </option>
+          if (row.type === 'email') {
+            rows.push(
+              <tr key={row.id}>
+                <td>
+                  <label htmlFor={row.id}>{row.label}</label>
+                </td>
+
+                <td>
+                  <input
+                    type={row.inputType}
+                    id={row.id}
+                    name={row.name}
+                    placeholder={row.placeholder || undefined}
+                  />
+                  <select id="joinEmailDomain" name="emailDomain">
+                    <option value="">이메일 주소를 선택하세요.</option>
+                    {row.domainOptions.map((domain) => (
+                      <option key={domain} value={domain}>
+                        {domain}
+                      </option>
+                    ))}
+                  </select>
+                </td>
+              </tr>
+            );
+          } else if (row.type === 'address') {
+            rows.push(
+              <tr key={row.id}>
+                <td>
+                  <label htmlFor={row.id}>{row.label}</label>
+                </td>
+
+                <td>
+                  <input
+                    type="text"
+                    id={row.id}
+                    name="searchAddress"
+                    placeholder="주소 검색"
+                  />
+                  <button
+                    type="button"
+                    id="searchAddressBtn"
+                    // onClick={handleAddressSearch}
+                  >
+                    주소찾기
+                  </button>
+                  <br />
+                  <input
+                    type="text"
+                    id="userAddress"
+                    name="userAddress"
+                    placeholder="주소"
+                  />
+                  <br />
+                  <input
+                    type="text"
+                    id="userDetailAddress"
+                    name="userDetailAddress"
+                    placeholder="상세주소"
+                  />
+                </td>
+              </tr>
+            );
+          } else if (row.type === 'radio') {
+            rows.push(
+              <tr key={row.className} className={row.className}>
+                <td>
+                  <label htmlFor={row.labelFor || row.options[0].id}>
+                    {row.label}
+                    {row.subLabel && <span>{row.subLabel}</span>}
+                  </label>
+                </td>
+
+                <td>
+                  {row.options.map((option) => (
+                    <label key={option.id} htmlFor={option.id}>
+                      <input type="radio" id={option.id} name={option.name} />
+                      {option.label}
+                    </label>
                   ))}
-                </select>
-              </td>
-            </tr>
-          );
-        } else if (row.type === 'address') {
-          rows.push(
-            <tr key={row.id}>
-              <td>
-                <label htmlFor={row.id}>{row.label}</label>
-              </td>
+                </td>
+              </tr>
+            );
+          } else if (row.type === 'checkbox') {
+            rows.push(
+              <tr key={row.className} className={row.className}>
+                <td>
+                  <p>
+                    {row.label} {row.subLabel && <span>{row.subLabel}</span>}
+                  </p>
+                </td>
 
-              <td>
-                <input
-                  type="text"
-                  id={row.id}
-                  name="searchAddress"
-                  placeholder="주소 검색"
-                />
-                <button
-                  type="button"
-                  id="searchAddressBtn"
-                  // onClick={handleAddressSearch}
-                >
-                  주소찾기
-                </button>
-                <br />
-                <input
-                  type="text"
-                  id="userAddress"
-                  name="userAddress"
-                  placeholder="주소"
-                />
-                <br />
-                <input
-                  type="text"
-                  id="userDetailAddress"
-                  name="userDetailAddress"
-                  placeholder="상세주소"
-                />
-              </td>
-            </tr>
-          );
-        } else if (row.type === 'radio') {
-          rows.push(
-            <tr key={row.className} className={row.className}>
-              <td>
-                <label htmlFor={row.labelFor || row.options[0].id}>
-                  {row.label}
-                  {row.subLabel && <span>{row.subLabel}</span>}
-                </label>
-              </td>
+                <td>
+                  {row.options.map((option) => (
+                    <label key={option.id} htmlFor={option.id}>
+                      <input
+                        type="checkbox"
+                        id={option.id}
+                        name={option.name}
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+                </td>
+              </tr>
+            );
+          } else {
+            rows.push(
+              <tr key={row.id}>
+                <td>
+                  <label htmlFor={row.id}>{row.label}</label>
+                </td>
 
-              <td>
-                {row.options.map((option) => (
-                  <label key={option.id} htmlFor={option.id}>
-                    <input type="radio" id={option.id} name={option.name} />
-                    {option.label}
-                  </label>
-                ))}
-              </td>
-            </tr>
-          );
-        } else if (row.type === 'checkbox') {
-          rows.push(
-            <tr key={row.className} className={row.className}>
-              <td>
-                <p>
-                  {row.label} {row.subLabel && <span>{row.subLabel}</span>}
-                </p>
-              </td>
+                <td>
+                  <input
+                    type={row.inputType}
+                    id={row.id}
+                    name={row.name}
+                    placeholder={row.placeholder || undefined}
+                  />
+                </td>
+              </tr>
+            );
+          }
+        }
+        return rows;
+      };
 
-              <td>
-                {row.options.map((option) => (
-                  <label key={option.id} htmlFor={option.id}>
-                    <input type="checkbox" id={option.id} name={option.name} />
-                    {option.label}
-                  </label>
-                ))}
-              </td>
-            </tr>
-          );
-        } else {
-          rows.push(
-            <tr key={row.id}>
-              <td>
-                <label htmlFor={row.id}>{row.label}</label>
-              </td>
+      if (!agreeAllTermsInput.checked) {
+        agreeAllTermsInput.focus();
+      } else {
+        setCurrentStep(2);
+        setFormContent(
+          <table className="joinTable">
+            <tbody>{joinFormRowRender()}</tbody>
+          </table>
+        );
+      }
+    } else if (currentStep === 2) {
+      // console.log("step2");
 
-              <td>
-                <input
-                  type={row.inputType}
-                  id={row.id}
-                  name={row.name}
-                  placeholder={row.placeholder || undefined}
-                />
-              </td>
-            </tr>
-          );
+      const joinUserId = document.getElementById('joinUserId');
+      const joinUserPw = document.getElementById('joinUserPw');
+      const joinPwCheck = document.getElementById('joinPwCheck');
+      const joinUserName = document.getElementById('joinUserName');
+      const joinUserNumber = document.getElementById('joinUserNumber');
+      const joinUserEmail = document.getElementById('joinUserEmail');
+      const joinUserAddress = document.getElementById('searchAddressInput');
+      const joinBirth = document.getElementById('joinBirth');
+
+      const requiredUserInfo = [
+        joinUserId,
+        joinUserPw,
+        joinPwCheck,
+        joinUserName,
+        joinUserNumber,
+        joinUserEmail,
+        joinUserAddress,
+        joinBirth,
+      ];
+
+      for (let i = 0; i < requiredUserInfo.length; i++) {
+        if (!requiredUserInfo[i].value) {
+          requiredUserInfo[i].focus();
+          return;
         }
       }
-      return rows;
-    };
 
-    if (!agreeAllTermsInput.checked) {
-      agreeAllTermsInput.focus();
-    } else {
-      setCurrentStep(2);
-      setFormContent(
-        <table className="joinTable">
-          <tbody>{joinFormRowRender()}</tbody>
-        </table>
+      const receiveEmailAgree = document.getElementById('receiveEmailAgree');
+      const receiveEmailDisAgree = document.getElementById(
+        'receiveEmailDisagree'
       );
+
+      if (!receiveEmailAgree.checked && !receiveEmailDisAgree.checked) {
+        receiveEmailAgree.focus();
+        return;
+      }
+
+      const receiveSMSAgree = document.getElementById('receiveSMSAgree');
+      const receiveSMSDisagree = document.getElementById('receiveSMSDisagree');
+
+      if (!receiveSMSAgree.checked && !receiveSMSDisagree.checked) {
+        receiveSMSAgree.focus();
+        return;
+      } else {
+        setShowButton(false);
+
+        setCurrentStep(3);
+        setFormContent(<h2>Step3</h2>);
+      }
     }
   };
 
@@ -760,9 +821,11 @@ export function JoinPage() {
         </div>
       )}
 
-      <button className="joinStepNext" onClick={handleClear}>
-        확인
-      </button>
+      {showButton && (
+        <button className="joinStepNext" onClick={handleClear}>
+          확인
+        </button>
+      )}
     </div>
   );
 }
