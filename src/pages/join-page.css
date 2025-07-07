@@ -124,7 +124,9 @@
 }
 
 #searchAddressBtn,
-.joinStepNext {
+.joinStepNext,
+.goLoginBtn,
+.goMainBtn {
   margin-top: clamp(6px, 1.5vw, 8px);
 
   width: clamp(100px, 20vw, 135px);
@@ -267,10 +269,44 @@
   color: #d0d0d0;
 }
 
+/* step3 */
+.joinSuccess {
+  margin-top: clamp(30px, 2vw, 60px);
+
+  width: 1466px;
+  height: clamp(200px, 10vw, 352px);
+
+  border-radius: 16px;
+  border: solid 2px #d9d9d9;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.joinSuccess > p:nth-child(2) {
+  color: #fe7352;
+  font-size: clamp(32px, 2.5vw, 36px);
+  font-variation-settings: 'wght' 500;
+}
+
+.joinSuccess > p:last-child,
+.joinSuccess > p:last-child span {
+  font-size: clamp(6px, 2vw, 24px);
+  font-variation-settings: 'wght' 500;
+}
+
+.goLinkBtn {
+  display: flex;
+  gap: 10px;
+}
+
 @media (max-width: 1600px) {
   #joinStepNav,
   .joinTable,
-  .joinForm {
+  .joinForm,
+  .joinSuccess {
     width: 90vw;
   }
 
@@ -284,8 +320,13 @@
     margin-left: clamp(15px, 4vw, 30px);
   }
 
-  .joinTable tr td:first-child span {
+  .joinTable tr td:first-child span,
+  .joinSuccess > p:last-child span {
     display: block;
+  }
+
+  .joinSuccess > p:last-child span {
+    text-align: center;
   }
 
   .interestDisease td:last-child,

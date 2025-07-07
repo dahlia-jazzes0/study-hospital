@@ -329,17 +329,19 @@ export function JoinPage() {
         setCurrentStep(3);
         setFormContent(
           <>
-            <section>
+            <section className="joinSuccess">
+              <h2 className="sr-only">회원가입 성공</h2>
               <p>회원가입을 진심으로 환영합니다</p>
-              <span>
-                모두한의원은 언제나 환자의 건강과 함께 하겠습니다. 문의사항은
-                언제든지 고객센터로 연락주세요
-              </span>
+              <p>
+                모두한의원은 언제나 환자의 건강과 함께 하겠습니다.{' '}
+                <span>문의사항은 언제든지 고객센터로 연락주세요</span>
+              </p>
             </section>
 
-            <section>
-              <button>로그인</button>
-              <button>메인으로</button>
+            <section className="goLinkBtn">
+              <h2 className="sr-only">로그인,메인 페이지 이동</h2>
+              <button className="goLoginBtn">로그인</button>
+              <button className="goMainBtn">메인으로</button>
             </section>
           </>
         );
