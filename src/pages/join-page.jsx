@@ -9,110 +9,179 @@ export function JoinPage() {
   const handleClear = () => {
     const agreeAllTermsInput = document.getElementById('agreeAllTerms');
 
-    if (!agreeAllTermsInput.checked) {
-      agreeAllTermsInput.focus();
-    } else {
-      setCurrentStep(2);
-      setFormContent(
-        <table className="joinTable">
-          <tbody>
-            <tr>
+    const JoinRouteOptions = [
+      { id: 'blog', name: 'joinRoute', label: '블로그' },
+      { id: 'snsAdvertis', name: 'joinRoute', label: 'SNS광고' },
+      { id: 'busAdvertis', name: 'joinRoute', label: '버스광고' },
+      { id: 'nearHouse', name: 'joinRoute', label: '집근처' },
+      { id: 'friendRecommend', name: 'joinRoute', label: '지인추천' },
+    ];
+
+    const InterestDiseaseOptions = [
+      { id: 'internal', name: 'internal', label: '내과' },
+      { id: 'carCrash', name: 'carCrash', label: '교통사고' },
+      { id: 'bodyCorrection', name: 'bodyCorrection', label: '체형교정' },
+      { id: 'obstetrics', name: 'obstetrics', label: '부인과' },
+      { id: 'diet', name: 'diet', label: '다이어트' },
+    ];
+
+    const EmailReceiveOptions = [
+      { id: 'receiveEmailAgree', name: 'receiveEmail', label: '동의' },
+      { id: 'receiveEmailDisagree', name: 'receiveEmail', label: '비동의' },
+    ];
+
+    const SMSReceiveOptions = [
+      { id: 'receiveSMSAgree', name: 'receiveSMS', label: '동의' },
+      { id: 'receiveSMSDisagree', name: 'receiveSMS', label: '비동의' },
+    ];
+
+    const DomainOptions = ['gmail.com', 'naver.com', 'daum.net'];
+
+    const joinFormRow = [
+      {
+        type: 'input',
+        id: 'joinUserId',
+        name: 'userId',
+        inputType: 'text',
+        label: '아이디',
+        placeholder: '영문, 숫자만 입력가능, 최소 4자이상 입력',
+      },
+      {
+        type: 'input',
+        id: 'joinUserPw',
+        name: 'userPw',
+        inputType: 'password',
+        label: '비밀번호',
+        placeholder: '영문, 숫자 포험 6~20자리 구성, 특수기호 제외',
+      },
+      {
+        type: 'input',
+        id: 'joinPwCheck',
+        name: 'passwordConfirm',
+        inputType: 'password',
+        label: '비밀번호확인',
+        placeholder: '',
+      },
+      {
+        type: 'input',
+        id: 'joinUserName',
+        name: 'userName',
+        inputType: 'text',
+        label: '성명',
+        placeholder: '',
+      },
+      {
+        type: 'input',
+        id: 'joinUserNumber',
+        name: 'userNumber',
+        inputType: 'text',
+        label: '연락처',
+        placeholder: '' - ' 제외 숫자만 입력하세요.',
+      },
+      {
+        type: 'email',
+        id: 'joinUserEmail',
+        name: 'userEmail',
+        inputType: 'text',
+        label: '이메일',
+        placeholder: '이메일 주소를 입력하세요.',
+        domainOptions: DomainOptions,
+      },
+      {
+        type: 'address',
+        id: 'searchAddressInput',
+        name: 'searchAddress',
+        inputType: 'text',
+        label: '주소',
+        placeholder: '주소 검색',
+      },
+      {
+        type: 'input',
+        id: 'joinBirth',
+        name: 'joinBirth',
+        inputType: 'text',
+        label: '생년월일',
+        placeholder: 'YYYYMMDD',
+      },
+      {
+        type: 'radio',
+        className: 'joinRoute',
+        label: '가입경로',
+        options: JoinRouteOptions,
+      },
+      {
+        type: 'checkbox',
+        className: 'interestDisease',
+        label: '관심질환',
+        subLabel: '(복수선택가능)',
+        options: InterestDiseaseOptions,
+      },
+      {
+        type: 'radio',
+        className: 'receiveEmail',
+        label: '이메일 수신여부',
+        labelFor: 'receiveEmailAgree',
+        options: EmailReceiveOptions,
+      },
+      {
+        type: 'radio',
+        className: 'receiveSMS',
+        label: 'SMS 수신여부',
+        labelFor: 'receiveSMSAgree',
+        options: SMSReceiveOptions,
+      },
+    ];
+
+    const joinFormRowRender = () => {
+      const rows = [];
+
+      for (let i = 0; i < joinFormRow.length; i++) {
+        const row = joinFormRow[i];
+
+        if (row.type === 'email') {
+          rows.push(
+            <tr key={row.id}>
               <td>
-                <label htmlFor="joinUserId">아이디</label>
+                <label htmlFor={row.id}>{row.label}</label>
               </td>
+
               <td>
                 <input
-                  type="text"
-                  id="joinUserId"
-                  name="userId"
-                  placeholder="영문, 숫자만 입력가능, 최소 4자이상 입력"
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label htmlFor="joinUserPw">비밀번호</label>
-              </td>
-              <td>
-                <input
-                  type="password"
-                  id="joinUserPw"
-                  name="userPw"
-                  placeholder="영문, 숫자 포험 6~20자리 구성, 특수기호 제외"
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label htmlFor="joinPwCheck">비밀번호확인</label>
-              </td>
-              <td>
-                <input
-                  type="password"
-                  id="joinPwCheck"
-                  name="passwordConfirm"
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label htmlFor="joinUserName">성명</label>
-              </td>
-              <td>
-                <input type="text" id="joinUserName" name="userName" />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label htmlFor="joinUserNumber">연락처</label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  id="joinUserNumber"
-                  name="userNumber"
-                  placeholder="'-' 제외 숫자만 입력하세요."
-                />
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                <label htmlFor="joinUserEmail">이메일</label>
-              </td>
-              <td>
-                <input
-                  type="email"
-                  id="joinUserEmail"
-                  name="userEmail"
-                  placeholder="이메일 주소를 입력하세요"
+                  type={row.inputType}
+                  id={row.id}
+                  name={row.name}
+                  placeholder={row.placeholder || undefined}
                 />
                 <select id="joinEmailDomain" name="emailDomain">
                   <option value="">이메일 주소를 선택하세요.</option>
-                  <option value="gmail.com">gmail.com</option>
-                  <option value="naver.com">naver.com</option>
-                  <option value="daum.net">daum.net</option>
+                  {row.domainOptions.map((domain) => (
+                    <option key={domain} value={domain}>
+                      {domain}
+                    </option>
+                  ))}
                 </select>
               </td>
             </tr>
-
-            <tr>
+          );
+        } else if (row.type === 'address') {
+          rows.push(
+            <tr key={row.id}>
               <td>
-                <label htmlFor="searchAddressInput">주소</label>
+                <label htmlFor={row.id}>{row.label}</label>
               </td>
 
               <td>
                 <input
                   type="text"
-                  id="searchAddressInput"
+                  id={row.id}
                   name="searchAddress"
                   placeholder="주소 검색"
                 />
-                <button type="button" id="searchAddressBtn">
+                <button
+                  type="button"
+                  id="searchAddressBtn"
+                  // onClick={handleAddressSearch}
+                >
                   주소찾기
                 </button>
                 <br />
@@ -121,7 +190,6 @@ export function JoinPage() {
                   id="userAddress"
                   name="userAddress"
                   placeholder="주소"
-                  style={{ marginTop: '5px' }}
                 />
                 <br />
                 <input
@@ -129,144 +197,78 @@ export function JoinPage() {
                   id="userDetailAddress"
                   name="userDetailAddress"
                   placeholder="상세주소"
-                  style={{ marginTop: '5px' }}
                 />
               </td>
             </tr>
-
-            <tr>
+          );
+        } else if (row.type === 'radio') {
+          rows.push(
+            <tr key={row.className} className={row.className}>
               <td>
-                <label htmlFor="joinBirth">생년월일</label>
+                <label htmlFor={row.labelFor || row.options[0].id}>
+                  {row.label}
+                  {row.subLabel && <span>{row.subLabel}</span>}
+                </label>
               </td>
+
               <td>
-                <input
-                  type="text"
-                  id="joinBirth"
-                  name="joinBirth"
-                  placeholder="YYYYMMDD"
-                />
-              </td>
-            </tr>
-
-            <tr className="joinRoute">
-              <td>
-                <p>가입경로</p>
-              </td>
-              <td>
-                <label htmlFor="blog">
-                  <input type="radio" id="blog" name="joinRoute" />
-                  블로그
-                </label>
-
-                <label htmlFor="snsAdvertis">
-                  <input type="radio" id="snsAdvertis" name="joinRoute" />
-                  SNS광고
-                </label>
-
-                <label htmlFor="busAdvertis">
-                  <input type="radio" id="busAdvertis" name="joinRoute" />
-                  버스광고
-                </label>
-
-                <label htmlFor="nearHouse">
-                  <input type="radio" id="nearHouse" name="joinRoute" />
-                  집근처
-                </label>
-
-                <label htmlFor="friendRecommend">
-                  <input type="radio" id="friendRecommend" name="joinRoute" />
-                  지인추천
-                </label>
+                {row.options.map((option) => (
+                  <label key={option.id} htmlFor={option.id}>
+                    <input type="radio" id={option.id} name={option.name} />
+                    {option.label}
+                  </label>
+                ))}
               </td>
             </tr>
-
-            <tr className="interestDisease">
+          );
+        } else if (row.type === 'checkbox') {
+          rows.push(
+            <tr key={row.className} className={row.className}>
               <td>
                 <p>
-                  관심질환 <span>(붕복선택가능)</span>
+                  {row.label} {row.subLabel && <span>{row.subLabel}</span>}
                 </p>
               </td>
 
               <td>
-                <label htmlFor="internal">
-                  <input type="checkbox" id="internal" name="internal" />
-                  내과
-                </label>
-
-                <label htmlFor="carCrash">
-                  <input type="checkbox" id="carCrash" name="carCrash" />
-                  교통사고
-                </label>
-
-                <label htmlFor="bodyCorrection">
-                  <input
-                    type="checkbox"
-                    id="bodyCorrection"
-                    name="bodyCorrection"
-                  />
-                  체형교정
-                </label>
-
-                <label htmlFor="obstetrics">
-                  <input type="checkbox" id="obstetrics" name="obstetrics" />
-                  부인과
-                </label>
-
-                <label htmlFor="diet">
-                  <input type="checkbox" id="diet" name="diet" />
-                  다이어트
-                </label>
+                {row.options.map((option) => (
+                  <label key={option.id} htmlFor={option.id}>
+                    <input type="checkbox" id={option.id} name={option.name} />
+                    {option.label}
+                  </label>
+                ))}
               </td>
             </tr>
-
-            <tr className="receiveEmail">
+          );
+        } else {
+          rows.push(
+            <tr key={row.id}>
               <td>
-                <label htmlFor="receiveEmailAgree">이메일 수신여부</label>
+                <label htmlFor={row.id}>{row.label}</label>
               </td>
 
               <td>
-                <label htmlFor="receiveEmailAgree">
-                  <input
-                    type="radio"
-                    id="receiveEmailAgree"
-                    name="receiveEmail"
-                  />
-                  동의
-                </label>
-
-                <label htmlFor="receiveEmailDisagree">
-                  <input
-                    type="radio"
-                    id="receiveEmailDisagree"
-                    name="receiveEmail"
-                  />
-                  비동의
-                </label>
+                <input
+                  type={row.inputType}
+                  id={row.id}
+                  name={row.name}
+                  placeholder={row.placeholder || undefined}
+                />
               </td>
             </tr>
+          );
+        }
+      }
+      return rows;
+    };
 
-            <tr className="receiveSMS">
-              <td>
-                <label htmlFor="receiveSMSAgree">SMS 수신여부</label>
-              </td>
-
-              <td>
-                <label htmlFor="receiveSMSAgree">
-                  <input type="radio" id="receiveSMSAgree" name="receiveSMS" />
-                  동의
-                </label>
-
-                <label htmlFor="receiveSMSDisagree">
-                  <input
-                    type="radio"
-                    id="receiveSMSDisagree"
-                    name="receiveSMS"
-                  />
-                  비동의
-                </label>
-              </td>
-            </tr>
-          </tbody>
+    if (!agreeAllTermsInput.checked) {
+      agreeAllTermsInput.focus();
+    } else {
+      setCurrentStep(2);
+      setFormContent(
+        <table className="joinTable">
+          <tbody>{joinFormRowRender()}</tbody>
         </table>
       );
     }
