@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import './join-page.css';
 import '../shared/styles/base.css';
 
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formContent, setFormContent] = useState();
+  const navigate = useNavigate();
 
   const handleClear = () => {
     if (currentStep === 1) {
@@ -326,6 +328,14 @@ export function JoinPage() {
         receiveSMSAgree.focus();
         return;
       } else {
+        const handleLoginClick = () => {
+          navigate('/login');
+        };
+
+        const handleMainClick = () => {
+          navigate('/');
+        };
+
         setCurrentStep(3);
         setFormContent(
           <>
@@ -340,8 +350,12 @@ export function JoinPage() {
 
             <section className="goLinkBtn">
               <h2 className="sr-only">로그인,메인 페이지 이동</h2>
-              <button className="goLoginBtn">로그인</button>
-              <button className="goMainBtn">메인으로</button>
+              <button className="goLoginBtn" onClick={handleLoginClick}>
+                로그인
+              </button>
+              <button className="goMainBtn" onClick={handleMainClick}>
+                메인으로
+              </button>
             </section>
           </>
         );
