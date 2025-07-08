@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './join-page.css';
+
 import '../shared/styles/base.css';
+import './join-page.css';
 
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -81,7 +82,7 @@ export function JoinPage() {
           name: 'userNumber',
           inputType: 'text',
           label: '연락처',
-          placeholder: '' - ' 제외 숫자만 입력하세요.',
+          placeholder: "'-' 제외 숫자만 입력하세요.",
         },
         {
           type: 'email',
@@ -290,25 +291,100 @@ export function JoinPage() {
       const joinUserName = document.getElementById('joinUserName');
       const joinUserNumber = document.getElementById('joinUserNumber');
       const joinUserEmail = document.getElementById('joinUserEmail');
+      const joinEmailDomain = document.getElementById('joinEmailDomain');
       const joinUserAddress = document.getElementById('searchAddressInput');
       const joinBirth = document.getElementById('joinBirth');
 
-      const requiredUserInfo = [
-        joinUserId,
-        joinUserPw,
-        joinPwCheck,
-        joinUserName,
-        joinUserNumber,
-        joinUserEmail,
-        joinUserAddress,
-        joinBirth,
-      ];
+      const idPattern = /^[a-zA-Z0-9]{4,}$/;
+      const pwPattern = /^[a-zA-Z0-9]{6,20}$/;
+      const phoneNumPattern = /^[0-9]+$/;
+      const birthPattern = /^[0-9]{8}$/;
 
-      for (let i = 0; i < requiredUserInfo.length; i++) {
-        if (!requiredUserInfo[i].value) {
-          requiredUserInfo[i].focus();
-          return;
-        }
+      if (!idPattern.test(joinUserId.value)) {
+        joinUserId.value = '';
+        joinUserId.classList.add('joinError');
+        joinUserId.focus();
+        return;
+      }
+
+      if (!pwPattern.test(joinUserPw.value)) {
+        joinUserPw.value = '';
+        joinPwCheck.value = '';
+        joinUserPw.classList.add('joinError');
+        joinUserPw.focus();
+        return;
+      }
+
+      if (joinUserPw.value !== joinPwCheck.value) {
+        joinPwCheck.value = '';
+        joinPwCheck.classList.add('joinError');
+        joinPwCheck.focus();
+        return;
+      }
+
+      if (joinUserName.value === '') {
+        joinUserName.value = '';
+        joinUserName.classList.add('joinError');
+        joinUserName.focus();
+        return;
+      }
+
+      if (!phoneNumPattern.test(joinUserNumber.value)) {
+        joinUserNumber.value = '';
+        joinUserNumber.classList.add('joinError');
+        joinUserNumber.focus();
+        return;
+      }
+
+      if (joinUserEmail.value === '') {
+        joinUserEmail.classList.add('joinError');
+        joinUserEmail.focus();
+        return;
+      }
+
+      if (joinEmailDomain.value === '') {
+        joinEmailDomain.classList.add('joinError');
+        joinEmailDomain.focus();
+        return;
+      }
+
+      // 추가: 주소 검색시에 자동으로 주소창에 입력ㄱ, *있는주소로
+      if (joinUserAddress.value === '') {
+        joinUserAddress.classList.add('joinError');
+        joinUserAddress.focus();
+        return;
+      }
+
+      if (joinBirth.value === '') {
+        joinBirth.classList.add('joinError');
+        joinBirth.focus();
+        return;
+      }
+
+      if (!birthPattern.test(joinBirth.value)) {
+        joinBirth.value = '';
+        joinBirth.classList.add('joinError');
+        joinBirth.focus();
+        return;
+      }
+
+      const year = parseInt(joinBirth.value.substring(0, 4));
+      const month = parseInt(joinBirth.value.substring(4, 6));
+      const day = parseInt(joinBirth.value.substring(6, 8));
+      const currentYear = new Date().getFullYear();
+
+      if (
+        year < 1900 ||
+        year > currentYear ||
+        month < 1 ||
+        month > 12 ||
+        day < 1 ||
+        day > 31
+      ) {
+        joinBirth.value = '';
+        joinBirth.classList.add('joinError');
+        joinBirth.focus();
+        return;
       }
 
       const receiveEmailAgree = document.getElementById('receiveEmailAgree');
@@ -317,6 +393,7 @@ export function JoinPage() {
       );
 
       if (!receiveEmailAgree.checked && !receiveEmailDisAgree.checked) {
+        // receiveEmailAgree.classList.add('joinError');
         receiveEmailAgree.focus();
         return;
       }
@@ -325,6 +402,7 @@ export function JoinPage() {
       const receiveSMSDisagree = document.getElementById('receiveSMSDisagree');
 
       if (!receiveSMSAgree.checked && !receiveSMSDisagree.checked) {
+        // receiveSMSAgree.classList.add('joinError');
         receiveSMSAgree.focus();
         return;
       } else {

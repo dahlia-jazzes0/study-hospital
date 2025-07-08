@@ -12,6 +12,14 @@
   width: 1466px;
 }
 
+.joinTable .joinError:focus::placeholder {
+  color: red;
+}
+
+.joinTable .joinError:focus {
+  outline: 2px solid red;
+}
+
 #joinStepNav {
   display: flex;
   flex-direction: row;
