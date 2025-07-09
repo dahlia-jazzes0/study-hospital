@@ -1,11 +1,23 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import './login-page.css';
 
 export function LoginPage() {
   const moveToJoinPage = useNavigate();
-
+  const [pwdImg, setPwdImg] = useState('pwd-eye-2.png');
+  const [showPassword, setShowPassword] = useState(false);
   const handleJoinClick = () => {
     moveToJoinPage('/join');
+  };
+
+  const handlePw = () => {
+    if (showPassword) {
+      setPwdImg('pwd-eye-2.png');
+      setShowPassword(false);
+    } else {
+      setPwdImg('pwd-eye-1.png');
+      setShowPassword(true);
+    }
   };
 
   return (
@@ -26,8 +38,15 @@ export function LoginPage() {
             <input type="text" placeholder="아이디" id="userId" />
           </label>
 
-          <label htmlFor="userPw">
-            <input type="password" placeholder="비밀번호" id="userPw" />
+          <label htmlFor="userPw" className="userPwBox">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              placeholder="비밀번호"
+              id="userPw"
+            />
+            <button className="showPwdBtn" onClick={handlePw}>
+              <img src={pwdImg} alt="비밀번호 표시/숨김 아이콘" />
+            </button>
           </label>
 
           <label htmlFor="remember" className="remember">
