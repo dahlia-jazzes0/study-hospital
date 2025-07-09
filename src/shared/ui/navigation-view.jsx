@@ -20,6 +20,14 @@ export function NavigationView() {
             About
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/doctors"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+          >
+            Doctors
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
