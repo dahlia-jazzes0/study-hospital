@@ -1,0 +1,121 @@
+.mainTitle {
+  margin: 104px 0 104px 221px;
+  font-size: 64px;
+  font-weight: 500;
+}
+
+.doctorList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  max-width: 1490px;
+  margin: 0 auto;
+}
+
+.doctorCard {
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 3px 4px 4px 3px #0000001a;
+}
+
+.doctorImage {
+  width: 460px;
+  height: auto;
+  object-fit: cover;
+}
+
+.doctorInfo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 78px 41px 29px 109px;
+}
+
+.doctorName {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 63px;
+}
+
+.doctorDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 16px;
+}
+
+.detailItem {
+  display: grid;
+  grid-template-columns: 105px 273px;
+  row-gap: 12px;
+  margin-bottom: 33px;
+}
+
+.detailLabel {
+  grid-column: 1 / 2;
+}
+
+.detailValue {
+  grid-column: 2 / 3;
+}
+
+.toggleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  width: 51px;
+  height: 51px;
+  background-color: #ffffff;
+  border: 1px solid #e7e7e7;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.toggleButton:focus {
+  outline: none;
+}
+
+.arrowIcon {
+  width: 19px;
+  height: 19.8px;
+  transform: rotate(90deg);
+}
+
+.doctorDescription {
+  margin-top: 64px;
+}
+
+.descriptionText {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+.reservationButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 201px;
+  height: 57px;
+  background-color: #ffffff;
+  border: 1px solid #d2d2d2;
+  border-radius: 28.5px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
