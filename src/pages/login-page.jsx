@@ -1,15 +1,11 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import './login-page.css';
 
 export function LoginPage() {
-  const moveToJoinPage = useNavigate();
+  // const moveToJoinPage = useNavigate();
   const [pwdImg, setPwdImg] = useState('pwd-eye-2.png');
   const [showPassword, setShowPassword] = useState(false);
-  const handleJoinClick = () => {
-    moveToJoinPage('/join');
-    window.scrollTo(0, 0);
-  };
 
   const handlePw = () => {
     if (showPassword) {
@@ -61,14 +57,14 @@ export function LoginPage() {
         <section className="findIdPw">
           <h2 className="sr-only">아이디 비밀번호 찾기</h2>
 
-          <a href="#">아이디 찾기</a>
+          <Link to="/findId">아이디 찾기</Link>
           <span> | </span>
-          <a href="#">비밀번호 찾기</a>
+          <Link to="/findPw">비밀번호 찾기</Link>
         </section>
 
-        <button className="joinBtn" onClick={handleJoinClick}>
+        <Link to="/join" className="joinBtn">
           회원가입
-        </button>
+        </Link>
       </div>
     </div>
   );

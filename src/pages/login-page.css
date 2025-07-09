@@ -149,6 +149,12 @@ button {
   border-radius: 16px;
 }
 
+.joinBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .loginSubmit {
   color: #fff;
   background-color: #fe7352;
