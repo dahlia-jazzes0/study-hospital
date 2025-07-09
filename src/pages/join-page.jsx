@@ -275,6 +275,7 @@ export function JoinPage() {
       if (!agreeAllTermsInput.checked) {
         agreeAllTermsInput.focus();
       } else {
+        window.scrollTo(0, 0);
         setCurrentStep(2);
         setFormContent(
           <table className="joinTable">
@@ -283,6 +284,7 @@ export function JoinPage() {
         );
       }
     } else if (currentStep === 2) {
+      window.scrollTo(0, 0);
       // console.log("step2");
 
       const joinUserId = document.getElementById('joinUserId');
@@ -408,10 +410,12 @@ export function JoinPage() {
       } else {
         const handleLoginClick = () => {
           navigate('/login');
+          window.scrollTo(0, 0);
         };
 
         const handleMainClick = () => {
           navigate('/');
+          window.scrollTo(0, 0);
         };
 
         setCurrentStep(3);

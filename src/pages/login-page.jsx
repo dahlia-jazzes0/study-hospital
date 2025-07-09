@@ -8,6 +8,7 @@ export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const handleJoinClick = () => {
     moveToJoinPage('/join');
+    window.scrollTo(0, 0);
   };
 
   const handlePw = () => {
