@@ -3,26 +3,18 @@ import { Link } from 'react-router';
 import './login-page.css';
 
 export function LoginPage() {
-  // const moveToJoinPage = useNavigate();
-  const [pwdImg, setPwdImg] = useState('pwd-eye-2.png');
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePw = () => {
-    if (showPassword) {
-      setPwdImg('pwd-eye-2.png');
-      setShowPassword(false);
-    } else {
-      setPwdImg('pwd-eye-1.png');
-      setShowPassword(true);
-    }
+    setShowPassword((value) => !value);
   };
 
   return (
     <div className="loginPage">
       <section className="loginPageHeader">
-        <h1 className="logo">
+        <h2 className="logo">
           <img src="logo.png" alt="모두한의원 로고" />
-        </h1>
+        </h2>
 
         <p>모두한의원 홈페이지에 방문하신 걸 환영합니다</p>
       </section>
@@ -42,7 +34,10 @@ export function LoginPage() {
               id="userPw"
             />
             <button className="showPwdBtn" onClick={handlePw}>
-              <img src={pwdImg} alt="비밀번호 표시/숨김 아이콘" />
+              <img
+                src={showPassword ? 'pwd-eye-1.png' : 'pwd-eye-2.png'}
+                alt="비밀번호 표시/비활성화 아이콘"
+              />
             </button>
           </label>
 
