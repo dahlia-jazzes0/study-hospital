@@ -1,0 +1,20 @@
+name: Reviewer Roulette
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, ready_for_review, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  assign_reviews:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Assign random reviewers to PR
+        uses: ihs7/action-reviewer-roulette@v1
