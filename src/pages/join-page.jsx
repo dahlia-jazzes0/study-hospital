@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import '../shared/styles/base.css';
 import './join-page.css';
 
 export function JoinPage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [currentStep, setCurrentStep] = useState(1);
   const [formContent, setFormContent] = useState();
   const navigate = useNavigate();
