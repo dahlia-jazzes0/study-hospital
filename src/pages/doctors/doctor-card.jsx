@@ -4,30 +4,44 @@ import { DoctorDetail } from './doctor-detail';
 
 export function DoctorCard() {
   const [doctors, setDoctors] = useState([]);
+  const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
     const fetchDoctors = async () => {
       try {
-        const res = await fetch(
+        const doctorRes = await fetch(
           'https://hospital-api.dahlia-jazzes0.workers.dev/api/doctors/'
         );
+        const departmentRes = await fetch(
+          'https://hospital-api.dahlia-jazzes0.workers.dev/api/departments/'
+        );
 
-        if (!res.ok) {
+        if (!doctorRes.ok && !departmentRes.ok) {
           throw new Error('네트워크 에러');
         }
 
-        const data = await res.json();
-        setDoctors(data);
+        const doctorData = await doctorRes.json();
+        const departmentData = await departmentRes.json();
+
+        setDoctors(doctorData);
+        setDepartments(departmentData);
       } catch (err) {
         console.error(err);
       }
     };
+
     fetchDoctors();
   }, []);
 
+  const getDepartmentName = (id) => {
+    const dept = departments.find((d) => d.id === id);
+    return dept ? dept.name : '';
+  };
+
   return (
     <>
-      <h2 className={styles.mainTitle}>의료진 소개</h2>
+      <h2 className={styles.mainTitle}>의료진소개</h2>
+
       <ul className={styles.doctorList}>
         {doctors.map((doctor) => (
           <li key={doctor.id} className={styles.doctorCard}>
@@ -36,8 +50,13 @@ export function DoctorCard() {
               alt={`${doctor.name} 이미지`}
               className={styles.doctorImage}
             />
+
             <section className={styles.doctorInfo}>
-              <h3 className={styles.doctorName}>{doctor.name}</h3>
+              <h3 className={styles.doctorName}>
+                {doctor.name} {doctor.chief && '대표'}원장 (
+                {getDepartmentName(doctor.departmentId)})
+              </h3>
+
               <dl className={styles.doctorDetails}>
                 <div className={styles.detailItem}>
                   <dt className={styles.detailLabel}>학력</dt>
