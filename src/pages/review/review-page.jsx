@@ -29,9 +29,9 @@ export const ReviewPage = () => {
           </header>
 
           {/* Search Section */}
-          <section className="review-page-search-section" aria-label="검색">
-            <div className="review-page-search-info">
-              <span className="review-page-search-keyword">Total: 342</span>
+          <section className="review-page-search-info" aria-label="검색">
+            <div className="review-page-info">
+              <span className="review-page-total-count">Total: 342</span>
               <span className="review-page-search-scope"></span>
             </div>
             <div className="review-page-search-input-group">
@@ -50,14 +50,14 @@ export const ReviewPage = () => {
           {/* Content Area */}
           <section className="review-page-content-area">
             {/* Main Content */}
-            <div className="review-page-main-content" role="main">
-              <div className="review-page-content-box">영역 1</div>
-              <div className="review-page-content-box">영역 2</div>
-              <div className="review-page-content-box">영역 3</div>
-              <div className="review-page-content-box">영역 4</div>
-              <div className="review-page-content-box">영역 5</div>
-              <div className="review-page-content-box">영역 6</div>
-            </div>
+            <section className="review-page-main-content" role="main">
+              <article className="review-page-content-box">영역 1</article>
+              <article className="review-page-content-box">영역 2</article>
+              <article className="review-page-content-box">영역 3</article>
+              <article className="review-page-content-box">영역 4</article>
+              <article className="review-page-content-box">영역 5</article>
+              <article className="review-page-content-box">영역 6</article>
+            </section>
           </section>
 
           {/* Pagination */}

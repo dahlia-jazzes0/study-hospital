@@ -28,6 +28,7 @@
 
 .review-page-page-title {
   font-size: 64px;
+
   font-variation-settings: 'wght' 700;
   color: #333;
   margin-bottom: 59px;
@@ -65,7 +66,7 @@
 }
 
 /* Search Section */
-.review-page-search-section {
+.review-page-search-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -74,14 +75,14 @@
   gap: 10px;
 }
 
-.review-page-search-info {
+.review-page-info {
   display: flex;
   align-items: center;
   gap: 15px;
   font-size: 20px;
 }
 
-.review-page-search-keyword {
+.review-page-total-count {
   color: #0066cc;
 }
 
