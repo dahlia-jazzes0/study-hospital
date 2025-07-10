@@ -5,28 +5,13 @@ export function NavigationView() {
     <nav>
       <ul>
         <li>
-          <NavLink
-            to="/"
-            className={({ isActive }) => (isActive ? 'active' : '')}
-          >
-            Home
-          </NavLink>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? 'active' : '')}
-          >
-            About
-          </NavLink>
+          <NavLink to="/about">About</NavLink>
         </li>
         <li>
-          <NavLink
-            to="/doctors"
-            className={({ isActive }) => (isActive ? 'active' : '')}
-          >
-            Doctors
-          </NavLink>
+          <NavLink to="/doctors">Doctors</NavLink>
         </li>
       </ul>
     </nav>
