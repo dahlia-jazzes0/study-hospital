@@ -32,6 +32,7 @@ html {
   font-size: 6.4rem;
   font-weight: 500;
   font-variation-settings: 'wght' 500;
+
   margin-bottom: 10.4rem;
 }
 
@@ -39,23 +40,28 @@ html {
   display: flex;
   flex-direction: column;
   gap: 4rem;
+
   margin-left: 1.4rem;
 }
 
 .doctorCard {
   position: relative;
+
   display: flex;
   align-items: flex-start;
+
   background: #ffffff;
   border: 1px solid #e9ecef;
   border-radius: 1.6rem;
   box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.1);
+
   overflow: hidden;
 }
 
 .doctorImage {
   width: 46rem;
   height: 41.6rem;
+
   object-fit: cover;
   object-position: top;
 }
@@ -65,6 +71,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
   padding: 6.5rem 4.1rem 4.5rem 12.1rem;
 }
 
@@ -73,6 +80,7 @@ html {
   font-size: 3rem;
   font-weight: 700;
   font-variation-settings: 'wght' 700;
+
   margin-bottom: 6.3rem;
 }
 
@@ -80,6 +88,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 3.3rem;
+
   font-family: var(--font-family-pretendard);
   font-size: 1.6rem;
   font-weight: 400;
@@ -104,8 +113,10 @@ html {
   justify-content: center;
   align-items: center;
   align-self: flex-end;
+
   width: 5.1rem;
   height: 5.1rem;
+
   background: #ffffff;
   border: 1px solid #e7e7e7;
   border-radius: 50%;
@@ -114,6 +125,7 @@ html {
 .arrowIcon {
   width: 1.9rem;
   height: 1.98rem;
+
   rotate: 90deg;
 }
 
@@ -136,13 +148,17 @@ html {
   position: absolute;
   left: 1.8rem;
   bottom: 1.8rem;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 20.1rem;
   height: 5.7rem;
+
   background-color: #ffffff;
   border: 1px solid #d2d2d2;
   border-radius: 28.5rem;
+
   font-size: 2.4rem;
 }
