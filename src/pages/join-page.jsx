@@ -3,134 +3,190 @@ import './join-page.css';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
+const DomainOptions = ['gmail.com', 'naver.com', 'daum.net'];
+
+const JoinRouteOptions = [
+  { id: 'blog', label: '블로그', value: 'blog' },
+  { id: 'snsAdvertis', label: 'SNS광고', value: 'snsAdvertis' },
+  { id: 'busAdvertis', label: '버스광고', value: 'busAdvertis' },
+  { id: 'nearHouse', label: '집근처', value: 'nearHouse' },
+  { id: 'friendRecommend', label: '지인추천', value: 'friendRecommend' },
+];
+
+const InterestDiseaseOptions = [
+  { id: 'internal', name: 'internal', label: '내과' },
+  { id: 'carCrash', name: 'carCrash', label: '교통사고' },
+  { id: 'bodyCorrection', name: 'bodyCorrection', label: '체형교정' },
+  { id: 'obstetrics', name: 'obstetrics', label: '부인과' },
+  { id: 'diet', name: 'diet', label: '다이어트' },
+];
+
+const CommonOptions = {
+  YES_NO: [
+    { id: 'yes', label: '예', value: 'yes' },
+    { id: 'no', label: '아니오', value: 'no' },
+  ],
+  AGREE_DISAGREE: [
+    { id: 'agree', label: '동의', value: 'agree' },
+    { id: 'disagree', label: '비동의', value: 'disagree' },
+  ],
+};
+
+const findAddress = () => {
+  console.log('주소 검색');
+};
+
+const InputField = ({ label, id, type, placeholder, onChange, ariaLabel }) => {
+  return (
+    <tr>
+      <td>
+        <label htmlFor={id}>{label}</label>
+      </td>
+
+      <td>
+        <input
+          type={type}
+          id={id}
+          placeholder={placeholder}
+          onChange={onChange}
+          aria-label={ariaLabel}
+        />
+      </td>
+    </tr>
+  );
+};
+
+const EmailField = ({
+  label,
+  id,
+  type,
+  placeholder,
+  domainOptions,
+  ariaLabel,
+}) => {
+  return (
+    <tr>
+      <td>
+        <label htmlFor={id}>{label}</label>
+      </td>
+      <td>
+        <input
+          type={type}
+          id={id}
+          placeholder={placeholder}
+          aria-label={ariaLabel}
+        />
+        <select id="joinEmailDomain" name="emailDomain">
+          <option value="">이메일 주소를 선택하세요.</option>
+          {domainOptions.map((domain) => (
+            <option
+              key={domain}
+              value={domain}
+              aria-label={`이메일 도메인 ${domain}`}
+            >
+              {domain}
+            </option>
+          ))}
+        </select>
+      </td>
+    </tr>
+  );
+};
+
+const AddressField = ({ label, id, type, placeholder, ariaLabel }) => {
+  return (
+    <tr>
+      <td>
+        <label htmlFor={id}>{label}</label>
+      </td>
+
+      <td>
+        <input
+          type={type}
+          id={id}
+          placeholder={placeholder}
+          aria-label={`${ariaLabel} 필수입력란`}
+          readOnly
+          onClick={findAddress}
+        />
+
+        <button id="searchAddressBtn" onClick={findAddress}>
+          주소검색
+        </button>
+
+        <div>
+          <input
+            type={type}
+            id={`${id}_main`}
+            placeholder={label}
+            onClick={findAddress}
+            readOnly
+          />
+
+          <input
+            type={type}
+            id={`${id}_detail`}
+            placeholder="상세주소"
+            aria-label={`${ariaLabel} 상세주소 입력`}
+          />
+        </div>
+      </td>
+    </tr>
+  );
+};
+
+const RadioField = ({ label, name, options, ariaLabel }) => {
+  return (
+    <tr className={name}>
+      <td>
+        <label>{label}</label>
+      </td>
+      <td>
+        {options.map((option) => (
+          <label key={option.id} htmlFor={`${name}_${option.id}`}>
+            <input
+              type="radio"
+              id={`${name}_${option.id}`}
+              name={name}
+              value={option.value}
+              aria-label={ariaLabel}
+            />
+            {option.label}
+          </label>
+        ))}
+      </td>
+    </tr>
+  );
+};
+
+const CheckBoxField = ({ id, label, options, ariaLabel }) => {
+  return (
+    <tr className={id}>
+      <td>
+        <label>{label}</label>
+      </td>
+      <td>
+        {options.map((option) => (
+          <label key={option.id} htmlFor={option.id}>
+            <input
+              type="checkbox"
+              id={option.id}
+              name={option.name}
+              aria-label={ariaLabel}
+            />
+            {option.label}
+          </label>
+        ))}
+      </td>
+    </tr>
+  );
+};
+
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleNext = () => {
     setCurrentStep((prev) => (prev < 3 ? prev + 1 : prev));
-  };
-
-  const InputField = ({ label, id, type, placeholder }) => {
-    return (
-      <tr>
-        <td>
-          <label htmlFor={id}>{label}</label>
-        </td>
-
-        <td>
-          <input type={type} id={id} placeholder={placeholder} />
-        </td>
-      </tr>
-    );
-  };
-
-  const EmailField = ({ label, id, type, placeholder }) => {
-    const DomainOptions = ['gmail.com', 'naver.com', 'daum.net'];
-
-    return (
-      <tr>
-        <td>
-          <label htmlFor={id}>{label}</label>
-        </td>
-
-        <td>
-          <input type={type} id={id} placeholder={placeholder} />
-
-          <select id="joinEmailDomain" name="emailDomain">
-            <option value="">이메일 주소를 선택하세요.</option>
-            {DomainOptions.map((domain) => (
-              <option key={domain} value={domain}>
-                {domain}
-              </option>
-            ))}
-          </select>
-        </td>
-      </tr>
-    );
-  };
-
-  const AddressField = ({ label, id, type, placeholder }) => {
-    return (
-      <tr>
-        <td>
-          <label htmlFor={id}>{label}</label>
-        </td>
-
-        <td>
-          <input type={type} id={id} placeholder={placeholder} />
-
-          <button id="searchAddressBtn">주소검색</button>
-
-          <input type={type} id={id} placeholder={label} />
-
-          <input type={type} id={id} placeholder="상세주소" />
-        </td>
-      </tr>
-    );
-  };
-
-  const RadioField = ({ label, id, name }) => {
-    const JoinRouteOptions = [
-      { id: 'blog', label: '블로그', value: 'blog' },
-      { id: 'snsAdvertis', label: 'SNS광고', value: 'snsAdvertis' },
-      { id: 'busAdvertis', label: '버스광고', value: 'busAdvertis' },
-      { id: 'nearHouse', label: '집근처', value: 'nearHouse' },
-      { id: 'friendRecommend', label: '지인추천', value: 'friendRecommend' },
-    ];
-
-    const receiveOptions = [
-      { id: 'yes', label: '예', value: 'yes' },
-      { id: 'no', label: '아니오', value: 'no' },
-    ];
-
-    const options = name === 'joinRoute' ? JoinRouteOptions : receiveOptions;
-
-    return (
-      <tr className={id}>
-        <td>
-          <label>{label}</label>
-        </td>
-        <td>
-          {options.map((option) => (
-            <label key={option.id} htmlFor={`${name}_${option.id}`}>
-              <input
-                type="radio"
-                id={`${name}_${option.id}`}
-                name={name}
-                value={option.value}
-              />
-              {option.label}
-            </label>
-          ))}
-        </td>
-      </tr>
-    );
-  };
-
-  const CheckBoxField = ({ id, label }) => {
-    const InterestDiseaseOptions = [
-      { id: 'internal', name: 'internal', label: '내과' },
-      { id: 'carCrash', name: 'carCrash', label: '교통사고' },
-      { id: 'bodyCorrection', name: 'bodyCorrection', label: '체형교정' },
-      { id: 'obstetrics', name: 'obstetrics', label: '부인과' },
-      { id: 'diet', name: 'diet', label: '다이어트' },
-    ];
-
-    return (
-      <tr className={id}>
-        <td>
-          <label>{label}</label>
-        </td>
-        <td>
-          {InterestDiseaseOptions.map((option) => (
-            <label key={option.id} htmlFor={option.id}>
-              <input type="checkbox" id={option.id} name={option.name} />
-              {option.label}
-            </label>
-          ))}
-        </td>
-      </tr>
-    );
   };
 
   const renderStepContent = () => {
@@ -613,6 +669,7 @@ export function JoinPage() {
                   type="text"
                   label="아이디"
                   placeholder="영문, 숫자만 입력가능, 최소 4자이상 입력"
+                  ariaLabel="아이디 입력 필수입력란"
                 />
 
                 <InputField
@@ -620,21 +677,29 @@ export function JoinPage() {
                   type="password"
                   label="비밀번호"
                   placeholder="영문, 숫자 포험 6~20자리 구성, 특수기호 제외"
+                  ariaLabel="비밀번호 입력 필수입력란"
                 />
 
                 <InputField
                   id="joinPwCheck"
                   type="password"
                   label="비밀번호확인"
+                  ariaLabel="비밀번호 확인 입력 필수입력란"
                 />
 
-                <InputField id="joinUserName" type="text" label="성명" />
+                <InputField
+                  id="joinUserName"
+                  type="text"
+                  label="성명"
+                  ariaLabel="성명 입력 필수입력란"
+                />
 
                 <InputField
                   id="joinUserNumber"
                   type="text"
                   label="연락처"
                   placeholder="'-' 제외 숫자만 입력하세요."
+                  ariaLabel="연락처 입력 필수입력란"
                 />
 
                 <EmailField
@@ -642,12 +707,15 @@ export function JoinPage() {
                   type="email"
                   label="이메일"
                   placeholder="이메일 주소를 입력하세요."
+                  domainOptions={DomainOptions}
+                  ariaLabel="도메인을 제외한 이메일 입력 필수입력란"
                 />
 
                 <AddressField
                   id="searchAddressInput"
                   type="text"
                   label="주소"
+                  ariaLabel="주소 입력"
                 />
 
                 <InputField
@@ -655,22 +723,38 @@ export function JoinPage() {
                   type="text"
                   label="생년월일"
                   placeholder="YYYYMMDD"
+                  ariaLabel="생년월일 입력 필수입력란"
                 />
 
-                <RadioField id="joinRoute" name="joinRoute" label="가입경로" />
+                <RadioField
+                  id="joinRoute"
+                  name="joinRoute"
+                  label="가입경로"
+                  options={JoinRouteOptions}
+                  ariaLabel="가입경로 선택"
+                />
 
-                <CheckBoxField id="interestDisease" label="관심질환" />
+                <CheckBoxField
+                  id="interestDisease"
+                  label="관심질환"
+                  options={InterestDiseaseOptions}
+                  ariaLabel="관심질환 선택 (복수선택 가능)"
+                />
 
                 <RadioField
                   id="receiveEmail"
                   name="receiveEmail"
                   label="이메일 수신여부"
+                  options={CommonOptions.YES_NO}
+                  ariaLabel="이메일 수신 여부 선택 필수입력란"
                 />
 
                 <RadioField
                   id="receiveSMS"
                   name="receiveSMS"
                   label="SMS 수신여부"
+                  options={CommonOptions.YES_NO}
+                  ariaLabel="SMS 수신 여부 선택 필수입력란"
                 />
               </tbody>
             </table>

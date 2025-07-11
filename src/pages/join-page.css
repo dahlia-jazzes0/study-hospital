@@ -20,6 +20,11 @@
   outline: 2px solid red;
 }
 
+.joinTable input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 #joinStepNav {
   display: flex;
   flex-direction: row;
@@ -131,6 +136,16 @@
   height: clamp(20px, 4vw, 32px);
 }
 
+#searchAddressBtn {
+  height: clamp(40px, 4vw, 48px);
+}
+
+.joinStepNext,
+.goLoginBtn,
+.goMainBtn {
+  height: clamp(40px, 6vw, 48px);
+}
+
 #searchAddressBtn,
 .joinStepNext,
 .goLoginBtn,
@@ -138,7 +153,6 @@
   margin-top: clamp(6px, 1.5vw, 8px);
 
   width: clamp(100px, 20vw, 135px);
-  height: clamp(40px, 6vw, 48px);
 
   background-color: #222222;
   color: #ffffff;
@@ -241,7 +255,8 @@
 }
 
 #joinEmailDomain,
-#searchAddressBtn {
+#searchAddressBtn,
+#searchAddressInput_detail {
   margin-left: 9px;
 }
 
@@ -326,13 +341,9 @@
     width: 90vw;
   }
 
-  .joinTable input {
-    margin-top: 3px;
-    margin-bottom: 3px;
-  }
-
   #searchAddressBtn,
-  #joinEmailDomain {
+  #joinEmailDomain,
+  #searchAddressInput_detail {
     margin-left: clamp(15px, 4vw, 30px);
   }
 
