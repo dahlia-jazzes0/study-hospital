@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from '@/shared/ui/navigation-view.module.css';
 
 export function NavigationView() {
@@ -16,14 +16,14 @@ export function NavigationView() {
       <ul className={styles.navList}>
         {navigationItems.map((item, index) => (
           <li key={index} className={styles.navItem}>
-            <Link
+            <NavLink
               to={item.path}
               className={`${styles.navLink} ${
                 location.pathname === item.path ? styles.active : ''
               }`}
             >
               {item.label}
-            </Link>
+            </NavLink>
           </li>
         ))}
       </ul>
