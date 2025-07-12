@@ -40,7 +40,7 @@
   border: 1px solid #d9d9d9;
   border-radius: 1.781rem;
   font-size: 1.13rem;
-  font-weight: 500;
+  font-variation-settings: 'wght' 500;
   white-space: nowrap;
 }
 

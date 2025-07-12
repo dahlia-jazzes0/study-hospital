@@ -17,7 +17,7 @@
   border-radius: 4px;
 
   font-size: 1.25rem;
-  font-weight: 600;
+  font-variation-settings: 'wght' 600;
   white-space: nowrap;
   transition: color 0.3s ease;
 }
