@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-.sr-only {
+.srOnly {
   position: absolute;
   left: -9999px;
   top: auto;
@@ -80,15 +80,15 @@ button {
   gap: clamp(12px, 2.5vw, 20px);
 }
 
-#userId,
-#userPw,
+.userId,
+.userPw,
 .remember,
 .findIdPw > * {
   font-size: clamp(16px, 2.5vw, 22px);
 }
 
-#userId,
-#userPw {
+.userId,
+.userPw {
   width: 100%;
   padding: clamp(12px, 2vw, 17px);
 
@@ -131,7 +131,7 @@ button {
   color: #6b6b6b;
 }
 
-#remember {
+.remember input {
   width: clamp(20px, 4vw, 38px);
   height: clamp(20px, 4vw, 38px);
 
