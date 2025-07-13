@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import styles from '@/shared/ui/navigation-view.module.css';
+import styles from './navigation-view.module.css';
 
 export function NavigationView() {
   const location = useLocation();
