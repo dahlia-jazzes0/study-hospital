@@ -9,7 +9,7 @@ export function HeaderView() {
         <h1>
           <Link to="/">
             <img
-              src="public/images/logo.svg"
+              src="images/logo.png"
               alt="모두한의원"
               className={styles.logo}
             />
