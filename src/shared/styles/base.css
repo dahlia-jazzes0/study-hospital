@@ -18,7 +18,6 @@
 
 html {
   font-family: var(--font-family-pretendard);
-  font-size: clamp(8px, calc(100vw / 1300 * 16), 16px);
 }
 
 body {
