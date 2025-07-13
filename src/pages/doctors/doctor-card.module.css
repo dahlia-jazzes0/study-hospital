@@ -31,7 +31,6 @@ html {
   font-family: var(--font-family-pretendard);
   font-size: 6.4rem;
   font-weight: 500;
-  font-variation-settings: 'wght' 500;
 
   margin-bottom: 10.4rem;
 }
@@ -79,7 +78,6 @@ html {
   font-family: var(--font-family-pretendard);
   font-size: 3rem;
   font-weight: 700;
-  font-variation-settings: 'wght' 700;
 
   margin-bottom: 6.3rem;
 }
