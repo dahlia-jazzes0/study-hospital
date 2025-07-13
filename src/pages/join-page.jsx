@@ -1,18 +1,18 @@
-import './join-page.css';
+import styles from './join-page.module.css';
 
 import { useState } from 'react';
 import { Link } from 'react-router';
 
 const TermsStep = () => {
   return (
-    <div className="joinForm">
-      <h2 className="sr-only">회원가입 폼</h2>
+    <div className={styles.joinForm}>
+      <h2 className={styles.srOnly}>회원가입 폼</h2>
 
       <section>
         <h3>회원가입약관</h3>
 
-        <div className="termsBox">
-          <div className="joinTextBox">
+        <div className={styles.termsBox}>
+          <div className={styles.joinTextBox}>
             <h4>제 1 장 - 총 칙</h4>
 
             <h5>제1조 목 적</h5>
@@ -240,8 +240,8 @@ const TermsStep = () => {
 
       <section>
         <h3>개인정보처리취급방침</h3>
-        <div className="privacyBox">
-          <div className="joinTextBox">
+        <div className={styles.privacyBox}>
+          <div className={styles.joinTextBox}>
             <p>
               모두한의원은 (이하 '병원') 환자 여러분들의 개인 정보를 소중히
               생각하며 [정보통신망 이용촉진 및 정보보호]에 관한 법률을 준수하고
@@ -446,7 +446,7 @@ const TermsStep = () => {
         </div>
       </section>
 
-      <label htmlFor="agreeAllTerms" className="agreeAllTerms">
+      <label htmlFor="agreeAllTerms" className={styles.agreeAllTerms}>
         <input type="checkbox" id="agreeAllTerms" />위 약관에 모두 동의합니다
       </label>
     </div>
@@ -456,7 +456,7 @@ const TermsStep = () => {
 const UserInfoStep = () => {
   return (
     <div>
-      <table className="joinTable">
+      <table className={styles.joinTable}>
         <tbody>
           <InputField
             id="joinUserId"
@@ -522,6 +522,7 @@ const UserInfoStep = () => {
 
           <RadioField
             id="joinRoute"
+            className={styles.joinRoute}
             name="joinRoute"
             label="가입경로"
             options={JoinRouteOptions}
@@ -530,6 +531,7 @@ const UserInfoStep = () => {
 
           <CheckBoxField
             id="interestDisease"
+            className={styles.interestDisease}
             label="관심질환"
             options={InterestDiseaseOptions}
             ariaLabel="관심질환 선택 (복수선택 가능)"
@@ -537,6 +539,7 @@ const UserInfoStep = () => {
 
           <RadioField
             id="receiveEmail"
+            className={styles.receiveEmail}
             name="receiveEmail"
             label="이메일 수신여부"
             options={CommonOptions.YES_NO}
@@ -545,6 +548,7 @@ const UserInfoStep = () => {
 
           <RadioField
             id="receiveSMS"
+            className={styles.receiveSMS}
             name="receiveSMS"
             label="SMS 수신여부"
             options={CommonOptions.YES_NO}
@@ -559,8 +563,8 @@ const UserInfoStep = () => {
 const JoinSuccessStep = () => {
   return (
     <div>
-      <section className="joinSuccess">
-        <h2 className="sr-only">회원가입 성공</h2>
+      <section className={styles.joinSuccess}>
+        <h2 className={styles.srOnly}>회원가입 성공</h2>
         <p>회원가입을 진심으로 환영합니다</p>
         <p>
           모두한의원은 언제나 환자의 건강과 함께 하겠습니다.
@@ -568,13 +572,13 @@ const JoinSuccessStep = () => {
         </p>
       </section>
 
-      <section className="goLinkBtn">
-        <h2 className="sr-only">로그인,메인 페이지 이동</h2>
-        <Link to="/login" className="goLoginBtn">
+      <section className={styles.goLinkBtn}>
+        <h2 className={styles.srOnly}>로그인,메인 페이지 이동</h2>
+        <Link to="/login" className={styles.goLoginBtn}>
           로그인
         </Link>
 
-        <Link to="/" className="goMainBtn">
+        <Link to="/" className={styles.goMainBtn}>
           메인으로
         </Link>
       </section>
@@ -655,7 +659,11 @@ const EmailField = ({
           placeholder={placeholder}
           aria-label={ariaLabel}
         />
-        <select id="joinEmailDomain" name="emailDomain">
+        <select
+          id="joinEmailDomain"
+          className={styles.joinEmailDomain}
+          name="emailDomain"
+        >
           <option value="">이메일 주소를 선택하세요.</option>
           {domainOptions.map((domain) => (
             <option
@@ -689,7 +697,11 @@ const AddressField = ({ label, id, type, placeholder, ariaLabel }) => {
           onClick={findAddress}
         />
 
-        <button id="searchAddressBtn" onClick={findAddress}>
+        <button
+          id="searchAddressBtn"
+          className={styles.searchAddressBtn}
+          onClick={findAddress}
+        >
           주소검색
         </button>
 
@@ -714,9 +726,9 @@ const AddressField = ({ label, id, type, placeholder, ariaLabel }) => {
   );
 };
 
-const RadioField = ({ label, name, options, ariaLabel }) => {
+const RadioField = ({ label, name, options, ariaLabel, className }) => {
   return (
-    <tr className={name}>
+    <tr className={className}>
       <td>
         <label>{label}</label>
       </td>
@@ -738,9 +750,9 @@ const RadioField = ({ label, name, options, ariaLabel }) => {
   );
 };
 
-const CheckBoxField = ({ id, label, options, ariaLabel }) => {
+const CheckBoxField = ({ label, options, ariaLabel, className }) => {
   return (
-    <tr className={id}>
+    <tr className={className}>
       <td>
         <label>{label}</label>
       </td>
@@ -770,19 +782,19 @@ export function JoinPage() {
   };
 
   return (
-    <div className="joinMain">
+    <div className={styles.joinMain}>
       <section>
-        <h2 className="sr-only">회원가입 단계</h2>
-        <ul id="joinStepNav">
-          <li className={currentStep === 1 ? 'joinActive' : ''}>
+        <h2 className={styles.srOnly}>회원가입 단계</h2>
+        <ul id="joinStepNav" className={styles.joinStepNav}>
+          <li className={currentStep === 1 ? styles.joinActive : ''}>
             <span>STEP1</span>
             약관동의
           </li>
-          <li className={currentStep === 2 ? 'joinActive' : ''}>
+          <li className={currentStep === 2 ? styles.joinActive : ''}>
             <span>STEP2</span>
             회원정보입력
           </li>
-          <li className={currentStep === 3 ? 'joinActive' : ''}>
+          <li className={currentStep === 3 ? styles.joinActive : ''}>
             <span>STEP3</span>
             회원가입완료
           </li>
@@ -790,14 +802,14 @@ export function JoinPage() {
       </section>
 
       <section>
-        <h2 className="sr-only">단계별 페이지 내용</h2>
+        <h2 className={styles.srOnly}>단계별 페이지 내용</h2>
         {currentStep === 1 && <TermsStep />}
         {currentStep === 2 && <UserInfoStep />}
         {currentStep === 3 && <JoinSuccessStep />}
       </section>
 
       {currentStep !== 3 && (
-        <button className="joinStepNext" onClick={handleNext}>
+        <button className={styles.joinStepNext} onClick={handleNext}>
           확인
         </button>
       )}
