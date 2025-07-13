@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import styles from '@/shared/ui/header-view.module.css';
+import { Link } from 'react-router';
 import { NavigationView } from '@/shared/ui/navigation-view.jsx';
+import styles from './header-view.module.css';
 
 export function HeaderView() {
   return (
