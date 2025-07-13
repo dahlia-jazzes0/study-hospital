@@ -1,0 +1,5 @@
+.logo {
+  aspect-ratio: 261 / 80;
+  min-width: min-content;
+  height: var(---size);
+}
