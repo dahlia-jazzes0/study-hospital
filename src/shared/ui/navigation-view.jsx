@@ -1,8 +1,7 @@
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import styles from './navigation-view.module.css';
 
 export function NavigationView() {
-  const location = useLocation();
   const navigationItems = [
     { label: '진료과목', path: '/departments' },
     { label: '의료진소개', path: '/doctors' },
@@ -14,14 +13,9 @@ export function NavigationView() {
   return (
     <nav className={styles.headerNav}>
       <ul className={styles.navList}>
-        {navigationItems.map((item, index) => (
-          <li key={index} className={styles.navItem}>
-            <NavLink
-              to={item.path}
-              className={`${styles.navLink} ${
-                location.pathname === item.path ? styles.active : ''
-              }`}
-            >
+        {navigationItems.map((item) => (
+          <li key={item.path} className={styles.navItem}>
+            <NavLink to={item.path} className={styles.navLink}>
               {item.label}
             </NavLink>
           </li>
