@@ -14,14 +14,9 @@
 
 html {
   font-family: var(--font-family-pretendard);
-  font-feature-settings: 'tnum';
-  font-variation-settings: 'wght' 400;
 }
 
 body {
-  font-family: var(--font-family-pretendard);
-  font-feature-settings: 'tnum';
-  font-variation-settings: 'wght' 400;
   font-display: swap;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
