@@ -4,9 +4,240 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>모두한의원</title>
+    <link rel="stylesheet" href="src/shared/styles/base.css">
+    <link rel="stylesheet" href="src/shared/styles/reset.css">
   </head>
+
   <body>
+    <!-- header -->
+    <header>
+      <h1 class="sr-only">모두한의원</h1>
+
+      <div class="header-top">
+        <div class="header-container">
+          <div class="logo">
+            <img src="#" alt="모두한의원 로고">
+          </div>
+
+          <nav class="header-nav">
+            <ul class="nav-menu">
+              <li><a href="#">진료과목</a></li>
+              <li><a href="#">의료진소개</a></li>
+              <li><a href="#">치료후기</a></li>
+              <li><a href="#">진료예약</a></li>
+              <li><a href="#">병원안내</a></li>
+            </ul>
+          </nav>
+
+          <div class="membership">
+            <a href="#">
+              <img src="#" alt="멤버쉽 아이콘" class="member-icon">
+              <span>멤버쉽</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-banner">
+        <div class="banner-tabs">
+          <div class="tab active">진료안내</div>
+          <div class="tab">층별안내</div>
+          <div class="tab">오시는길</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- main -->
+    <main>
+        <h2 class="sr-only">상세 정보</h2>
+        <!-- 진료 안내 -->
+        <div class="container">
+            <div class="info-section">
+                <h3 class="title">진료안내</h3>
+                
+                <div class="schedule-section">
+                    <h4 class="section-title">진료시간</h4>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-day">평일</div>
+                        <div class="schedule-time">오전 9시 ~ 오후 8시</div>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-day">토요일</div>
+                        <div class="schedule-time">오전 9시 ~ 오후 2시</div>
+                    </div>
+                    
+                    <div class="schedule-item">
+                        <div class="schedule-day">점심시간</div>
+                        <div class="schedule-time">오후 1시 ~ 오후 2시</div>
+                    </div>
+                    
+                    <div class="schedule-note">
+                        *일요일 및 공휴일 휴무<br>
+                        *토요일은 점심시간 없이 진료
+                    </div>
+                </div>
+
+                <div style="margin-top: 2.5rem;">
+                    <h4 class="section-title">주요진료</h4>
+                    
+                    <div class="departments-grid">
+                        <div class="department-tag">소화장애</div>
+                        <div class="department-tag">천식</div>
+                        <div class="department-tag">교통사고</div>
+                        <div class="department-tag">면역력 저하</div>
+                        <div class="department-tag">목통증</div>
+                        <div class="department-tag">허리통증</div>
+                        <div class="department-tag">어깨통증</div>
+                        <div class="department-tag">비수술 치료</div>
+                        <div class="department-tag">체질개선</div>
+                        <div class="department-tag">소아 성장</div>
+                        <div class="department-tag">다이어트 한약</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-section">
+                <img src="public/img/16f8715f1145134152d5f70897fcc0903137b655.png" alt="병원 대기실" class="hospital-image">
+            </div>
+        </div>
+
+<!-- 층별 안내 -->
+<div class="floor-guide-section">
+  <h3 class="title">층별안내</h3>
+  
+  <div class="floor-guide-container">
+    <div class="floor-tabs">
+      <div class="floor-tab active" data-floor="1">1F</div>
+      <div class="floor-tab" data-floor="2">2F</div>
+      <div class="floor-tab" data-floor="3">3F</div>
+    </div>
+    
+    <div class="floor-content">
+      <div class="main-image-container">
+        <div class="image-navigation">
+          <button class="nav-btn prev-btn" id="prevBtn">❮</button>
+          <button class="nav-btn next-btn" id="nextBtn">❯</button>
+        </div>
+        
+        <div class="main-image-wrapper">
+          <img id="mainImage" src="public/img/8ad49fd9c784c70912227f9950f4b9feffa807c0.png" alt="로비" class="main-image">
+          <div class="image-description">
+            <span id="imageDescription">로비</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="thumbnail-container">
+        <div class="thumbnail-wrapper" id="thumbnailWrapper">
+          <!-- 1층 -->
+          <div class="thumbnail-group floor-1-thumbnails">
+            <div class="thumbnail active" data-image="8ad49fd9c784c70912227f9950f4b9feffa807c0" data-description="로비">
+              <img src="public/img/8ad49fd9c784c70912227f9950f4b9feffa807c0.png" alt="로비">
+            </div>
+            <div class="thumbnail" data-image="056f9d60979e073efaf180e7d046d20460ed384b" data-description="환자 대기실">
+              <img src="public/img/056f9d60979e073efaf180e7d046d20460ed384b.png" alt="환자 대기실">
+            </div>
+            <div class="thumbnail" data-image="669c4c23eda5607784bf93db4856428b3991f177" data-description="휴게실">
+              <img src="public/img/669c4c23eda5607784bf93db4856428b3991f177.png" alt="휴게실">
+            </div>
+            <div class="thumbnail" data-image="e4f081fa8aabf79c8c0d952aa4d0c3518bd6f33a" data-description="식당">
+              <img src="public/img/e4f081fa8aabf79c8c0d952aa4d0c3518bd6f33a.png" alt="식당">
+            </div>
+          </div>
+          <!-- 2층 -->
+          <div class="thumbnail-group floor-2-thumbnails" style="display: none;">
+            <div class="thumbnail" data-image="10d89c0b66a97399c6153f33d2cdc9a95bd3236b" data-description="산책로">
+              <img src="public/img/10d89c0b66a97399c6153f33d2cdc9a95bd3236b.png" alt="산책로">
+            </div>
+            <div class="thumbnail" data-image="afddc78bdacb6cb73d043d9a005eaf636b1008fb" data-description="안내 데스크">
+              <img src="public/img/afddc78bdacb6cb73d043d9a005eaf636b1008fb.png" alt="안내 데스크">
+            </div>
+            <div class="thumbnail" data-image="915e00245354be5660fe1bf5d3e65edf62e5c594" data-description="x-ray">
+              <img src="public/img/915e00245354be5660fe1bf5d3e65edf62e5c594.png" alt="x-ray">
+            </div>
+            <div class="thumbnail" data-image="cefd4e2c3b2f6927b195ac2eb28de3e4e14e9d8e" data-description="재활실">
+              <img src="public/img/cefd4e2c3b2f6927b195ac2eb28de3e4e14e9d8e.png" alt="재활실">
+            </div>
+          </div>
+          <!-- 3층 -->
+          <div class="thumbnail-group floor-3-thumbnails" style="display: none;">
+            <div class="thumbnail" data-image="750fe1959b0fe3dd3df670b27f244bce994414c1" data-description="치료실">
+              <img src="public/img/750fe1959b0fe3dd3df670b27f244bce994414c1.png" alt="치료실">
+            </div>
+            <div class="thumbnail" data-image="dc094e92d75f451010eee6584209e444aaa492dd" data-description="입원실">
+              <img src="public/img/dc094e92d75f451010eee6584209e444aaa492dd.png" alt="입원실">
+            </div>
+            <div class="thumbnail" data-image="b7eb6d4db82cd12ea15091b2b1f46ac605e8b7c6" data-description="안내 데스크">
+              <img src="public/img/b7eb6d4db82cd12ea15091b2b1f46ac605e8b7c6.png" alt="안내 데스크">
+            </div>
+            <div class="thumbnail" data-image="f3373a2caff4cc63cc2c1da2130d61e4c938c131" data-description="1인 입원실">
+              <img src="public/img/f3373a2caff4cc63cc2c1da2130d61e4c938c131.png" alt="1인 입원실">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- 오시는 길 -->
+    </main>
+    
+    <!-- footer -->
+    <footer>
+      <h1 class="sr-only">정보</h1>
+      <div class="footer-container">
+        <div class="footer-top">
+          <nav class="footer-nav">
+            <ul class="footer-menu">
+              <li><a href="#">모두한의원 소개</a></li>
+              <li><span>|</span></li>
+              <li><a href="#">개인정보처리방침</a></li>
+              <li><span>|</span></li>
+              <li><a href="#">이용약관</a></li>
+              <li><span>|</span></li>
+              <li><a href="#">이메일주소무단수집거부</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-content">
+          <div class="footer-info">
+            <div class="footer-logo">
+              <img src="#" alt="모두한의원 로고">
+            </div>
+
+            <div class="footer-details">
+              <div class="contact-info">
+                <span>사업자 등록번호: 123-45-67890</span>
+                <span> | </span>
+                <span>통신판매업 신고번호: 제2024-서울성동-00123호</span>
+              </div>
+              <div class="contact-info">
+                <span>전화번호: 02-1234-5678</span>
+                <span> | </span>
+                <span>전화번호: 02-1234-5678</span>
+              </div>
+              <div class="address">
+                <span>주소: 서울시 성동구 무 학봉길 21, 1~3층</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-social">
+            <a href="#" class="social-link">
+              <img src="#" alt="인스타그램">
+            </a>
+            <a href="#" class="social-link">
+              <img src="#" alt="블로그">
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <script src="/src/main.jsx"></script>
   </body>
 </html>
