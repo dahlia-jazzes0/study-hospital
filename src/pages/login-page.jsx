@@ -57,7 +57,11 @@ export function LoginPage() {
           <Link to="/findPw">비밀번호 찾기</Link>
         </section>
 
-        <Link to="/join" className="joinBtn">
+        <Link
+          to="/join"
+          className="joinBtn"
+          onClick={() => window.scrollTo(0, 0)}
+        >
           회원가입
         </Link>
       </div>
