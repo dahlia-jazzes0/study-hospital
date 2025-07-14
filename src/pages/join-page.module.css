@@ -21,12 +21,20 @@
   width: 1466px;
 }
 
-.joinTable .joinError:focus::placeholder {
-  color: red;
+.joinError:focus {
+  outline: 2px solid #ff0000;
 }
 
-.joinTable .joinError:focus {
-  outline: 2px solid red;
+.errorMessage input,
+.errorInput {
+  border: solid 1px #ff0000;
+}
+
+.errorText {
+  display: block;
+  margin-left: clamp(15px, 4vw, 30px);
+
+  color: red;
 }
 
 .joinTable input {

@@ -1,4 +1,5 @@
 import styles from './join-page.module.css';
+import { useValidation } from '../Hooks/use-validation';
 
 import { useState } from 'react';
 import { Link } from 'react-router';
@@ -453,7 +454,13 @@ const TermsStep = () => {
   );
 };
 
-const UserInfoStep = () => {
+const UserInfoStep = ({
+  formData,
+  formErrors,
+  handleChange,
+  handleEmailIdChange,
+  handleEmailDomainChange,
+}) => {
   return (
     <div>
       <table className={styles.joinTable}>
@@ -464,6 +471,9 @@ const UserInfoStep = () => {
             label="아이디"
             placeholder="영문, 숫자만 입력가능, 최소 4자이상 입력"
             ariaLabel="아이디 입력 필수입력란"
+            value={formData.userId}
+            onChange={handleChange('userId')}
+            hasError={formErrors.userId}
           />
 
           <InputField
@@ -472,6 +482,9 @@ const UserInfoStep = () => {
             label="비밀번호"
             placeholder="영문, 숫자 포험 6~20자리 구성, 특수기호 제외"
             ariaLabel="비밀번호 입력 필수입력란"
+            value={formData.userPw}
+            onChange={handleChange('userPw')}
+            hasError={formErrors.userPw}
           />
 
           <InputField
@@ -479,6 +492,9 @@ const UserInfoStep = () => {
             type="password"
             label="비밀번호확인"
             ariaLabel="비밀번호 확인 입력 필수입력란"
+            value={formData.pwCheck}
+            onChange={handleChange('pwCheck')}
+            hasError={formErrors.pwCheck}
           />
 
           <InputField
@@ -486,23 +502,36 @@ const UserInfoStep = () => {
             type="text"
             label="성명"
             ariaLabel="성명 입력 필수입력란"
+            value={formData.userName}
+            onChange={handleChange('userName')}
+            hasError={formErrors.userName}
           />
 
           <InputField
             id="joinUserNumber"
-            type="text"
+            type="number"
             label="연락처"
             placeholder="'-' 제외 숫자만 입력하세요."
             ariaLabel="연락처 입력 필수입력란"
+            value={formData.userNumber}
+            onChange={handleChange('userNumber')}
+            hasError={formErrors.userNumber}
           />
 
           <EmailField
-            id="joinUserEmail"
-            type="email"
+            id="joinUserEmailId"
+            type="text"
             label="이메일"
-            placeholder="이메일 주소를 입력하세요."
+            placeholder="이메일 아이디 입력"
             domainOptions={DomainOptions}
-            ariaLabel="도메인을 제외한 이메일 입력 필수입력란"
+            ariaLabel="이메일 아이디 입력 필수입력란"
+            emailIdValue={formData.emailId}
+            emailDomainValue={formData.emailDomain}
+            onEmailIdChange={handleEmailIdChange}
+            onEmailDomainChange={handleEmailDomainChange}
+            hasError={formErrors.emailId || formErrors.emailDomain}
+            emailIdError={formErrors.emailId}
+            emailDomainError={formErrors.emailDomain}
           />
 
           <AddressField
@@ -510,6 +539,9 @@ const UserInfoStep = () => {
             type="text"
             label="주소"
             ariaLabel="주소 입력"
+            value={formData.userAddress}
+            onChange={handleChange('userAddress')}
+            hasError={formErrors.userAddress}
           />
 
           <InputField
@@ -518,6 +550,9 @@ const UserInfoStep = () => {
             label="생년월일"
             placeholder="YYYYMMDD"
             ariaLabel="생년월일 입력 필수입력란"
+            value={formData.userBirth}
+            onChange={handleChange('userBirth')}
+            hasError={formErrors.userBirth}
           />
 
           <RadioField
@@ -619,21 +654,37 @@ const findAddress = () => {
   console.log('주소 검색');
 };
 
-const InputField = ({ label, id, type, placeholder, onChange, ariaLabel }) => {
+const InputField = ({
+  label,
+  id,
+  type,
+  placeholder,
+  onChange,
+  ariaLabel,
+  value,
+  hasError,
+  errorMessage,
+}) => {
   return (
     <tr>
       <td>
         <label htmlFor={id}>{label}</label>
       </td>
 
-      <td>
+      <td className={hasError ? styles.errorMessage : ''}>
         <input
           type={type}
           id={id}
           placeholder={placeholder}
           onChange={onChange}
+          value={value}
           aria-label={ariaLabel}
         />
+        {hasError && (
+          <span className={styles.errorText}>
+            {errorMessage || '필수 입력값입니다.'}
+          </span>
+        )}
       </td>
     </tr>
   );
@@ -646,6 +697,14 @@ const EmailField = ({
   placeholder,
   domainOptions,
   ariaLabel,
+  emailIdValue,
+  emailDomainValue,
+  onEmailIdChange,
+  onEmailDomainChange,
+  hasError,
+  emailIdError,
+  emailDomainError,
+  errorMessage,
 }) => {
   return (
     <tr>
@@ -658,11 +717,16 @@ const EmailField = ({
           id={id}
           placeholder={placeholder}
           aria-label={ariaLabel}
+          value={emailIdValue}
+          onChange={onEmailIdChange}
+          className={emailIdError ? styles.errorInput : ''}
         />
         <select
           id="joinEmailDomain"
-          className={styles.joinEmailDomain}
           name="emailDomain"
+          value={emailDomainValue}
+          onChange={onEmailDomainChange}
+          className={`${styles.joinEmailDomain} ${emailDomainError ? styles.errorInput : ''}`}
         >
           <option value="">이메일 주소를 선택하세요.</option>
           {domainOptions.map((domain) => (
@@ -675,12 +739,27 @@ const EmailField = ({
             </option>
           ))}
         </select>
+        {hasError && (
+          <span className={styles.errorText}>
+            {errorMessage || '필수 입력값입니다.'}
+          </span>
+        )}
       </td>
     </tr>
   );
 };
 
-const AddressField = ({ label, id, type, placeholder, ariaLabel }) => {
+const AddressField = ({
+  label,
+  id,
+  type,
+  placeholder,
+  ariaLabel,
+  value,
+  onChange,
+  hasError,
+  errorMessage,
+}) => {
   return (
     <tr>
       <td>
@@ -688,22 +767,31 @@ const AddressField = ({ label, id, type, placeholder, ariaLabel }) => {
       </td>
 
       <td>
-        <input
-          type={type}
-          id={id}
-          placeholder={placeholder}
-          aria-label={`${ariaLabel} 필수입력란`}
-          readOnly
-          onClick={findAddress}
-        />
-
-        <button
-          id="searchAddressBtn"
-          className={styles.searchAddressBtn}
-          onClick={findAddress}
-        >
-          주소검색
-        </button>
+        <div>
+          <input
+            type={type}
+            id={id}
+            placeholder={placeholder}
+            aria-label={`${ariaLabel} 필수입력란`}
+            // readOnly
+            onClick={findAddress}
+            value={value}
+            onChange={onChange}
+            className={hasError ? styles.errorInput : ''}
+          />
+          <button
+            id="searchAddressBtn"
+            className={styles.searchAddressBtn}
+            onClick={findAddress}
+          >
+            주소검색
+          </button>
+          {hasError && (
+            <span className={styles.errorText}>
+              {errorMessage || '필수 입력값입니다.'}
+            </span>
+          )}
+        </div>
 
         <div>
           <input
@@ -776,7 +864,43 @@ const CheckBoxField = ({ label, options, ariaLabel, className }) => {
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
 
+  const requiredFields = [
+    'userId',
+    'userPw',
+    'pwCheck',
+    'userName',
+    'userNumber',
+    'userBirth',
+    'emailId',
+    'emailDomain',
+    'userAddress',
+  ];
+
+  const initialFormData = {
+    userId: '',
+    userPw: '',
+    pwCheck: '',
+    userName: '',
+    userNumber: '',
+    emailId: '',
+    emailDomain: '',
+    userBirth: '',
+    userAddress: '',
+  };
+
+  const {
+    formData,
+    formErrors,
+    handleChange,
+    handleEmailIdChange,
+    handleEmailDomainChange,
+    validate,
+  } = useValidation(requiredFields, initialFormData);
+
   const handleNext = () => {
+    if (currentStep === 2) {
+      if (!validate()) return;
+    }
     window.scrollTo(0, 0);
     setCurrentStep((prev) => (prev < 3 ? prev + 1 : prev));
   };
@@ -804,7 +928,15 @@ export function JoinPage() {
       <section>
         <h2 className={styles.srOnly}>단계별 페이지 내용</h2>
         {currentStep === 1 && <TermsStep />}
-        {currentStep === 2 && <UserInfoStep />}
+        {currentStep === 2 && (
+          <UserInfoStep
+            formData={formData}
+            formErrors={formErrors}
+            handleChange={handleChange}
+            handleEmailIdChange={handleEmailIdChange}
+            handleEmailDomainChange={handleEmailDomainChange}
+          />
+        )}
         {currentStep === 3 && <JoinSuccessStep />}
       </section>
 
