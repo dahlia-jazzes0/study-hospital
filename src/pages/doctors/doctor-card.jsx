@@ -5,6 +5,7 @@ import { DoctorDetail } from './doctor-detail';
 export function DoctorCard() {
   const [doctors, setDoctors] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -36,6 +37,10 @@ export function DoctorCard() {
   const getDepartmentName = (id) => {
     const dept = departments.find((d) => d.id === id);
     return dept ? dept.name : '';
+  };
+
+  const toggleDetail = () => {
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -90,7 +95,14 @@ export function DoctorCard() {
                   ))}
                 </div>
               </dl>
-              <DoctorDetail doctor={doctor} />
+              <button className={styles.toggleButton} onClick={toggleDetail}>
+                <img
+                  src={`${import.meta.env.BASE_URL}images/arrow.png`}
+                  alt="의료진 상세 정보 버튼"
+                  className={styles.arrowIcon}
+                />
+              </button>
+              {isOpen && <DoctorDetail doctor={doctor} />}
             </section>
           </li>
         ))}
