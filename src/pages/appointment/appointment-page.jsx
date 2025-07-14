@@ -184,14 +184,15 @@ export function AppointmentPage() {
           />
           <ul className={styles.timeTable}>
             {timeTable.map((times, index) => (
-              <button
-                className={
-                  times.available ? styles.available : styles.unavailable
-                }
-                key={index}
-              >
-                {times.time}
-              </button>
+              <li key={index}>
+                <button
+                  className={
+                    times.available ? styles.available : styles.unavailable
+                  }
+                >
+                  {times.time}
+                </button>
+              </li>
             ))}
           </ul>
         </section>
