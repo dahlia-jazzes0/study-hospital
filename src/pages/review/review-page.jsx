@@ -15,16 +15,38 @@ export const ReviewPage = () => {
         <article>
           {/* Page Header */}
           <header className="review-page-page-header">
-            <h1 className="review-page-page-title">치료후기</h1>
+            <h2 className="review-page-page-title">치료후기</h2>
 
             {/* Category Tags */}
             <nav className="review-page-category-tags" aria-label="카테고리">
-              <span className="review-page-tag active">전체보기</span>
-              <span className="review-page-tag inactive">한방내과</span>
-              <span className="review-page-tag inactive">한방정형외과</span>
-              <span className="review-page-tag inactive">한방부인과</span>
-              <span className="review-page-tag inactive">한방소아과</span>
-              <span className="review-page-tag inactive">다이어트클리닉</span>
+              <ul className="review-page-category-list">
+                <li>
+                  <button className="review-page-tag active">전체보기</button>
+                </li>
+                <li>
+                  <button className="review-page-tag inactive">한방내과</button>
+                </li>
+                <li>
+                  <button className="review-page-tag inactive">
+                    한방정형외과
+                  </button>
+                </li>
+                <li>
+                  <button className="review-page-tag inactive">
+                    한방부인과
+                  </button>
+                </li>
+                <li>
+                  <button className="review-page-tag inactive">
+                    한방소아과
+                  </button>
+                </li>
+                <li>
+                  <button className="review-page-tag inactive">
+                    다이어트클리닉
+                  </button>
+                </li>
+              </ul>
             </nav>
           </header>
 
@@ -34,7 +56,7 @@ export const ReviewPage = () => {
               <span className="review-page-total-count">Total: 342</span>
               <span className="review-page-search-scope"></span>
             </div>
-            <div className="review-page-search-input-group">
+            <form className="review-page-search-input-group">
               <input
                 type="search"
                 className="review-page-search-input"
@@ -44,7 +66,7 @@ export const ReviewPage = () => {
               <button type="submit" className="review-page-search-button">
                 검색
               </button>
-            </div>
+            </form>
           </section>
 
           {/* Content Area */}
