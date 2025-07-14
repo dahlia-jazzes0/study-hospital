@@ -13,6 +13,9 @@ export function NavigationView() {
         <li>
           <NavLink to="/login">login</NavLink>
         </li>
+        <li>
+          <NavLink to="/appointment">진료예약</NavLink>
+        </li>
       </ul>
     </nav>
   );
