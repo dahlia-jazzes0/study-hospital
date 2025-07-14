@@ -1,4 +1,4 @@
-/* review-page.css */
+/* review-page.module.css */
 
 * {
   margin: 0;
@@ -7,14 +7,14 @@
 }
 
 /* Banner Section */
-.review-page-banner-section {
+.bannerSection {
   width: 100%;
   height: 704px;
   background-color: #d3d3d3;
   margin-bottom: 104px;
 }
 
-.review-page-container {
+.container {
   max-width: 1460px;
   margin: 0 auto;
   padding: 20px;
@@ -22,51 +22,58 @@
 }
 
 /* Page Header */
-.review-page-page-header {
+.pageHeader {
   margin-bottom: 20px;
 }
 
-.review-page-page-title {
+.pageTitle {
   font-size: 64px;
-
   font-variation-settings: 'wght' 700;
   color: #333;
   margin-bottom: 59px;
 }
 
 /* Category Tags */
-.review-page-category-tags {
+.categoryTags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 60px;
 }
 
-.review-page-tag {
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.tag {
   padding: 18px 33px;
   border-radius: 43px;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
+  border: none;
 }
 
-.review-page-tag.active {
+.tag.active {
   background-color: #ff6b35;
   color: white;
 }
 
-.review-page-tag.inactive {
+.tag.inactive {
   background-color: #e9ecef;
   color: #6c757d;
 }
 
-.review-page-tag:hover {
+.tag:hover {
   transform: translateY(-1px);
 }
 
 /* Search Section */
-.review-page-search-info {
+.searchInfo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,31 +82,31 @@
   gap: 10px;
 }
 
-.review-page-info {
+.info {
   display: flex;
   align-items: center;
   gap: 15px;
   font-size: 20px;
 }
 
-.review-page-total-count {
+.totalCount {
   color: #0066cc;
 }
 
-.review-page-search-scope {
+.searchScope {
   color: #666;
 }
 
-.review-page-search-scope-value {
+.searchScopeValue {
   color: #0066cc;
 }
 
-.review-page-search-input-group {
+.searchInputGroup {
   display: flex;
   align-items: center;
 }
 
-.review-page-search-input {
+.searchInput {
   padding: 14px 12px;
   border: 1px solid #ddd;
   font-size: 20px;
@@ -108,11 +115,11 @@
   margin-right: 4px;
 }
 
-.review-page-search-input:focus {
+.searchInput:focus {
   border-color: #0066cc;
 }
 
-.review-page-search-button {
+.searchButton {
   padding: 15px 22px;
   background-color: #333;
   color: white;
@@ -122,13 +129,16 @@
   transition: background-color 0.2s ease;
 }
 
-.review-page-search-button:hover {
+.searchButton:hover {
   background-color: #555;
 }
 
 /* Content Area */
+.contentArea {
+  /* 필요시 추가 스타일 */
+}
 
-.review-page-main-content {
+.mainContent {
   min-height: 1046px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -137,7 +147,7 @@
   margin-bottom: 66px;
 }
 
-.review-page-content-box {
+.contentBox {
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 6px;
@@ -151,21 +161,21 @@
   cursor: pointer;
 }
 
-.review-page-content-box:hover {
+.contentBox:hover {
   background-color: #e9ecef;
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Pagination */
-.review-page-pagination {
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 }
 
-.review-page-pagination-item {
+.paginationItem {
   width: 44px;
   height: 42px;
   color: #666;
@@ -179,35 +189,35 @@
   line-height: 42px;
 }
 
-.review-page-pagination-item.active {
+.paginationItem.active {
   background-color: #0066cc;
   color: white;
 }
 
-.review-page-pagination-item.disabled {
+.paginationItem.disabled {
   color: #ccc;
   pointer-events: none;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .review-page-main-content {
+  .mainContent {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
   }
 
-  .review-page-search-section {
+  .searchSection {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .review-page-search-input {
+  .searchInput {
     width: 150px;
   }
 }
 
 @media (max-width: 480px) {
-  .review-page-main-content {
+  .mainContent {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 1fr);
   }
