@@ -79,6 +79,7 @@
 
 .showPwdBtn {
   border: none;
+  padding: 0;
 }
 
 .showPwdBtn:focus {
