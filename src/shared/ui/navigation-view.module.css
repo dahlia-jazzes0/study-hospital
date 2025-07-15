@@ -1,0 +1,46 @@
+.headerNav {
+  margin: 0 2.5rem;
+}
+
+.navList {
+  display: flex;
+  gap: clamp(1rem, 6vw, 8rem);
+
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  color: var(--text-color-primary);
+
+  padding: 0.5rem;
+  border-radius: 4px;
+
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover,
+.navLink.active {
+  color: var(--point-color);
+}
+
+/* 📱 반응형 디자인 */
+@media (max-width: 768px) {
+  .headerNav {
+    margin: 0;
+  }
+
+  .navList {
+    flex-direction: row;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .navLink {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
