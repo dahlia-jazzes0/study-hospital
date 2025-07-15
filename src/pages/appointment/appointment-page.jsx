@@ -3,8 +3,6 @@ import 'react-calendar/dist/Calendar.css';
 
 import { useState } from 'react';
 import styles from './appointment-page.module.css';
-import '@/shared/styles/base.css';
-import '@/shared/styles/reset.css';
 
 export function AppointmentPage() {
   const [value, onChange] = useState(new Date());
