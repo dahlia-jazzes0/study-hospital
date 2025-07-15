@@ -27,14 +27,15 @@ export function FooterView() {
             <img src="images/logo-footer.png" alt="모두한의원" />
           </div>
 
-          <div className={styles.footerDetails}>
-            <div>
+          <dl className={styles.footerDetails}>
+            <dt className={styles.srOnly}>사업자 정보</dt>
+            <dd>
               사업자 등록번호 : 123-45-67890 | 통신판매업 신고번호:
               제2024-서울성동-00123호
-            </div>
-            <div>전화번호: 02-1234-5678 | 전화번호: 02-1234-5678</div>
-            <div>주소: 서울시 성동구 무학봉길 21, 1~3층</div>
-          </div>
+            </dd>
+            <dd>전화번호: 02-1234-5678 | 전화번호: 02-1234-5678</dd>
+            <dd>주소: 서울시 성동구 무학봉길 21, 1~3층</dd>
+          </dl>
 
           <div className={styles.socialLinks}>
             <a
