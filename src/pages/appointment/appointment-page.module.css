@@ -26,6 +26,7 @@
   gap: 16px;
 }
 
+/* doctorCard */
 .doctorCard {
   display: flex;
   width: fit-content;
@@ -95,6 +96,68 @@
   background-color: #fe7352;
 }
 
+/* loadingCard (skeleton UI)*/
+.loadingCard {
+  display: flex;
+  width: fit-content;
+  height: 376px;
+  border: 1px solid #d2d2d2;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.loadingImage {
+  width: 368px;
+  height: 376px;
+  border-radius: 16px 0 0 16px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.loadingCardDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 50px 30px 39px 34px;
+  gap: 15px;
+}
+
+.loadingText {
+  height: 45px;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.loadingText:first-child {
+  width: 180px;
+}
+
+.loadingText:nth-child(2) {
+  width: 150px;
+}
+
+.loadingDepartment {
+  width: 292px;
+  height: 45px;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* calendar */
 .appointmentCalendar {
   float: right;
 }
@@ -106,7 +169,7 @@
   margin-top: 104px;
 }
 
-/* 각 날짜 셀 크기 조절 */
+/* calendar 각 날짜 셀 크기 조절 */
 .medicalBookingCalendar :global(.react-calendar__tile) {
   width: 80px !important;
   height: 80px !important;
@@ -114,20 +177,21 @@
   font-size: 30px;
 }
 
-/* 캘린더 헤더 높이 조절 */
+/* calendar 헤더 높이 조절 */
 .medicalBookingCalendar :global(.react-calendar__navigation) {
   height: 100px !important;
 
   font-size: 30px;
 }
 
-/* 요일 헤더 높이 조절 */
+/* calendar 요일 헤더 높이 조절 */
 .medicalBookingCalendar :global(.react-calendar__month-view__weekdays) {
   height: 80px !important;
 
   font-size: 30px;
 }
 
+/* timeTable */
 .timeTable {
   display: grid;
   grid-template-columns: 1fr 1fr;
