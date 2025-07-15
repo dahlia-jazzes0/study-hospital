@@ -3,6 +3,7 @@ import 'react-calendar/dist/Calendar.css';
 
 import { TimeTable } from './appointment-timetable';
 import styles from './appointment-page.module.css';
+import { AppointmentDescription } from './appointment-description';
 
 export function AppointmentCalendar({
   value,
@@ -33,6 +34,7 @@ export function AppointmentCalendar({
           />
         ))}
       </ul>
+      <AppointmentDescription />
     </section>
   );
 }

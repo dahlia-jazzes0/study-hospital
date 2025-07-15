@@ -228,3 +228,42 @@
 .timeTable > li > button.unavailable {
   background-color: #d8d8d8;
 }
+
+/* appointmentDescription */
+.appointmentDescription {
+  margin-top: 42px;
+}
+
+.appointmentDescription > h3 {
+  padding: 29px 0;
+
+  font-size: 40px;
+  font-weight: 500;
+  border-bottom: solid 2px #323232;
+}
+
+.appointmentDetail {
+  margin-top: 16px;
+}
+
+.appointmentDetail > p {
+  color: #888888;
+  font-size: 28px;
+}
+.appointmentButton {
+  margin-top: 24px;
+  padding: 32px 272px;
+
+  font-size: 38px;
+  font-weight: 500;
+  color: #fe7352;
+  border: solid 1px #fe7352;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.appointmentButton:hover {
+  color: #ffffff;
+  background-color: #fe7352;
+  transition: all 0.2s ease;
+}
