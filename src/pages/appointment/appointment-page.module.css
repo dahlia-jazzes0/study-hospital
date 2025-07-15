@@ -160,6 +160,7 @@
 /* calendar */
 .appointmentCalendar {
   float: right;
+  max-width: 783px;
 }
 
 .medicalBookingCalendar {
