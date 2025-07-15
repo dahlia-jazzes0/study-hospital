@@ -1,8 +1,9 @@
 import { Calendar } from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './appointment-page.module.css';
+import { API_CONFIG } from './config';
 
 export function AppointmentPage() {
   const [value, onChange] = useState(new Date());
@@ -88,88 +89,86 @@ export function AppointmentPage() {
       available: true,
     },
   ];
-  const doctors = [
-    {
-      id: 1,
-      name: '최재호',
-      specialty: '한방내과 전문의',
-      positions: '대표원장',
-      medicaldepartment: [
-        '소화기계 질환',
-        '호흡기계 질환',
-        '내분비ㆍ대사 질환',
-      ],
-      image: '/',
-    },
-    {
-      id: 2,
-      name: '양호진',
-      specialty: '한방내과',
-      positions: '원장',
-      medicaldepartment: [
-        '교통사고 후유증',
-        '순환기계 질환',
-        '피로ㆍ면역력 저하',
-      ],
-      image: '/',
-    },
-    {
-      id: 3,
-      name: '양호진',
-      specialty: '한방내과',
-      positions: '원장',
-      medicaldepartment: [
-        '교통사고 후유증',
-        '순환기계 질환',
-        '피로ㆍ면역력 저하',
-      ],
-      image: '/',
-    },
-    {
-      id: 4,
-      name: '양호진',
-      specialty: '한방내과',
-      positions: '원장',
-      medicaldepartment: [
-        '교통사고 후유증',
-        '순환기계 질환',
-        '피로ㆍ면역력 저하',
-      ],
-      image: '/',
-    },
-  ];
+
+  const [doctors, setDoctors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchDortors = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.DOCTORS}`,
+          {
+            method: 'GET',
+            headers: {
+              ...API_CONFIG.HEADERS,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error('Doctors 정보 조회 실패!');
+        }
+
+        const result = await response.json();
+        setDoctors(result);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchDortors();
+  }, []);
 
   return (
     <>
       <main className={styles.appointment}>
-        <h2>진료예약</h2>
+        <h1>진료예약</h1>
         <section className={styles.doctorList}>
-          <h3 className={styles.srOnly}>의료진 목록</h3>
+          <h2 className={styles.srOnly}>의료진 목록</h2>
           <ul className={styles.cardList}>
-            {doctors.map((doctor) => (
-              <li key={doctor.id} className={styles.doctorCard}>
-                <img src={doctor.image} alt={doctor.name} />
-                <div className={styles.doctorDescription}>
-                  <p>{doctor.specialty}</p>
-                  <p>
-                    {doctor.name} &nbsp;
-                    {doctor.positions}
-                  </p>
-                  <div className={styles.department}>
-                    <p>대표 진료과목</p>
-                    <ul>
-                      <li>{doctor.medicaldepartment[0]}</li>
-                      <li>{doctor.medicaldepartment[1]}</li>
-                      <li>{doctor.medicaldepartment[2]}</li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            ))}
+            {!isLoading
+              ? doctors.map((doctor) => (
+                  <li key={doctor.id} className={styles.doctorCard}>
+                    <img src={doctor.image} alt={doctor.name} />
+                    <div className={styles.doctorDescription}>
+                      <p>?두방 내꽈 전문의?</p>
+                      <p>
+                        {doctor.name}&nbsp;
+                        {doctor.chief ? '대표원장' : '원장'}
+                      </p>
+                      <div className={styles.department}>
+                        <p>대표 진료과목</p>
+                        <ul>
+                          {doctor.specialties.map((speacialty, index) => (
+                            <li key={index}>{speacialty}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </li>
+                ))
+              : Array.from({ length: 7 }).map((_, index) => (
+                  <li
+                    key={index}
+                    className={styles.loadingCard}
+                    aria-label="의사 정보 로딩 중"
+                  >
+                    <div className={styles.loadingImage}></div>
+                    <div className={styles.loadingCardDescription}>
+                      <div className={styles.loadingText}></div>
+                      <div className={styles.loadingText}></div>
+                      <div className={styles.loadingDepartment}></div>
+                      <div className={styles.loadingDepartment}></div>
+                    </div>
+                  </li>
+                ))}
           </ul>
         </section>
         <section className={styles.appointmentCalendar}>
-          <h3 className={styles.srOnly}>예약 선택 달력</h3>
+          <h2 className={styles.srOnly}>예약 선택 달력</h2>
           <Calendar
             className={styles.medicalBookingCalendar}
             onChange={onChange}
