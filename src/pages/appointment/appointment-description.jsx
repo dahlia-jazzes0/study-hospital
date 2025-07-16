@@ -1,9 +1,14 @@
 import styles from './appointment-page.module.css';
 
-export function AppointmentDescription() {
+export function AppointmentDescription({
+  onAppointmentSubmit,
+  isAppointmentComplete,
+  appointmentData,
+}) {
   return (
     <div className={styles.appointmentDescription}>
       <h3>간편예약 확인 / 취소</h3>
+
       <div className={styles.appointmentDetail}>
         <p>
           모두한의원은 고객님의 편의를 위하여, 홈페이지를 통하여 원하는 의료진과
@@ -19,7 +24,35 @@ export function AppointmentDescription() {
           취소는 하단의 버튼을 눌러 진행해주십시오.
         </p>
       </div>
-      <button className={styles.appointmentButton}>예약 확인·취소</button>
+      {(appointmentData.doctor ||
+        appointmentData.date ||
+        appointmentData.time) && (
+        <div className={styles.selectedInfo}>
+          <h4>선택된 예약 정보</h4>
+          <p>
+            의사:
+            {appointmentData.doctor.id
+              ? `${appointmentData.doctor.name}`
+              : '선택되지 않음'}
+          </p>
+          <p>날짜: {appointmentData.date || '선택되지 않음'}</p>
+          <p>시간: {appointmentData.time || '선택되지 않음'}</p>
+        </div>
+      )}
+
+      <div className={styles.buttonGroup}>
+        <button
+          className={styles.appointmentButton}
+          onClick={onAppointmentSubmit}
+          disabled={!isAppointmentComplete}
+        >
+          {isAppointmentComplete
+            ? '예약하기'
+            : '"의사/날짜/시간"을 모두 선택해주세요'}
+        </button>
+
+        <button className={styles.cancelButton}>예약 확인·취소</button>
+      </div>
     </div>
   );
 }

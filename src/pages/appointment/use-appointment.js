@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { API_CONFIG } from './config';
+import { formattedDate } from './util';
 
-export function GetDoctors() {
+// 의사 목록 조회
+export function useGetDoctors() {
   const [doctors, setDoctors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,9 +16,7 @@ export function GetDoctors() {
           `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.DOCTORS}`,
           {
             method: 'GET',
-            headers: {
-              ...API_CONFIG.HEADERS,
-            },
+            headers: API_CONFIG.HEADERS,
           }
         );
 
@@ -39,19 +39,79 @@ export function GetDoctors() {
   return { doctors, isLoading };
 }
 
-export function GetTimeTable() {
+// 예약 전체 상태 관리
+export function useAppointment() {
   const [timeTable, setTimeTable] = useState([]);
+  const [appointmentData, setAppointmentData] = useState({
+    doctor: {
+      id: null,
+      name: null,
+    },
+    date: null,
+    time: null,
+  });
+  const [isTimeTableLoading, setIsTimeTableLoading] = useState(false);
 
+  // 의사 선택 핸들러
+  const handleDoctorSelect = (id, name) => {
+    setAppointmentData((prev) => ({
+      ...prev,
+      doctor: {
+        id,
+        name,
+      },
+      time: null,
+    }));
+  };
+
+  // 날짜 선택 핸들러
+  const handleDateSelect = (selectedDate) => {
+    const date = formattedDate(selectedDate);
+    setAppointmentData((prev) => ({
+      ...prev,
+      date,
+      time: null,
+    }));
+  };
+
+  // 시간 선택 핸들러
+  const handleTimeSelect = (time) => {
+    setAppointmentData((prev) => ({
+      ...prev,
+      time,
+    }));
+  };
+
+  // 예약 데이터 초기화
+  const resetAppointment = () => {
+    setAppointmentData({
+      doctor: {
+        id: null,
+        name: null,
+      },
+      date: null,
+      time: null,
+    });
+    setTimeTable([]);
+  };
+
+  // 시간표 조회
   useEffect(() => {
     const fetchTimeTable = async () => {
+      const { doctor, date } = appointmentData;
+      if (!doctor || !date) {
+        setTimeTable([]);
+        return;
+      }
+
+      setIsTimeTableLoading(true);
+
       try {
         const response = await fetch(
-          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AVAILABILITY}?doctorId=1&date=2025-01-15`,
+          `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.AVAILABILITY}?doctorId=${doctor.id}&date=${date}`,
           {
             method: 'GET',
-            headers: {
-              ...API_CONFIG.HEADERS,
-            },
+            headers: API_CONFIG.HEADERS,
           }
         );
 
@@ -60,14 +120,72 @@ export function GetTimeTable() {
         }
 
         const result = await response.json();
+
         setTimeTable(result);
       } catch (error) {
         console.error(error);
+        setTimeTable([]);
+      } finally {
+        setIsTimeTableLoading(false);
       }
     };
 
     fetchTimeTable();
-  }, []);
+  }, [appointmentData]);
 
-  return { timeTable };
+  // 예약 제출
+  const submitAppointment = async () => {
+    const { doctor, date, time } = appointmentData;
+
+    if (!doctor || !date || !time) {
+      throw new Error('모든 정보를 선택해주세요.');
+    }
+
+    try {
+      const accessToken =
+        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyLTEiLCJ1c2VybmFtZSI6Im1pbnN1X2tpbSIsIm5hbWUiOiLquYDrr7zsiJgiLCJpYXQiOjE3NTI2NzcyOTc5NDksImp0aSI6IjB2bnpqcSIsImV4cCI6MTc1MjY3ODE5Nzk0OX0.xbMFJT8ImTPJPnBUM9WgRWZqUT6xLm4Uk9BbuVA9hjY';
+      const response = await fetch(
+        `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.APPOINTMENTS}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            doctorId: doctor.id,
+            date,
+            time,
+          }),
+        }
+      );
+      console.log('submit res : ', response);
+
+      if (!response.ok) {
+        throw new Error('예약 실패!');
+      }
+
+      const result = await response.json();
+      console.log(result);
+      return result;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  };
+
+  return {
+    timeTable,
+    appointmentData,
+    isTimeTableLoading,
+    handleDoctorSelect,
+    handleDateSelect,
+    handleTimeSelect,
+    resetAppointment,
+    submitAppointment,
+    // 예약 완료 여부 체크
+    isAppointmentComplete: Boolean(
+      appointmentData.doctor && appointmentData.date && appointmentData.time
+    ),
+  };
 }
