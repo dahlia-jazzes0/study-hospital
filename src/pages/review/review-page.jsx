@@ -76,14 +76,7 @@ export const ReviewPage = () => {
           {/* Content Area */}
           <section className={styles.contentArea}>
             {/* Main Content */}
-            <section className={styles.mainContent} role="main">
-              <article className={styles.contentBox}>영역 1</article>
-              <article className={styles.contentBox}>영역 2</article>
-              <article className={styles.contentBox}>영역 3</article>
-              <article className={styles.contentBox}>영역 4</article>
-              <article className={styles.contentBox}>영역 5</article>
-              <article className={styles.contentBox}>영역 6</article>
-            </section>
+            <ReviewList />
           </section>
 
           {/* Pagination */}
