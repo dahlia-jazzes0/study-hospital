@@ -1,11 +1,14 @@
 import styles from './appointment-page.module.css';
 
-export function DoctorCard({ doctor }) {
+export function DoctorCard({ doctor, isSelected, onSelect }) {
   return (
-    <li className={styles.doctorCard}>
+    <li
+      className={`${styles.doctorCard} ${isSelected ? styles.selected : ''}`} //doctor card selected css 추가
+      onClick={onSelect}
+    >
       <img src={doctor.image} alt={doctor.name} />
       <div className={styles.doctorDescription}>
-        <p>?두방 내꽈 전문의?</p>
+        <p>두방 내과 전문의</p>
         <p>
           {doctor.name}&nbsp;
           {doctor.chief ? '대표원장' : '원장'}

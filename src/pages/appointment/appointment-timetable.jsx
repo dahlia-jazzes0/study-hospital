@@ -1,16 +1,22 @@
 import styles from './appointment-page.module.css';
 
-export function TimeTable({ time, available, onTimeSelect }) {
+export function TimeTable({ time, available, isSelected, onTimeSelect }) {
   const handleClick = () => {
-    if (available && onTimeSelect) {
-      onTimeSelect(time);
+    if (available) {
+      onTimeSelect();
     }
+  };
+
+  const getButtonClass = () => {
+    if (isSelected) return styles.selected; // doctor-card와 같이 css 추가 필요
+    if (available) return styles.available;
+    return styles.unavailable;
   };
 
   return (
     <li>
       <button
-        className={available ? styles.available : styles.unavailable}
+        className={getButtonClass()}
         onClick={handleClick}
         disabled={!available}
       >
