@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '@/pages/review/review-page.module.css';
+import { ReviewList } from '@/pages/review/review-list';
+import { reviewData } from '@/pages/review/review-data';
+import { Pagination } from '@/pages/review/review-pagination';
 
 export const ReviewPage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(reviewData.length / itemsPerPage);
+
   return (
     <>
       {/* Banner Section - 전체 화면 너비 */}
@@ -57,7 +64,9 @@ export const ReviewPage = () => {
           {/* Search Section */}
           <section className={styles.searchInfo} aria-label="검색">
             <div className={styles.info}>
-              <span className={styles.totalCount}>Total: 342</span>
+              <span className={styles.totalCount}>
+                Total: {reviewData.length}
+              </span>
               <span className={styles.searchScope}></span>
             </div>
             <form className={styles.searchInputGroup}>
@@ -73,30 +82,16 @@ export const ReviewPage = () => {
             </form>
           </section>
 
-          {/* Content Area */}
           <section className={styles.contentArea}>
-            {/* Main Content */}
-            <ReviewList />
+            {/* 페이지 정보 전달 */}
+            <ReviewList currentPage={currentPage} itemsPerPage={itemsPerPage} />
           </section>
 
-          {/* Pagination */}
-          <nav className={styles.pagination} aria-label="페이지 네비게이션">
-            <button className={`${styles.paginationItem} ${styles.disabled}`}>
-              «
-            </button>
-            <button className={`${styles.paginationItem} ${styles.disabled}`}>
-              ‹
-            </button>
-            <button className={`${styles.paginationItem} ${styles.active}`}>
-              1
-            </button>
-            <button className={styles.paginationItem}>2</button>
-            <button className={styles.paginationItem}>3</button>
-            <button className={styles.paginationItem}>4</button>
-            <button className={styles.paginationItem}>5</button>
-            <button className={styles.paginationItem}>›</button>
-            <button className={styles.paginationItem}>»</button>
-          </nav>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         </article>
       </main>
     </>
