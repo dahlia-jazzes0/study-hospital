@@ -13,3 +13,17 @@ export function formattedDate(date) {
 
   return formatted;
 }
+
+export function formatTimeForTimeTable(time) {
+  const hours = time.substring(0, 2);
+  const minutes = time.substring(3, 5);
+  const hour = parseInt(hours);
+
+  if (hour < 12) {
+    return `오전 ${hour}:${minutes}`;
+  } else if (hour === 12) {
+    return `오후 12:${minutes}`;
+  } else {
+    return `오후 ${hour - 12}:${minutes}`;
+  }
+}
