@@ -20,6 +20,8 @@ export function JoinPage() {
     'emailId',
     'emailDomain',
     'userAddress',
+    'receiveEmail',
+    'receiveSMS',
   ];
 
   const initialFormData = {
@@ -32,6 +34,8 @@ export function JoinPage() {
     emailDomain: '',
     userBirth: '',
     userAddress: '',
+    receiveEmail: '',
+    receiveSMS: '',
   };
 
   const { formData, formErrors, handleChange, validate } = useForm(

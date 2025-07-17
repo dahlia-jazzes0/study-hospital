@@ -1,4 +1,5 @@
 import styles from '../join-page.module.css';
+
 import { InputField } from './fields/input-field';
 import { EmailField } from './fields/email-field';
 import { AddressField } from './fields/address-field';
@@ -120,6 +121,10 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         label="가입경로"
         options={JoinRouteOptions}
         ariaLabel="가입경로 선택"
+        value={formData.joinRoute}
+        onChange={handleChange('joinRoute')}
+        hasError={formErrors.joinRoute}
+        required={true}
       />
 
       <CheckBoxField
@@ -128,6 +133,8 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         label="관심질환"
         options={InterestDiseaseOptions}
         ariaLabel="관심질환 선택 (복수선택 가능)"
+        value={formData.interestDisease}
+        onChange={handleChange('interestDisease')}
       />
 
       <RadioField
@@ -137,6 +144,9 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         label="이메일 수신여부"
         options={CommonOptions.YES_NO}
         ariaLabel="이메일 수신 여부 선택 필수입력란"
+        value={formData.receiveEmail} // 이 줄 추가
+        onChange={handleChange('receiveEmail')} // 이 줄 추가
+        hasError={formErrors.receiveEmail}
         required={true}
       />
 
@@ -147,6 +157,9 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         label="SMS 수신여부"
         options={CommonOptions.YES_NO}
         ariaLabel="SMS 수신 여부 선택 필수입력란"
+        value={formData.receiveSMS} // 이 줄 추가
+        onChange={handleChange('receiveSMS')} // 이 줄 추가
+        hasError={formErrors.receiveSMS}
         required={true}
       />
     </form>

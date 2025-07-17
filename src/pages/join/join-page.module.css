@@ -154,6 +154,8 @@
 }
 
 /* step2 */
+.checkboxLabel,
+.radioLabel,
 .formLabel,
 .formInput,
 .formDetailInput,
@@ -246,10 +248,52 @@
   color: red;
 }
 
+.radioLabel,
+.radioGroup,
+.checkboxLabel {
+  display: flex;
+  justify-content: center;
+}
+
+.checkboxGroup,
+.radioGroup {
+  gap: 30px;
+}
+
+.radioLabel,
+.checkboxLabel {
+  gap: 12px;
+}
+
 .formInput[type='number']::-webkit-outer-spin-button,
 .formInput[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: row;
+}
+
+.joinRoute input[type='radio'],
+.interestDisease input[type='checkbox'],
+.receiveEmail input[type='radio'],
+.receiveSMS input[type='radio'] {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+  appearance: none;
+  border: 1px solid #d9d9d9;
+}
+
+.joinRoute input[type='radio']:checked,
+.interestDisease input[type='checkbox']:checked,
+.receiveEmail input[type='radio']:checked,
+.receiveSMS input[type='radio']:checked {
+  border: 7px solid black;
+  outline: none;
 }
 
 /* step3 */

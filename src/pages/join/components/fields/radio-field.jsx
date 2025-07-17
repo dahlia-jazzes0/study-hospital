@@ -6,12 +6,16 @@ export const RadioField = ({
   options,
   ariaLabel,
   className,
+  value,
+  onChange,
+  hasError,
+  errorMessage,
   required = false,
 }) => {
   return (
     <div className={`${styles.formField} ${className}`}>
       <label
-        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''}`}
+        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''} ${hasError ? styles.errorLabel : ''}`}
       >
         {label}
       </label>
@@ -28,6 +32,8 @@ export const RadioField = ({
                 id={`${name}_${option.id}`}
                 name={name}
                 value={option.value}
+                checked={value === option.value}
+                onChange={onChange}
                 aria-label={ariaLabel}
                 className={styles.radioInput}
               />
@@ -35,6 +41,11 @@ export const RadioField = ({
             </label>
           ))}
         </div>
+        {hasError && (
+          <span className={styles.errorText}>
+            {errorMessage || '필수 입력값입니다.'}
+          </span>
+        )}
       </div>
     </div>
   );

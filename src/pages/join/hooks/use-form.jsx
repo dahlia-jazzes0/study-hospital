@@ -15,7 +15,8 @@ export function useForm(requiredFields, initialFormData) {
 
     requiredFields.forEach((field) => {
       const fieldValue = formData[field];
-      const isEmpty = !fieldValue || fieldValue.trim() === '';
+      const isEmpty =
+        !fieldValue || (typeof fieldValue === 'string' && fieldValue === '');
 
       if (isEmpty) {
         errors[field] = true;
