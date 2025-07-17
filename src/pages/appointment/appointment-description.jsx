@@ -1,4 +1,5 @@
 import styles from './appointment-page.module.css';
+import { formattedTime } from './util';
 
 export function AppointmentDescription({
   onAppointmentSubmit,
@@ -27,16 +28,34 @@ export function AppointmentDescription({
       {(appointmentData.doctor ||
         appointmentData.date ||
         appointmentData.time) && (
-        <div className={styles.selectedInfo}>
+        <div className={styles.appointmentInfo}>
           <h4>선택된 예약 정보</h4>
-          <p>
-            의사:
-            {appointmentData.doctor.id
-              ? `${appointmentData.doctor.name}`
-              : '선택되지 않음'}
-          </p>
-          <p>날짜: {appointmentData.date || '선택되지 않음'}</p>
-          <p>시간: {appointmentData.time || '선택되지 않음'}</p>
+          <table className={styles.infoTable}>
+            <tbody>
+              <tr>
+                <td className={styles.infoLabel}>의 료 진</td>
+                <td className={`${styles.infoValue} ${styles.doctorName}`}>
+                  {appointmentData.doctor.id
+                    ? `${appointmentData.doctor.name} (?두방 내꽈?)`
+                    : '선택되지 않음'}
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.infoLabel}>예 약 날 짜</td>
+                <td className={`${styles.infoValue} ${styles.appointmentDate}`}>
+                  {appointmentData.date || '선택되지 않음'}
+                </td>
+              </tr>
+              <tr>
+                <td className={styles.infoLabel}>예 약 시 간</td>
+                <td className={`${styles.infoValue} ${styles.appointmentTime}`}>
+                  {appointmentData.time
+                    ? formattedTime(appointmentData.time)
+                    : '선택되지 않음'}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
 

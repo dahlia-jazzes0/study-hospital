@@ -14,7 +14,7 @@ export function formattedDate(date) {
   return formatted;
 }
 
-export function formatTimeForTimeTable(time) {
+export function formattedTime(time) {
   const hours = time.substring(0, 2);
   const minutes = time.substring(3, 5);
   const hour = parseInt(hours);
