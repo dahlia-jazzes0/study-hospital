@@ -232,6 +232,7 @@
 }
 
 .timeTable > li > button.unavailable {
+  pointer-events: none;
   background-color: #d8d8d8;
 }
 
