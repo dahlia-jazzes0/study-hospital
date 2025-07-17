@@ -22,7 +22,7 @@
   flex-direction: row;
   text-align: center;
 
-  width: 1466px;
+  width: 1300px;
   height: 118px;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .joinForm {
-  width: 1466px;
+  width: 1300px;
 
   display: flex;
   flex-direction: column;
@@ -166,7 +166,7 @@
 }
 
 .stepJoinForm {
-  width: 1466px;
+  width: 1300px;
 
   display: flex;
   flex-direction: column;
@@ -233,7 +233,7 @@
 .joinSuccess {
   margin-top: 60px;
 
-  width: 1466px;
+  width: 1300px;
   height: 352px;
 
   border-radius: 16px;
