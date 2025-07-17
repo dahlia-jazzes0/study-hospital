@@ -13,6 +13,17 @@ export function TimeTable({ time, available, isSelected, onTimeSelect }) {
     return styles.unavailable;
   };
 
+  const formatTime = (time) => {
+    const hours = time.substring(0, 2);
+    const hour = parseInt(hours);
+
+    if (hour >= 12) {
+      return `오후 ${time}`;
+    } else {
+      return `오전 ${time}`;
+    }
+  };
+
   return (
     <li>
       <button
@@ -20,7 +31,7 @@ export function TimeTable({ time, available, isSelected, onTimeSelect }) {
         onClick={handleClick}
         disabled={!available}
       >
-        {time}
+        {formatTime(time)}
       </button>
     </li>
   );
