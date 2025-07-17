@@ -1,9 +1,20 @@
 import styles from '../../join-page.module.css';
 
-export const RadioField = ({ label, name, options, ariaLabel, className }) => {
+export const RadioField = ({
+  label,
+  name,
+  options,
+  ariaLabel,
+  className,
+  required = false,
+}) => {
   return (
     <div className={`${styles.formField} ${className}`}>
-      <label className={styles.formLabel}>{label}</label>
+      <label
+        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''}`}
+      >
+        {label}
+      </label>
       <div className={styles.formInputWrapper}>
         <div className={styles.radioGroup}>
           {options.map((option) => (

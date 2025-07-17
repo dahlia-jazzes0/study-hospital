@@ -17,31 +17,6 @@
   margin-bottom: 220px;
 }
 
-.joinForm {
-  width: 1466px;
-}
-
-.joinError:focus {
-  outline: 2px solid #ff0000;
-}
-
-.errorMessage input,
-.errorInput {
-  border: solid 1px #ff0000;
-}
-
-.errorText {
-  display: block;
-  margin-left: 30px;
-
-  color: red;
-}
-
-.joinTable input {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
 .joinStepNav {
   display: flex;
   flex-direction: row;
@@ -79,9 +54,13 @@
 }
 
 .joinForm {
+  width: 1466px;
+
   display: flex;
   flex-direction: column;
   gap: 62px;
+
+  width: 100%;
 }
 
 .joinForm section {
@@ -179,6 +158,76 @@
 }
 
 /* step2 */
+.formLabel,
+.formInput,
+.formSelect {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.stepJoinForm {
+  width: 1466px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  border-top: solid 2px #535353;
+}
+
+.formInput,
+.formSelect {
+  color: #888888;
+}
+
+.formSelect.hasValue {
+  color: #333;
+}
+
+.formField {
+  display: flex;
+  border-bottom: solid 1px #535353;
+}
+
+.formLabel {
+  width: 240px;
+  background-color: #d9d9d945;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorLabel {
+  padding-bottom: 30px;
+}
+
+.requiredLabel::after {
+  content: '•';
+  color: #d70b0b;
+
+  position: relative;
+  top: -10px;
+
+  font-size: 20px;
+}
+
+.formSelect,
+.formInput {
+  width: 477px;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.formInputWrapper {
+  padding: 18px 30px;
+}
+
+.errorText {
+  display: block;
+  margin: 13px 6px 0;
+  color: red;
+}
 
 /* step3 */
 .joinSuccess {

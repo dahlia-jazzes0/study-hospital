@@ -14,10 +14,14 @@ export const AddressField = ({
   onChange,
   hasError,
   errorMessage,
+  required = false,
 }) => {
   return (
     <div className={styles.formField}>
-      <label htmlFor={id} className={styles.formLabel}>
+      <label
+        htmlFor={id}
+        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''} ${hasError ? styles.errorLabel : ''}`}
+      >
         {label}
       </label>
       <div className={styles.formInputWrapper}>
@@ -30,7 +34,7 @@ export const AddressField = ({
             onClick={findAddress}
             value={value}
             onChange={onChange}
-            className={`${styles.formInput} ${hasError ? styles.errorInput : ''}`}
+            className={`${styles.formInput}`}
           />
           <button
             type="button"
@@ -41,7 +45,6 @@ export const AddressField = ({
             주소검색
           </button>
         </div>
-
         <div className={styles.addressDetailGroup}>
           <input
             type={type}
@@ -59,7 +62,6 @@ export const AddressField = ({
             className={styles.formInput}
           />
         </div>
-
         {hasError && (
           <span className={styles.errorText}>
             {errorMessage || '필수 입력값입니다.'}

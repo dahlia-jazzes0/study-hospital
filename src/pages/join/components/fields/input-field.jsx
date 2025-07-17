@@ -10,10 +10,14 @@ export const InputField = ({
   value,
   hasError,
   errorMessage,
+  required = false,
 }) => {
   return (
     <div className={styles.formField}>
-      <label htmlFor={id} className={styles.formLabel}>
+      <label
+        htmlFor={id}
+        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''} ${hasError ? styles.errorLabel : ''}`}
+      >
         {label}
       </label>
       <div
@@ -26,7 +30,7 @@ export const InputField = ({
           onChange={onChange}
           value={value}
           aria-label={ariaLabel}
-          className={`${styles.formInput} ${hasError ? styles.errorInput : ''}`}
+          className={`${styles.formInput}`}
         />
         {hasError && (
           <span className={styles.errorText}>

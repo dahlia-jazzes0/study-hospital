@@ -12,13 +12,15 @@ export const EmailField = ({
   onEmailIdChange,
   onEmailDomainChange,
   hasError,
-  emailIdError,
-  emailDomainError,
   errorMessage,
+  required = false,
 }) => {
   return (
     <div className={styles.formField}>
-      <label htmlFor={id} className={styles.formLabel}>
+      <label
+        htmlFor={id}
+        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''} ${hasError ? styles.errorLabel : ''}`}
+      >
         {label}
       </label>
       <div className={styles.formInputWrapper}>
@@ -30,16 +32,20 @@ export const EmailField = ({
             aria-label={ariaLabel}
             value={emailIdValue}
             onChange={onEmailIdChange('emailId')}
-            className={`${styles.formInput} ${emailIdError ? styles.errorInput : ''}`}
+            className={`${styles.formInput}`}
           />
           <select
             id="joinEmailDomain"
             name="emailDomain"
             value={emailDomainValue}
             onChange={onEmailDomainChange('emailDomain')}
-            className={`${styles.formSelect} ${styles.joinEmailDomain} ${emailDomainError ? styles.errorInput : ''}`}
+            className={`${styles.formSelect} ${styles.joinEmailDomain} ${
+              emailDomainValue && emailDomainValue !== '' ? styles.hasValue : ''
+            }`}
           >
-            <option value="">이메일 주소를 선택하세요.</option>
+            <option value="" disabled>
+              이메일 주소를 선택하세요.
+            </option>
             {domainOptions.map((domain) => (
               <option
                 key={domain}
