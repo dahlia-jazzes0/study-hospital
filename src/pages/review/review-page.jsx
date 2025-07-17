@@ -6,21 +6,18 @@ import { Pagination } from '@/pages/review/review-pagination';
 
 export const ReviewPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 10;
   const totalPages = Math.ceil(reviewData.length / itemsPerPage);
 
   return (
     <>
-      {/* Banner Section - 전체 화면 너비 */}
       <section
         className={styles.bannerSection}
         aria-label="메인 배너"
       ></section>
 
       <main className={styles.container}>
-        {/* Page Content */}
         <article>
-          {/* Page Header */}
           <header className={styles.pageHeader}>
             <h2 className={styles.pageTitle}>치료후기</h2>
 
