@@ -13,8 +13,6 @@ export const EmailField = ({
   emailIdFieldName = 'emailId',
   emailDomainFieldName = 'emailDomain',
   hasError,
-  emailIdError,
-  emailDomainError,
   required = false,
 }) => {
   return (
@@ -60,9 +58,7 @@ export const EmailField = ({
           </select>
         </div>
         {hasError && (
-          <span className={styles.errorText}>
-            {emailIdError || emailDomainError || '필수 입력값입니다.'}
-          </span>
+          <span className={styles.errorText}>필수 입력값입니다.</span>
         )}
       </div>
     </div>

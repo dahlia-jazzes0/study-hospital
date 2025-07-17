@@ -84,7 +84,7 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         emailIdValue={formData.emailId}
         emailDomainValue={formData.emailDomain}
         onChange={handleChange}
-        hasError={formErrors.emailId || formErrors.emailDomain}
+        hasError={!!formErrors.emailId || !!formErrors.emailDomain}
         emailIdError={formErrors.emailId}
         emailDomainError={formErrors.emailDomain}
         required={true}
@@ -142,8 +142,8 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         label="이메일 수신여부"
         options={CommonOptions.YES_NO}
         ariaLabel="이메일 수신 여부 선택 필수입력란"
-        value={formData.receiveEmail} // 이 줄 추가
-        onChange={handleChange('receiveEmail')} // 이 줄 추가
+        value={formData.receiveEmail}
+        onChange={handleChange('receiveEmail')}
         hasError={formErrors.receiveEmail}
         required={true}
       />
