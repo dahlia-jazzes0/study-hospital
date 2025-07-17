@@ -172,8 +172,8 @@
   border-top: solid 2px #535353;
 }
 
-.formDetailInput,
-.formInput,
+.formDetailInput::placeholder,
+.formInput::placeholder,
 .formSelect {
   color: #888888;
 }
@@ -244,6 +244,12 @@
   display: block;
   margin: 13px 6px 0;
   color: red;
+}
+
+.formInput[type='number']::-webkit-outer-spin-button,
+.formInput[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* step3 */
