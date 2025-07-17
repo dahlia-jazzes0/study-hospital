@@ -9,16 +9,6 @@ export function useValidation(requiredFields, initialFormData) {
     setFormErrors((prev) => ({ ...prev, [field]: false }));
   };
 
-  const handleEmailIdChange = (e) => {
-    setFormData((prev) => ({ ...prev, emailId: e.target.value }));
-    setFormErrors((prev) => ({ ...prev, emailId: false }));
-  };
-
-  const handleEmailDomainChange = (e) => {
-    setFormData((prev) => ({ ...prev, emailDomain: e.target.value }));
-    setFormErrors((prev) => ({ ...prev, emailDomain: false }));
-  };
-
   const validate = () => {
     const errors = {};
     let hasAnyError = false;
@@ -58,8 +48,6 @@ export function useValidation(requiredFields, initialFormData) {
     formErrors,
     setFormErrors,
     handleChange,
-    handleEmailIdChange,
-    handleEmailDomainChange,
     validate,
   };
 }

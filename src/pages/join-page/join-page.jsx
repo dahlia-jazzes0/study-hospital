@@ -1,5 +1,5 @@
 import styles from './join-page.module.css';
-import { useValidation } from '../shared/hooks/use-validation';
+import { useValidation } from './hooks/use-validation';
 
 import { useState } from 'react';
 import { Link } from 'react-router';
@@ -454,13 +454,7 @@ const TermsStep = () => {
   );
 };
 
-const UserInfoStep = ({
-  formData,
-  formErrors,
-  handleChange,
-  handleEmailIdChange,
-  handleEmailDomainChange,
-}) => {
+const UserInfoStep = ({ formData, formErrors, handleChange }) => {
   return (
     <div>
       <table className={styles.joinTable}>
@@ -527,8 +521,8 @@ const UserInfoStep = ({
             ariaLabel="이메일 아이디 입력 필수입력란"
             emailIdValue={formData.emailId}
             emailDomainValue={formData.emailDomain}
-            onEmailIdChange={handleEmailIdChange}
-            onEmailDomainChange={handleEmailDomainChange}
+            onEmailIdChange={handleChange}
+            onEmailDomainChange={handleChange}
             hasError={formErrors.emailId || formErrors.emailDomain}
             emailIdError={formErrors.emailId}
             emailDomainError={formErrors.emailDomain}
@@ -718,14 +712,14 @@ const EmailField = ({
           placeholder={placeholder}
           aria-label={ariaLabel}
           value={emailIdValue}
-          onChange={onEmailIdChange}
+          onChange={onEmailIdChange('emailId')} // 수정: 'emailId' 전달
           className={emailIdError ? styles.errorInput : ''}
         />
         <select
           id="joinEmailDomain"
           name="emailDomain"
           value={emailDomainValue}
-          onChange={onEmailDomainChange}
+          onChange={onEmailDomainChange('emailDomain')} // 수정: 'emailDomain' 전달
           className={`${styles.joinEmailDomain} ${emailDomainError ? styles.errorInput : ''}`}
         >
           <option value="">이메일 주소를 선택하세요.</option>
@@ -888,14 +882,10 @@ export function JoinPage() {
     userAddress: '',
   };
 
-  const {
-    formData,
-    formErrors,
-    handleChange,
-    handleEmailIdChange,
-    handleEmailDomainChange,
-    validate,
-  } = useValidation(requiredFields, initialFormData);
+  const { formData, formErrors, handleChange, validate } = useValidation(
+    requiredFields,
+    initialFormData
+  );
 
   const handleNext = () => {
     if (currentStep === 2) {
@@ -933,8 +923,6 @@ export function JoinPage() {
             formData={formData}
             formErrors={formErrors}
             handleChange={handleChange}
-            handleEmailIdChange={handleEmailIdChange}
-            handleEmailDomainChange={handleEmailDomainChange}
           />
         )}
         {currentStep === 3 && <JoinSuccessStep />}
