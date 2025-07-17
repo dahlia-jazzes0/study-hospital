@@ -3,7 +3,7 @@ import { Layout } from './layout.jsx';
 import { HomePage } from '@/pages/home-page.jsx';
 import { AboutPage } from '@/pages/about-page.jsx';
 import { LoginPage } from '@/pages/login-page.jsx';
-import { JoinPage } from '@/pages/join-page/join-page.jsx';
+import { JoinPage } from '@/pages/join/join-page.jsx';
 
 export function AppView() {
   return (
