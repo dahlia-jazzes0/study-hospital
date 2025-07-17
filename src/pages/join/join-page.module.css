@@ -146,8 +146,6 @@
 .joinStepNext,
 .goLoginBtn,
 .goMainBtn {
-  margin-top: 8px;
-
   width: 135px;
 
   background-color: #222222;
@@ -160,6 +158,7 @@
 /* step2 */
 .formLabel,
 .formInput,
+.formDetailInput,
 .formSelect {
   font-size: 20px;
   font-weight: 500;
@@ -175,6 +174,7 @@
   border-top: solid 2px #535353;
 }
 
+.formDetailInput,
 .formInput,
 .formSelect {
   color: #888888;
@@ -212,6 +212,7 @@
   font-size: 20px;
 }
 
+.formDetailInput,
 .formSelect,
 .formInput {
   width: 477px;
@@ -219,8 +220,26 @@
   padding: 0 16px;
 }
 
-.formInputWrapper {
+.formInputWrapper,
+.formInputGrid {
   padding: 18px 30px;
+}
+
+.emailInputGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.formInputGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.searchAddressBtn,
+.formDetailInput {
+  margin-left: 8px;
 }
 
 .errorText {
