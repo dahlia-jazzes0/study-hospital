@@ -123,7 +123,6 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         value={formData.joinRoute}
         onChange={handleChange('joinRoute')}
         hasError={formErrors.joinRoute}
-        required={true}
       />
 
       <CheckBoxField
