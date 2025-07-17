@@ -37,6 +37,11 @@
   cursor: pointer;
 }
 
+.selected {
+  outline: 5px solid #fe7352;
+  outline-offset: 5px;
+}
+
 .doctorCard > img {
   width: 368px;
 

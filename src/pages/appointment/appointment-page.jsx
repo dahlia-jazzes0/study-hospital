@@ -34,7 +34,7 @@ export function AppointmentPage() {
       <DoctorList
         doctors={doctors}
         isLoading={isLoading}
-        selectedDoctorId={appointmentData.doctorId}
+        selectedDoctorId={appointmentData.doctor.id}
         onDoctorSelect={handleDoctorSelect}
       />
 
