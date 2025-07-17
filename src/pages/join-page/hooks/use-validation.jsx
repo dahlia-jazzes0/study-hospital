@@ -25,21 +25,21 @@ export function useValidation(requiredFields, initialFormData) {
 
     requiredFields.forEach((field) => {
       if (field === 'emailId') {
-        if (!formData.emailId || formData.emailId.trim() === '') {
+        if (!formData.emailId || formData.emailId === '') {
           errors.emailId = true;
           hasAnyError = true;
         } else {
           errors.emailId = false;
         }
       } else if (field === 'emailDomain') {
-        if (!formData.emailDomain || formData.emailDomain.trim() === '') {
+        if (!formData.emailDomain || formData.emailDomain === '') {
           errors.emailDomain = true;
           hasAnyError = true;
         } else {
           errors.emailDomain = false;
         }
       } else {
-        if (!formData[field] || formData[field].trim() === '') {
+        if (!formData[field] || formData[field] === '') {
           errors[field] = true;
           hasAnyError = true;
         } else {

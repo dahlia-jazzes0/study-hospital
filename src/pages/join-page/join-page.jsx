@@ -1,5 +1,5 @@
 import styles from './join-page.module.css';
-import { useValidation } from '../Hooks/use-validation';
+import { useValidation } from '../shared/hooks/use-validation';
 
 import { useState } from 'react';
 import { Link } from 'react-router';
