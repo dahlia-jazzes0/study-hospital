@@ -9,10 +9,12 @@ export const EmailField = ({
   ariaLabel,
   emailIdValue,
   emailDomainValue,
-  onEmailIdChange,
-  onEmailDomainChange,
+  onChange,
+  emailIdFieldName = 'emailId',
+  emailDomainFieldName = 'emailDomain',
   hasError,
-  errorMessage,
+  emailIdError,
+  emailDomainError,
   required = false,
 }) => {
   return (
@@ -31,14 +33,14 @@ export const EmailField = ({
             placeholder={placeholder}
             aria-label={ariaLabel}
             value={emailIdValue}
-            onChange={onEmailIdChange('emailId')}
+            onChange={onChange(emailIdFieldName)}
             className={`${styles.formInput}`}
           />
           <select
             id="joinEmailDomain"
             name="emailDomain"
             value={emailDomainValue}
-            onChange={onEmailDomainChange('emailDomain')}
+            onChange={onChange(emailDomainFieldName)}
             className={`${styles.formSelect} ${styles.joinEmailDomain} ${
               emailDomainValue && emailDomainValue !== '' ? styles.hasValue : ''
             }`}
@@ -59,7 +61,7 @@ export const EmailField = ({
         </div>
         {hasError && (
           <span className={styles.errorText}>
-            {errorMessage || '필수 입력값입니다.'}
+            {emailIdError || emailDomainError || '필수 입력값입니다.'}
           </span>
         )}
       </div>

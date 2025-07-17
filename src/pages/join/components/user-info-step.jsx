@@ -83,8 +83,7 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         ariaLabel="이메일 아이디 입력 필수입력란"
         emailIdValue={formData.emailId}
         emailDomainValue={formData.emailDomain}
-        onEmailIdChange={handleChange}
-        onEmailDomainChange={handleChange}
+        onChange={handleChange}
         hasError={formErrors.emailId || formErrors.emailDomain}
         emailIdError={formErrors.emailId}
         emailDomainError={formErrors.emailDomain}
