@@ -1,5 +1,5 @@
 import styles from './join-page.module.css';
-import { useValidation } from './hooks/use-validation';
+import { useForm } from './hooks/use-form';
 
 import { useState } from 'react';
 
@@ -34,7 +34,7 @@ export function JoinPage() {
     userAddress: '',
   };
 
-  const { formData, formErrors, handleChange, validate } = useValidation(
+  const { formData, formErrors, handleChange, validate } = useForm(
     requiredFields,
     initialFormData
   );
