@@ -8,7 +8,7 @@ export function TimeTable({ time, available, isSelected, onTimeSelect }) {
   };
 
   const getButtonClass = () => {
-    if (isSelected) return styles.selected; // doctor-card와 같이 css 추가 필요
+    if (isSelected) return styles.selected;
     if (available) return styles.available;
     return styles.unavailable;
   };
