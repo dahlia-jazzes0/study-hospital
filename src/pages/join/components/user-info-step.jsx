@@ -155,8 +155,8 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         label="SMS 수신여부"
         options={CommonOptions.YES_NO}
         ariaLabel="SMS 수신 여부 선택 필수입력란"
-        value={formData.receiveSMS} // 이 줄 추가
-        onChange={handleChange('receiveSMS')} // 이 줄 추가
+        value={formData.receiveSMS}
+        onChange={handleChange('receiveSMS')}
         hasError={formErrors.receiveSMS}
         required={true}
       />

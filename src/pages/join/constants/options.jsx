@@ -13,6 +13,7 @@ export const InterestDiseaseOptions = [
   { id: 'carCrash', name: 'carCrash', label: '교통사고' },
   { id: 'bodyCorrection', name: 'bodyCorrection', label: '체형교정' },
   { id: 'obstetrics', name: 'obstetrics', label: '부인과' },
+  { id: 'pediatrics', name: 'pediatrics', label: '소아과' },
   { id: 'diet', name: 'diet', label: '다이어트' },
 ];
 
