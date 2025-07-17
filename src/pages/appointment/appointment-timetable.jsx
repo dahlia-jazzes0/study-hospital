@@ -1,5 +1,5 @@
 import styles from './appointment-page.module.css';
-import { formatTimeForTimeTable } from './util';
+import { formattedTime } from './util';
 
 export function TimeTable({ time, available, isSelected, onTimeSelect }) {
   const handleClick = () => {
@@ -21,7 +21,7 @@ export function TimeTable({ time, available, isSelected, onTimeSelect }) {
         onClick={handleClick}
         disabled={!available}
       >
-        {formatTimeForTimeTable(time)}
+        {formattedTime(time)}
       </button>
     </li>
   );

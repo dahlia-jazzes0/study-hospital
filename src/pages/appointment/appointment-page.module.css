@@ -241,11 +241,13 @@
 
   font-size: 40px;
   font-weight: 500;
-  border-bottom: solid 2px #323232;
 }
 
 .appointmentDetail {
   margin-top: 16px;
+  padding: 17px 0;
+  border-top: solid 3px #d8d8d8;
+  border-bottom: solid 3px #d8d8d8;
 }
 
 .appointmentDetail > p {
@@ -268,4 +270,53 @@
   color: #ffffff;
   background-color: #fe7352;
   transition: all 0.2s ease;
+}
+
+/* appointmentInfo */
+.appointmentInfo {
+  margin: 0 auto;
+}
+
+.appointmentInfo > h4 {
+  margin-top: 33px;
+  font-size: 32px;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.infoTable {
+  margin-top: 28px;
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.infoTable::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 13px;
+  background-color: #fe7352;
+}
+
+.infoTable td {
+  padding: 20px 50px;
+  border: 2px solid #d8d8d8;
+  font-size: 32px;
+  vertical-align: middle;
+}
+
+.infoLabel {
+  font-weight: 500;
+  color: #888888;
+}
+
+.infoValue {
+  background-color: #ffffff;
+  color: #888888;
+  font-weight: 400;
 }
