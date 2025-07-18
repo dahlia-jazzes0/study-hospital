@@ -38,7 +38,7 @@ export const IdInputField = ({
       if (data.exists) {
         setValidationError('이미 사용 중인 아이디입니다.');
       } else {
-        setValidationError('사용 가능한 아이디입니다.');
+        setValidationError('멋진 아이디네요!');
       }
     } catch (error) {
       console.error('중복 검사 실패:', error);
@@ -77,7 +77,7 @@ export const IdInputField = ({
         {(hasError || validationError) && (
           <span
             className={
-              validationError === '사용 가능한 아이디입니다.'
+              validationError === '멋진 아이디네요!'
                 ? styles.successText
                 : styles.errorText
             }
