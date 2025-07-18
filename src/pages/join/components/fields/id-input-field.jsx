@@ -36,13 +36,13 @@ export const IdInputField = ({
       const data = await res.json();
 
       if (data.exists) {
-        setValidationError('이미 사용 중인 아이디입니다.');
+        setValidationError('이미 등록된 아이디입니다.');
       } else {
         setValidationError('멋진 아이디네요!');
       }
     } catch (error) {
-      console.error('중복 검사 실패:', error);
-      setValidationError('중복 검사 중 오류가 발생했습니다.');
+      console.error(error);
+      // setValidationError('중복검사 에러');
     }
   };
 
