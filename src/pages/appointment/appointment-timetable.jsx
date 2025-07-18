@@ -8,16 +8,10 @@ export function TimeTable({ time, available, isSelected, onTimeSelect }) {
     }
   };
 
-  const getButtonClass = () => {
-    if (isSelected) return styles.selected;
-    if (available) return styles.available;
-    return styles.unavailable;
-  };
-
   return (
     <li>
       <button
-        className={getButtonClass()}
+        className={isSelected && styles.selected}
         onClick={handleClick}
         disabled={!available}
       >

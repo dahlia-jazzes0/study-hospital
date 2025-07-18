@@ -224,15 +224,17 @@
   transition: all 0.2s ease;
 }
 
-.timeTable > li > button.available:hover {
+.timeTable > li > button:hover {
   color: #ffffff;
   border: none;
   background-color: #fe7352;
   cursor: pointer;
 }
 
-.timeTable > li > button.unavailable {
+.timeTable > li > button:disabled {
   pointer-events: none;
+  border: none;
+  color: #888888;
   background-color: #d8d8d8;
 }
 
@@ -275,6 +277,13 @@
   color: #ffffff;
   background-color: #fe7352;
   transition: all 0.2s ease;
+}
+
+.appointmentButton:disabled {
+  pointer-events: none;
+  border: none;
+  color: #888888;
+  background-color: #d8d8d8;
 }
 
 /* appointmentInfo */
