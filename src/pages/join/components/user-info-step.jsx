@@ -73,13 +73,18 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
 
       <InputField
         id="joinUserNumber"
-        type="number"
+        type="text"
         label="연락처"
         placeholder="'-' 제외 숫자만 입력하세요."
         ariaLabel="연락처 입력 필수입력란"
         value={formData.userNumber}
         onChange={handleChange('userNumber')}
-        hasError={formErrors.userNumber}
+        hasError={!!formErrors.userNumber}
+        errorMessage={
+          typeof formErrors.userNumber === 'string'
+            ? formErrors.userNumber
+            : undefined
+        }
         required={true}
       />
 

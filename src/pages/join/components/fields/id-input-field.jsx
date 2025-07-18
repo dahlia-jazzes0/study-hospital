@@ -42,7 +42,7 @@ export const IdInputField = ({
       }
     } catch (error) {
       console.error(error);
-      // setValidationError('중복검사 에러');
+      // setValidationError('중복검사');
     }
   };
 

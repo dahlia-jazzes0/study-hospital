@@ -43,6 +43,16 @@ export function useForm(requiredFields, initialFormData) {
       hasAnyError = true;
     }
 
+    if (formData.userNumber) {
+      const phoneRegex = /^\d+$/;
+      const userNumberStr = formData.userNumber.toString();
+
+      if (!phoneRegex.test(userNumberStr)) {
+        errors.userNumber = "'-' 제외 숫자만 입력하세요.";
+        hasAnyError = true;
+      }
+    }
+
     setFormErrors(errors);
     return !hasAnyError;
   };
