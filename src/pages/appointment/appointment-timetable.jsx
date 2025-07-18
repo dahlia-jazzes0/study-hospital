@@ -11,7 +11,7 @@ export function TimeTable({ time, available, isSelected, onTimeSelect }) {
   return (
     <li>
       <button
-        className={isSelected && styles.selected}
+        className={isSelected ? styles.selected : ''}
         onClick={handleClick}
         disabled={!available}
       >
