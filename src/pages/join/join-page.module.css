@@ -130,6 +130,7 @@
   height: 32px;
 }
 
+.idsearch,
 .searchAddressBtn {
   height: 48px;
 }
@@ -140,6 +141,7 @@
   height: 48px;
 }
 
+.idsearch,
 .searchAddressBtn,
 .joinStepNext,
 .goLoginBtn,
@@ -235,6 +237,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+}
+
+.idsearch {
+  margin-left: 16px;
 }
 
 .searchAddressBtn,

@@ -1,5 +1,6 @@
 import styles from '../join-page.module.css';
 
+import { IdInputField } from './fields/id-input-field';
 import { InputField } from './fields/input-field';
 import { EmailField } from './fields/email-field';
 import { AddressField } from './fields/address-field';
@@ -16,7 +17,7 @@ import {
 export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
   return (
     <form className={styles.stepJoinForm}>
-      <InputField
+      <IdInputField
         id="joinUserId"
         type="text"
         label="아이디"

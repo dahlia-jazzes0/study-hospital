@@ -43,7 +43,7 @@ export const AddressField = ({
               className={styles.searchAddressBtn}
               onClick={findAddress}
             >
-              주소검색
+              주소찾기
             </button>
             <input
               type={type}
