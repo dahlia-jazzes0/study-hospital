@@ -261,30 +261,6 @@
   color: #888888;
   font-size: 28px;
 }
-.appointmentButton {
-  margin-top: 24px;
-  padding: 32px 272px;
-
-  font-size: 38px;
-  font-weight: 500;
-  color: #fe7352;
-  border: solid 1px #fe7352;
-  border-radius: 16px;
-  background-color: #ffffff;
-}
-
-.appointmentButton:hover {
-  color: #ffffff;
-  background-color: #fe7352;
-  transition: all 0.2s ease;
-}
-
-.appointmentButton:disabled {
-  pointer-events: none;
-  border: none;
-  color: #888888;
-  background-color: #d8d8d8;
-}
 
 /* appointmentInfo */
 .appointmentInfo {
@@ -333,4 +309,34 @@
   background-color: #ffffff;
   color: #888888;
   font-weight: 400;
+}
+
+/* appointmentButtonWrap */
+.appointmentButtonWrap {
+  margin-top: 24px;
+}
+
+.appointmentButton {
+  width: 100%;
+  padding: 32px 272px;
+
+  font-size: 38px;
+  font-weight: 500;
+  color: #fe7352;
+  border: solid 1px #fe7352;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.appointmentButton:hover {
+  color: #ffffff;
+  background-color: #fe7352;
+  transition: all 0.2s ease;
+}
+
+.appointmentButton:disabled {
+  pointer-events: none;
+  border: none;
+  color: #888888;
+  background-color: #d8d8d8;
 }
