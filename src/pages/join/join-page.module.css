@@ -251,7 +251,13 @@
 .errorText {
   display: block;
   margin: 13px 6px 0;
-  color: red;
+  color: #e70202;
+}
+
+.successText {
+  display: block;
+  margin: 13px 6px 0;
+  color: #026de7;
 }
 
 .radioLabel,
