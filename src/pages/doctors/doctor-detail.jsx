@@ -1,4 +1,5 @@
 import styles from '@/pages/doctors/doctor-card.module.css';
+import { Link } from 'react-router';
 
 function DoctorDetail({ doctor }) {
   return (
