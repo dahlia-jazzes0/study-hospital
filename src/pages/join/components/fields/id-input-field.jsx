@@ -15,10 +15,15 @@ export const IdInputField = ({
 }) => {
   const [validationError, setValidationError] = useState('');
 
-  const idSearch = () => {
+  const idDuplicateCheck = () => {
     const regex = /^[a-zA-Z0-9]+$/;
 
-    if (!value || value.length < 4 || !regex.test(value)) {
+    if (!value) {
+      setValidationError('필수 입력값입니다.');
+      return;
+    }
+
+    if (value.length < 4 || !regex.test(value)) {
       setValidationError('영문, 숫자만 입력가능, 최소 4자이상 입력해주세요');
       return;
     }
@@ -48,9 +53,9 @@ export const IdInputField = ({
         />
         <button
           type="button"
-          id="idsearch"
-          className={styles.idsearch}
-          onClick={idSearch}
+          id="idDuplicateCheck"
+          className={styles.idDuplicateCheck}
+          onClick={idDuplicateCheck}
         >
           중복검사
         </button>

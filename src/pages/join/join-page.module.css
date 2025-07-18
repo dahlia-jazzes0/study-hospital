@@ -130,7 +130,7 @@
   height: 32px;
 }
 
-.idsearch,
+.idDuplicateCheck,
 .searchAddressBtn {
   height: 48px;
 }
@@ -141,7 +141,7 @@
   height: 48px;
 }
 
-.idsearch,
+.idDuplicateCheck,
 .searchAddressBtn,
 .joinStepNext,
 .goLoginBtn,
@@ -239,7 +239,7 @@
   gap: 8px;
 }
 
-.idsearch {
+.idDuplicateCheck {
   margin-left: 16px;
 }
 
