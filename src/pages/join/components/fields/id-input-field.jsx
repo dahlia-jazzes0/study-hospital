@@ -1,8 +1,5 @@
+import { useState } from 'react';
 import styles from '../../join-page.module.css';
-
-const idSearch = () => {
-  console.log('아이디 찾기');
-};
 
 export const IdInputField = ({
   label,
@@ -16,6 +13,19 @@ export const IdInputField = ({
   errorMessage,
   required = false,
 }) => {
+  const [validationError, setValidationError] = useState('');
+
+  const idSearch = () => {
+    const regex = /^[a-zA-Z0-9]+$/;
+
+    if (!value || value.length < 4 || !regex.test(value)) {
+      setValidationError('영문, 숫자만 입력가능, 최소 4자이상 입력해주세요');
+      return;
+    }
+
+    console.log('아이디 찾기');
+    setValidationError('');
+  };
   return (
     <div className={styles.formField}>
       <label
@@ -44,9 +54,9 @@ export const IdInputField = ({
         >
           중복검사
         </button>
-        {hasError && (
+        {(hasError || validationError) && (
           <span className={styles.errorText}>
-            {errorMessage || '필수 입력값입니다.'}
+            {validationError || errorMessage || '필수 입력값입니다.'}
           </span>
         )}
       </div>
