@@ -1,13 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '@/pages/review/review-page.module.css';
 import { ReviewList } from '@/pages/review/review-list';
-import { reviewData } from '@/pages/review/review-data';
 import { Pagination } from '@/pages/review/review-pagination';
+import { CategoryFilter } from '@/pages/review/review-filter';
+import { fetchReviewsFromApi } from '@/pages/review/review-api';
 
 export const ReviewPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
-  const totalPages = Math.ceil(reviewData.length / itemsPerPage);
+  const [reviews, setReviews] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
+  const totalPages = Math.ceil(totalCount);
+  console.log('totalPages:', totalPages);
+
+  // const [searchKeyword, setSearchKeyword] = useState('');
+  // const [selectedDept, setSelectedDept] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await fetchReviewsFromApi({
+          page: currentPage,
+          // search: searchKeyword,
+          // department: selectedDept,
+        });
+
+        setReviews(result.articles);
+        setTotalCount(result.total);
+      } catch (e) {
+        console.error('API 호출 실패:', e);
+      }
+    };
+
+    fetchData();
+  }, [currentPage]);
+
+  // , searchKeyword, selectedDept
 
   return (
     <>
@@ -21,49 +48,15 @@ export const ReviewPage = () => {
           <header className={styles.pageHeader}>
             <h2 className={styles.pageTitle}>치료후기</h2>
 
-            {/* Category Tags */}
             <nav className={styles.categoryTags} aria-label="카테고리">
-              <ul className={styles.categoryList}>
-                <li>
-                  <button className={`${styles.tag} ${styles.active}`}>
-                    전체보기
-                  </button>
-                </li>
-                <li>
-                  <button className={`${styles.tag} ${styles.inactive}`}>
-                    한방내과
-                  </button>
-                </li>
-                <li>
-                  <button className={`${styles.tag} ${styles.inactive}`}>
-                    한방정형외과
-                  </button>
-                </li>
-                <li>
-                  <button className={`${styles.tag} ${styles.inactive}`}>
-                    한방부인과
-                  </button>
-                </li>
-                <li>
-                  <button className={`${styles.tag} ${styles.inactive}`}>
-                    한방소아과
-                  </button>
-                </li>
-                <li>
-                  <button className={`${styles.tag} ${styles.inactive}`}>
-                    다이어트클리닉
-                  </button>
-                </li>
-              </ul>
+              <CategoryFilter onChange={setReviews} />
             </nav>
           </header>
 
           {/* Search Section */}
           <section className={styles.searchInfo} aria-label="검색">
             <div className={styles.info}>
-              <span className={styles.totalCount}>
-                Total: {reviewData.length}
-              </span>
+              <span className={styles.totalCount}>Total: {totalCount}</span>
               <span className={styles.searchScope}></span>
             </div>
             <form className={styles.searchInputGroup}>
@@ -80,13 +73,12 @@ export const ReviewPage = () => {
           </section>
 
           <section className={styles.contentArea}>
-            {/* 페이지 정보 전달 */}
-            <ReviewList currentPage={currentPage} itemsPerPage={itemsPerPage} />
+            <ReviewList sortedData={reviews} />
           </section>
 
           <Pagination
             currentPage={currentPage}
-            totalPages={totalPages}
+            totalPages={Math.ceil(totalCount)}
             onPageChange={setCurrentPage}
           />
         </article>
