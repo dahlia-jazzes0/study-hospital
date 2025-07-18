@@ -53,6 +53,36 @@ export function useForm(requiredFields, initialFormData) {
       }
     }
 
+    if (formData.userBirth) {
+      const birthDateStr = formData.userBirth.toString();
+      const birthDateRegex =
+        /^(19|20)\d{2}(0[1-9]|1[0-2])(0[1-9]|[12]\d|3[01])$/;
+
+      let invalid = false;
+
+      if (!birthDateRegex.test(birthDateStr)) {
+        invalid = true;
+      } else {
+        const year = parseInt(birthDateStr.slice(0, 4), 10);
+        const month = parseInt(birthDateStr.slice(4, 6), 10);
+        const day = parseInt(birthDateStr.slice(6, 8), 10);
+
+        const date = new Date(year, month - 1, day);
+        if (
+          date.getFullYear() !== year ||
+          date.getMonth() + 1 !== month ||
+          date.getDate() !== day
+        ) {
+          invalid = true;
+        }
+      }
+
+      if (invalid) {
+        errors.userBirth = 'YYYYMMDD';
+        hasAnyError = true;
+      }
+    }
+
     setFormErrors(errors);
     return !hasAnyError;
   };

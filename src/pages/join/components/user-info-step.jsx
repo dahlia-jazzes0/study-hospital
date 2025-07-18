@@ -123,7 +123,12 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         ariaLabel="생년월일 입력 필수입력란"
         value={formData.userBirth}
         onChange={handleChange('userBirth')}
-        hasError={formErrors.userBirth}
+        hasError={!!formErrors.userBirth}
+        errorMessage={
+          typeof formErrors.userBirth === 'string'
+            ? formErrors.userBirth
+            : undefined
+        }
         required={true}
       />
 
