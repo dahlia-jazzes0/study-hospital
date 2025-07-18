@@ -37,7 +37,10 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         ariaLabel="비밀번호 입력 필수입력란"
         value={formData.userPw}
         onChange={handleChange('userPw')}
-        hasError={formErrors.userPw}
+        hasError={!!formErrors.userPw}
+        errorMessage={
+          typeof formErrors.userPw === 'string' ? formErrors.userPw : undefined
+        }
         required={true}
       />
 
@@ -48,7 +51,12 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         ariaLabel="비밀번호 확인 입력 필수입력란"
         value={formData.pwCheck}
         onChange={handleChange('pwCheck')}
-        hasError={formErrors.pwCheck}
+        hasError={!!formErrors.pwCheck}
+        errorMessage={
+          typeof formErrors.pwCheck === 'string'
+            ? formErrors.pwCheck
+            : undefined
+        }
         required={true}
       />
 

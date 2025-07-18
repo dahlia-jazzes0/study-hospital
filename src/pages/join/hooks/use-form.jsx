@@ -26,6 +26,23 @@ export function useForm(requiredFields, initialFormData) {
       }
     });
 
+    const pwRegex = /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{6,20}$/;
+
+    if (formData.userPw && !pwRegex.test(formData.userPw)) {
+      errors.userPw =
+        '영문, 숫자 포함 6~20자리 구성, 특수기호 제외 입력해주세요.';
+      hasAnyError = true;
+    }
+
+    if (
+      formData.userPw &&
+      formData.pwCheck &&
+      formData.userPw !== formData.pwCheck
+    ) {
+      errors.pwCheck = '비밀번호가 일치하지 않습니다.';
+      hasAnyError = true;
+    }
+
     setFormErrors(errors);
     return !hasAnyError;
   };
