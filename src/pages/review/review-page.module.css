@@ -132,14 +132,38 @@
   border-radius: 6px;
   padding: 15px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
   justify-content: center;
+  gap: 16px;
   font-size: 14px;
   color: #666;
   transition: all 0.2s ease;
   cursor: pointer;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1; /* 오른쪽 공간을 꽉 채움 */
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.dept {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #aaa;
 }
 
 .contentBox:hover {

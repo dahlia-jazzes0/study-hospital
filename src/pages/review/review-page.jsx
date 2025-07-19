@@ -16,30 +16,28 @@ export const ReviewPage = () => {
 
   // const [selectedDept, setSelectedDept] = useState('');
 
-  const fetchDataWithFilters =
-    (async () => {
-      try {
-        const result = await fetchReviewsFromApi({
-          page: currentPage,
-          search: searchKeyword,
-        });
-        setReviews(result.articles);
-        setTotalCount(result.total);
-      } catch (e) {
-        console.error('API 호출 실패:', e);
-      }
-    },
-    [currentPage, searchKeyword]);
-
-  useEffect(() => {
-    fetchDataWithFilters();
-  }, [fetchDataWithFilters]);
+  const fetchDataWithFilters = async () => {
+    try {
+      const result = await fetchReviewsFromApi({
+        page: currentPage,
+        search: searchKeyword,
+      });
+      setReviews(result.articles);
+      setTotalCount(result.total);
+    } catch (e) {
+      console.error('API 호출 실패:', e);
+    }
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setCurrentPage(1);
+    fetchDataWithFilters();
   };
 
+  useEffect(() => {
+    fetchDataWithFilters();
+  }, [currentPage, searchKeyword]);
   // , searchKeyword, selectedDept
 
   return (

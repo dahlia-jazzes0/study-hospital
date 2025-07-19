@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router';
 import styles from '@/pages/review/review-page.module.css';
+import reviewImg from '@/pages/review/review-img.png';
 
 export const ReviewList = ({ sortedData }) => {
   const navigate = useNavigate();
@@ -20,12 +21,20 @@ export const ReviewList = ({ sortedData }) => {
             style={{ cursor: 'pointer' }}
           >
             <img
-              src={item.image}
+              src={reviewImg || item.thumbnail}
               alt={`${item.title} 썸네일`}
               className={styles.thumbnail}
             />
-            <h3 className={styles.title}>{item.title}</h3>
-            <p className={styles.dept}>{item.dept}</p>
+            <div className={styles.textGroup}>
+              <h3 className={styles.title}>{item.title}</h3>
+              <p className={styles.dept}>{item.dept}</p>
+              <p className={styles.date}>
+                {new Date(item.createdAt)
+                  .toISOString()
+                  .slice(0, 10)
+                  .replace(/-/g, '.')}
+              </p>
+            </div>
           </article>
         ))}
       </section>
