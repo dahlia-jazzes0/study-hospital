@@ -1,0 +1,366 @@
+.srOnly {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.joinMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 55px;
+
+  margin-top: 176px;
+  margin-bottom: 220px;
+}
+
+.joinStepNav {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+
+  width: 1300px;
+  height: 118px;
+}
+
+.joinStepNav li {
+  border: solid 1px #d9d9d9;
+  background-color: #f8f8f8;
+  color: #959595;
+
+  width: 33.333%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.joinStepNav li span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.joinStepNav li.joinActive span,
+.joinStepNav li.joinActive {
+  color: #ffffff;
+  border: solid 1px #fe7352;
+  background-color: #fe7352;
+}
+
+.joinForm {
+  width: 1300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 62px;
+}
+
+.joinForm section {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.joinForm h3 {
+  font-size: 38px;
+  font-weight: 700;
+  color: #888888;
+}
+
+.termsBox,
+.privacyBox {
+  padding: 20px 50px;
+  overflow-x: hidden;
+
+  border: 1px solid #d9d9d9;
+  background-color: #f8f8f8;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fcfcfc;
+  border: 1px solid #d9d9d9;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+  border: 3px solid #fcfcfc;
+}
+
+.joinTextBox {
+  width: 1366px;
+  height: 410px;
+}
+
+.joinTextBox ul {
+  padding-left: 16px;
+}
+
+.termsBox,
+.privacyBox,
+.termsBox h5 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #888888;
+}
+
+.agreeAllTerms {
+  margin-top: 63px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  align-self: center;
+}
+
+.agreeAllTerms input {
+  width: 32px;
+  height: 32px;
+}
+
+.idDuplicateCheck,
+.searchAddressBtn {
+  height: 48px;
+}
+
+.joinStepNext,
+.goLoginBtn,
+.goMainBtn {
+  height: 48px;
+}
+
+.idDuplicateCheck,
+.searchAddressBtn,
+.joinStepNext,
+.goLoginBtn,
+.goMainBtn {
+  width: 135px;
+
+  background-color: #222222;
+  color: #ffffff;
+
+  font-weight: 500;
+  font-size: 20px;
+}
+
+/* step2 */
+.checkboxLabel,
+.radioLabel,
+.formLabel,
+.formInput,
+.formDetailInput,
+.formSelect {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.stepJoinForm {
+  width: 1300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  border-top: solid 2px #535353;
+}
+
+.formDetailInput::placeholder,
+.formInput::placeholder,
+.formSelect {
+  color: #888888;
+}
+
+.formSelect.hasValue {
+  color: #333;
+}
+
+.formField {
+  display: flex;
+  border-bottom: solid 1px #535353;
+}
+
+.formLabel {
+  width: 240px;
+  background-color: #d9d9d945;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.successLabel,
+.errorLabel {
+  padding-bottom: 35px;
+}
+
+.agreeErrorTerms input {
+  outline: 2px solid blue;
+}
+
+.inputGuide {
+  color: #4c4c4c;
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: 4px;
+  margin-bottom: 15px;
+
+  text-align: end;
+}
+
+.inputGuide::before,
+.requiredLabel::after {
+  content: '•';
+  color: #d70b0b;
+
+  position: relative;
+  top: -10px;
+
+  font-size: 20px;
+}
+
+.formDetailInput,
+.formSelect,
+.formInput {
+  width: 477px;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.formInputWrapper,
+.formInputGrid {
+  padding: 18px 30px;
+}
+
+.emailInputGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.idDuplicateCheck {
+  margin-left: 16px;
+}
+
+.searchAddressBtn,
+.formDetailInput {
+  margin-left: 4px;
+}
+
+.errorText {
+  display: block;
+  margin: 13px 6px 0;
+  color: #e70202;
+}
+
+.successText {
+  display: block;
+  margin: 13px 6px 0;
+  color: #026de7;
+}
+
+.radioLabel,
+.radioGroup,
+.checkboxLabel {
+  display: flex;
+  justify-content: center;
+}
+
+.checkboxGroup,
+.radioGroup {
+  gap: 30px;
+}
+
+.radioLabel,
+.checkboxLabel {
+  gap: 12px;
+}
+
+.formInput[type='number']::-webkit-outer-spin-button,
+.formInput[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: row;
+}
+
+.joinRoute input[type='radio'],
+.interestDisease input[type='checkbox'],
+.receiveEmail input[type='radio'],
+.receiveSMS input[type='radio'] {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+  appearance: none;
+  border: 1px solid #d9d9d9;
+}
+
+.joinRoute input[type='radio']:checked,
+.interestDisease input[type='checkbox']:checked,
+.receiveEmail input[type='radio']:checked,
+.receiveSMS input[type='radio']:checked {
+  border: 7px solid black;
+  outline: none;
+}
+
+/* step3 */
+.joinSuccess {
+  margin-top: 60px;
+
+  width: 1300px;
+  height: 352px;
+
+  border-radius: 16px;
+  border: solid 2px #d9d9d9;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.joinSuccess > p:nth-child(2) {
+  color: #fe7352;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.joinSuccess > p:last-child,
+.joinSuccess > p:last-child span {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.goLinkBtn {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 72px;
+}
+
+.goLinkBtn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
