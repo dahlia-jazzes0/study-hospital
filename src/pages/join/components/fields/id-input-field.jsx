@@ -82,7 +82,7 @@ export const IdInputField = ({
             setValidationError('');
             setIsIdChecked(false);
           }}
-          value={value}
+          value={value ?? ''}
           aria-label={ariaLabel}
           className={`${styles.formInput}`}
         />

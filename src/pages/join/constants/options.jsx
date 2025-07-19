@@ -19,8 +19,8 @@ export const InterestDiseaseOptions = [
 
 export const CommonOptions = {
   YES_NO: [
-    { id: 'yes', label: '예', value: 'yes' },
-    { id: 'no', label: '아니오', value: 'no' },
+    { id: 'yes', label: '예', value: 'Y' },
+    { id: 'no', label: '아니오', value: 'N' },
   ],
   AGREE_DISAGREE: [
     { id: 'agree', label: '동의', value: 'agree' },

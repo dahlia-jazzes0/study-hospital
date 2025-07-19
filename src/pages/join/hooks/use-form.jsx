@@ -19,7 +19,7 @@ export function useForm(initialFormData) {
   };
 
   const transformDataForAPI = () => {
-    return {
+    const apiData = {
       name: formData.userName || '',
       username: formData.userId || '',
       password: formData.userPw || '',
@@ -36,21 +36,26 @@ export function useForm(initialFormData) {
           : formData.userAddress
             ? Object.values(formData.userAddress).join(' ')
             : '',
-
       dateOfBirth: formData.userBirth
         ? formData.userBirth.replace(/^(\d{4})(\d{2})(\d{2})$/, '$1-$2-$3')
         : '',
-      signupSource: formData.joinRoute || '',
-      interestedConditions: Array.isArray(formData.interestDisease)
-        ? formData.interestDisease
-        : [],
-      emailConsent:
-        formData.receiveEmail === 'Y' || formData.receiveEmail === true
-          ? true
-          : '',
-      smsConsent:
-        formData.receiveSMS === 'Y' || formData.receiveSMS === true ? true : '',
+      signupSource: formData.joinRoute || 'unknown',
+      interestedConditions:
+        Array.isArray(formData.interestDisease) &&
+        formData.interestDisease.length > 0
+          ? formData.interestDisease
+          : [],
     };
+
+    if (formData.receiveEmail === 'Y' || formData.receiveEmail === 'N') {
+      apiData.emailConsent = formData.receiveEmail === 'Y';
+    }
+
+    if (formData.receiveSMS === 'Y' || formData.receiveSMS === 'N') {
+      apiData.smsConsent = formData.receiveSMS === 'Y';
+    }
+
+    return apiData;
   };
 
   const validate = () => {
