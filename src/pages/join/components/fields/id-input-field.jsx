@@ -12,6 +12,7 @@ export const IdInputField = ({
   hasError,
   errorMessage,
   required = false,
+  setIsIdChecked,
 }) => {
   const [validationError, setValidationError] = useState('');
 
@@ -37,12 +38,14 @@ export const IdInputField = ({
 
       if (data.exists) {
         setValidationError('이미 등록된 아이디입니다.');
+        setIsIdChecked(false);
       } else {
         setValidationError('멋진 아이디네요!');
+        setIsIdChecked(true);
       }
     } catch (error) {
       console.error(error);
-      // setValidationError('중복검사');
+      // setValidationError('중복검사 error');
     }
   };
 
@@ -50,7 +53,7 @@ export const IdInputField = ({
     <div className={styles.formField}>
       <label
         htmlFor={id}
-        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''} ${hasError ? styles.errorLabel : ''}`}
+        className={`${styles.formLabel} ${required ? styles.requiredLabel : ''} ${hasError ? styles.errorLabel : ''} ${validationError === '멋진 아이디네요!' ? styles.successLabel : ''}`}
       >
         {label}
       </label>
@@ -61,11 +64,16 @@ export const IdInputField = ({
           type={type}
           id={id}
           placeholder={placeholder}
-          onChange={onChange}
+          onChange={(e) => {
+            onChange(e);
+            setValidationError('');
+            setIsIdChecked(false);
+          }}
           value={value}
           aria-label={ariaLabel}
           className={`${styles.formInput}`}
         />
+
         <button
           type="button"
           id="idDuplicateCheck"
@@ -82,7 +90,9 @@ export const IdInputField = ({
                 : styles.errorText
             }
           >
-            {validationError || errorMessage || '필수 입력값입니다.'}
+            {validationError ||
+              errorMessage ||
+              (hasError && '필수 입력값입니다.')}
           </span>
         )}
       </div>

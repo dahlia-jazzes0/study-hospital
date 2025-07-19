@@ -14,7 +14,12 @@ import {
   CommonOptions,
 } from '../constants/options';
 
-export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
+export const UserInfoStep = ({
+  formData,
+  formErrors,
+  handleChange,
+  setIsIdChecked,
+}) => {
   return (
     <form className={styles.stepJoinForm}>
       <IdInputField
@@ -27,6 +32,7 @@ export const UserInfoStep = ({ formData, formErrors, handleChange }) => {
         onChange={handleChange('userId')}
         hasError={formErrors.userId}
         required={true}
+        setIsIdChecked={setIsIdChecked}
       />
 
       <InputField

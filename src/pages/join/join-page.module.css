@@ -200,6 +200,7 @@
   align-items: center;
 }
 
+.successLabel,
 .errorLabel {
   padding-bottom: 30px;
 }

@@ -9,6 +9,7 @@ import { JoinSuccessStep } from './components/join-success-step';
 
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isIdChecked, setIsIdChecked] = useState(false);
 
   const requiredFields = [
     'userId',
@@ -45,10 +46,17 @@ export function JoinPage() {
 
   const handleNext = () => {
     if (currentStep === 2) {
-      if (!validate()) return;
+      if (!validate({ isIdChecked })) return;
     }
     window.scrollTo(0, 0);
     setCurrentStep((prev) => (prev < 3 ? prev + 1 : prev));
+  };
+
+  const handleChangeWithReset = (field) => (e) => {
+    handleChange(field)(e);
+    if (field === 'userId') {
+      setIsIdChecked(false);
+    }
   };
 
   return (
@@ -78,7 +86,8 @@ export function JoinPage() {
           <UserInfoStep
             formData={formData}
             formErrors={formErrors}
-            handleChange={handleChange}
+            handleChange={handleChangeWithReset}
+            setIsIdChecked={setIsIdChecked}
           />
         )}
         {currentStep === 3 && <JoinSuccessStep />}
