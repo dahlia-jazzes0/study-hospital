@@ -35,18 +35,30 @@ export const IdInputField = ({
       );
 
       const data = await res.json();
-      // console.log('중복검사 응답:', data);
 
-      if (data.available === false) {
-        setValidationError('이미 등록된 아이디입니다.');
+      if (res.status === 422) {
+        if (data.error && data.error.message) {
+          setValidationError(data.error.message);
+        } else {
+          setValidationError('입력값이 올바르지 않습니다.');
+        }
         setIsIdChecked(false);
-      } else {
-        setValidationError('멋진 아이디네요!');
-        setIsIdChecked(true);
+        return;
       }
-    } catch (error) {
-      console.error(error);
-      // setValidationError('중복검사 error');
+
+      if (res.ok) {
+        if (data.available === false) {
+          setValidationError('이미 등록된 아이디입니다.');
+          setIsIdChecked(false);
+        } else {
+          setValidationError('멋진 아이디네요!');
+          setIsIdChecked(true);
+        }
+      } else {
+        setIsIdChecked(false);
+      }
+    } catch {
+      setIsIdChecked(false);
     }
   };
 
@@ -74,7 +86,6 @@ export const IdInputField = ({
           aria-label={ariaLabel}
           className={`${styles.formInput}`}
         />
-
         <button
           type="button"
           id="idDuplicateCheck"
