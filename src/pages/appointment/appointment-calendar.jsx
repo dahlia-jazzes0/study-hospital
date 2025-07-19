@@ -13,7 +13,12 @@ export function AppointmentCalendar({
   onTimeSelect,
   onAppointmentSubmit,
   isAppointmentComplete,
+  handleNavigationChange,
+  holidays,
+  isHolidayDate,
 }) {
+  // 공휴일 체크 함수
+
   return (
     <section className={styles.appointmentCalendar}>
       <h2 className={styles.srOnly}>예약 달력</h2>
@@ -21,12 +26,23 @@ export function AppointmentCalendar({
       <Calendar
         className={styles.medicalBookingCalendar}
         onChange={onDateSelect}
-        calendarType="gregory"
+        calendarType={'gregory'}
+        prevAriaLabel={'이전 달'}
+        nextAriaLabel={'다음 달'}
         prev2Label={null}
         next2Label={null}
         showNeighboringMonth={false}
         formatDay={(locale, date) => date.getDate()}
         minDate={new Date()}
+        onActiveStartDateChange={({ view, activeStartDate }) => {
+          handleNavigationChange({ activeStartDate, view });
+        }}
+        tileClassName={({ date }) => {
+          return isHolidayDate(date, holidays) ? 'holiday' : null;
+        }}
+        tileDisabled={({ date }) => {
+          return isHolidayDate(date, holidays);
+        }}
       />
 
       {appointmentData.doctor && appointmentData.date && (
