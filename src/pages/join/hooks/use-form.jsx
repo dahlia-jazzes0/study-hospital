@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function useForm(requiredFields, initialFormData) {
+export function useForm(initialFormData) {
   const [formData, setFormData] = useState(initialFormData);
   const [formErrors, setFormErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +26,10 @@ export function useForm(requiredFields, initialFormData) {
       phoneNumber: formData.userNumber
         ? formatPhoneNumber(formData.userNumber)
         : '',
+      email:
+        formData.emailId && formData.emailDomain
+          ? `${formData.emailId}@${formData.emailDomain}`
+          : '',
       address:
         typeof formData.userAddress === 'string'
           ? formData.userAddress
@@ -41,35 +45,17 @@ export function useForm(requiredFields, initialFormData) {
         ? formData.interestDisease
         : [],
       emailConsent:
-        formData.receiveEmail === 'Y' || formData.receiveEmail === true,
-      smsConsent: formData.receiveSMS === 'Y' || formData.receiveSMS === true,
+        formData.receiveEmail === 'Y' || formData.receiveEmail === true
+          ? true
+          : '',
+      smsConsent:
+        formData.receiveSMS === 'Y' || formData.receiveSMS === true ? true : '',
     };
   };
 
-  const validate = (options = {}) => {
+  const validate = () => {
     const errors = {};
-    const { isIdChecked } = options;
     let hasAnyError = false;
-
-    requiredFields.forEach((field) => {
-      const fieldValue = formData[field];
-      const isEmpty =
-        !fieldValue || (typeof fieldValue === 'string' && fieldValue === '');
-      if (isEmpty) {
-        errors[field] = true;
-        hasAnyError = true;
-      } else {
-        errors[field] = false;
-      }
-    });
-
-    if (!formData.userId) {
-      errors.userId = true;
-      hasAnyError = true;
-    } else if (!isIdChecked) {
-      errors.userId = '필수입력란 입니다.';
-      hasAnyError = true;
-    }
 
     const pwRegex = /^[A-Za-z0-9]{6,20}$/;
     if (formData.userPw && !pwRegex.test(formData.userPw)) {
@@ -132,7 +118,7 @@ export function useForm(requiredFields, initialFormData) {
     try {
       const apiData = transformDataForAPI();
 
-      // console.log('전송할 데이터:', apiData);
+      console.log('전송할 데이터:', apiData);
 
       const response = await fetch(
         'https://hospital-api.dahlia-jazzes0.workers.dev/api/auth/register',
@@ -147,15 +133,19 @@ export function useForm(requiredFields, initialFormData) {
 
       if (!response.ok) {
         const errorData = await response.json();
-        // console.log('서버 에러:', errorData);
+        console.log('서버 에러:', errorData);
+        // console.log('에러 필드 path 목록:', errorData.errors.map((err) => err.path));
 
         const fieldMap = {
           '/name': 'userName',
           '/username': 'userId',
           '/password': 'userPw',
           '/phoneNumber': 'userNumber',
+          '/email': 'emailId',
           '/address': 'userAddress',
           '/dateOfBirth': 'userBirth',
+          '/emailConsent': 'receiveEmail',
+          '/smsConsent': 'receiveSMS',
         };
 
         const newErrors = {};
