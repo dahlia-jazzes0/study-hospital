@@ -43,9 +43,7 @@ export const EmailField = ({
               emailDomainValue && emailDomainValue !== '' ? styles.hasValue : ''
             }`}
           >
-            <option value="" disabled>
-              이메일 주소를 선택하세요.
-            </option>
+            <option value="">이메일 주소를 선택하세요.</option>
             {domainOptions.map((domain) => (
               <option
                 key={domain}
