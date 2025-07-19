@@ -17,7 +17,7 @@ export const IdInputField = ({
   const [validationError, setValidationError] = useState('');
 
   const idDuplicateCheck = async () => {
-    const regex = /^[a-zA-Z0-9]+$/;
+    const regex = /^[a-zA-Z0-9_]+$/;
 
     if (!value) {
       setValidationError('필수 입력값입니다.');
@@ -35,8 +35,9 @@ export const IdInputField = ({
       );
 
       const data = await res.json();
+      // console.log('중복검사 응답:', data);
 
-      if (data.exists) {
+      if (data.available === false) {
         setValidationError('이미 등록된 아이디입니다.');
         setIsIdChecked(false);
       } else {

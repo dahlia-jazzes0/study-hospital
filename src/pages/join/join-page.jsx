@@ -39,23 +39,28 @@ export function JoinPage() {
     receiveSMS: '',
   };
 
-  const { formData, formErrors, handleChange, validate } = useForm(
-    requiredFields,
-    initialFormData
-  );
+  const { formData, formErrors, handleChange, validate, submitRegistration } =
+    useForm(requiredFields, initialFormData);
 
-  const handleNext = () => {
-    if (currentStep === 2) {
-      if (!validate({ isIdChecked })) return;
+  const handleNext = async () => {
+    if (currentStep === 1) {
+      window.scrollTo(0, 0);
+      setCurrentStep(2);
+      return;
     }
-    window.scrollTo(0, 0);
-    setCurrentStep((prev) => (prev < 3 ? prev + 1 : prev));
-  };
 
-  const handleChangeWithReset = (field) => (e) => {
-    handleChange(field)(e);
-    if (field === 'userId') {
-      setIsIdChecked(false);
+    if (currentStep === 2) {
+      const isValid = validate({ isIdChecked });
+      if (!isValid) return;
+
+      const result = await submitRegistration();
+
+      if (result.success) {
+        window.scrollTo(0, 0);
+        setCurrentStep(3);
+      } else {
+        alert(result.error || '회원가입에 실패했습니다. 다시 시도해주세요.');
+      }
     }
   };
 
@@ -86,7 +91,7 @@ export function JoinPage() {
           <UserInfoStep
             formData={formData}
             formErrors={formErrors}
-            handleChange={handleChangeWithReset}
+            handleChange={handleChange}
             setIsIdChecked={setIsIdChecked}
           />
         )}
