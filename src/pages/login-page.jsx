@@ -13,7 +13,7 @@ export function LoginPage() {
     <div className={styles.loginPage}>
       <section className={styles.loginPageHeader}>
         <h2 className={styles.logo}>
-          <img src="logo.png" alt="모두한의원 로고" />
+          <img src="./images/logo.png" alt="모두한의원 로고" />
         </h2>
 
         <p>모두한의원 홈페이지에 방문하신 걸 환영합니다</p>
@@ -41,7 +41,7 @@ export function LoginPage() {
             />
             <button className={styles.showPwdBtn} onClick={handlePw}>
               <img
-                src={showPassword ? 'pwd-eye-1.png' : 'pwd-eye-2.png'}
+                src={showPassword ? './images/eye.png' : './images/eye-off.png'}
                 alt="비밀번호 표시/비활성화 아이콘"
               />
             </button>
