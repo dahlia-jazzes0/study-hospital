@@ -123,8 +123,6 @@ export function useForm(initialFormData) {
     try {
       const apiData = transformDataForAPI();
 
-      console.log('전송할 데이터:', apiData);
-
       const response = await fetch(
         'https://hospital-api.dahlia-jazzes0.workers.dev/api/auth/register',
         {
@@ -138,8 +136,6 @@ export function useForm(initialFormData) {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.log('서버 에러:', errorData);
-        // console.log('에러 필드 path 목록:', errorData.errors.map((err) => err.path));
 
         const fieldMap = {
           '/name': 'userName',
@@ -178,15 +174,12 @@ export function useForm(initialFormData) {
       }
 
       const result = await response.json();
-      // console.log('회원가입 성공:', result);
 
       return {
         success: true,
         data: result,
       };
     } catch (error) {
-      // console.error('회원가입 에러:', error);
-
       return {
         success: false,
         error: error.message,
