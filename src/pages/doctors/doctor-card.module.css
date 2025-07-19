@@ -1,0 +1,139 @@
+@import url('//fonts.googleapis.com/earlyaccess/nanumpenscript.css');
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.doctorSection {
+  max-width: 1500px;
+  margin: 104px auto 127px;
+}
+
+.mainTitle {
+  font-size: 64px;
+  font-weight: 500;
+  margin-bottom: 104px;
+}
+
+.doctorList {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-left: 14px;
+}
+
+.doctorCard {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  gap: 120px;
+  width: 1490px;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  box-shadow: 3px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.doctorImage {
+  width: 460px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.doctorInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  padding: 60px 40px 30px 0;
+}
+
+.doctorName {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 63px;
+}
+
+.doctorDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  row-gap: 33px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.detailItem {
+  display: grid;
+  grid-template-columns: 105px 1fr;
+  row-gap: 12px;
+}
+
+.detailLabel {
+  grid-column: 1 / 2;
+}
+
+.detailValue {
+  grid-column: 2 / 3;
+}
+
+.toggleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  width: 51px;
+  height: 51px;
+  background: #ffffff;
+  border: 1px solid #e7e7e7;
+  border-radius: 50%;
+}
+
+.arrowIcon {
+  width: 19px;
+  height: 19.8px;
+  rotate: 90deg;
+}
+
+.doctorDescription {
+  margin-top: 64px;
+}
+
+.descriptionText p {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.descriptionText p:first-of-type {
+  font-family: 'Nanum Pen Script';
+  font-size: 40px;
+}
+
+.descriptionText p:not(:first-of-type) {
+  line-height: 30px;
+}
+
+.reservationButton {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 201px;
+  height: 57px;
+  background-color: #ffffff;
+  border: 1px solid #d2d2d2;
+  border-radius: 285px;
+  font-size: 24px;
+}

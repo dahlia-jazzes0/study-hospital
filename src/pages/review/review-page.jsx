@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { fetchReviewsFromApi } from '@/pages/review/review-api';
 import styles from '@/pages/review/review-page.module.css';
 import { ReviewList } from '@/pages/review/review-list';
 import { Pagination } from '@/pages/review/review-pagination';
 import { CategoryFilter } from '@/pages/review/review-filter';
-import { fetchReviewsFromApi } from '@/pages/review/review-api';
+import { ReviewSearch } from '@/pages/review/review-search';
 
 export const ReviewPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,28 +12,31 @@ export const ReviewPage = () => {
   const [totalCount, setTotalCount] = useState(0);
   const totalPages = Math.ceil(totalCount);
   console.log('totalPages:', totalPages);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
-  // const [searchKeyword, setSearchKeyword] = useState('');
   // const [selectedDept, setSelectedDept] = useState('');
 
+  const fetchDataWithFilters = async () => {
+    try {
+      const result = await fetchReviewsFromApi({
+        page: currentPage,
+        search: searchKeyword,
+      });
+      setReviews(result.articles);
+      setTotalCount(result.total);
+    } catch (e) {
+      console.error('API 호출 실패:', e);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await fetchReviewsFromApi({
-          page: currentPage,
-          // search: searchKeyword,
-          // department: selectedDept,
-        });
+    fetchDataWithFilters();
+  }, [currentPage, searchKeyword]);
 
-        setReviews(result.articles);
-        setTotalCount(result.total);
-      } catch (e) {
-        console.error('API 호출 실패:', e);
-      }
-    };
-
-    fetchData();
-  }, [currentPage]);
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setCurrentPage(1);
+  };
 
   // , searchKeyword, selectedDept
 
@@ -53,23 +57,15 @@ export const ReviewPage = () => {
             </nav>
           </header>
 
-          {/* Search Section */}
           <section className={styles.searchInfo} aria-label="검색">
             <div className={styles.info}>
               <span className={styles.totalCount}>Total: {totalCount}</span>
-              <span className={styles.searchScope}></span>
             </div>
-            <form className={styles.searchInputGroup}>
-              <input
-                type="search"
-                className={styles.searchInput}
-                placeholder="검색어 입력"
-                aria-label="검색어 입력"
-              />
-              <button type="submit" className={styles.searchButton}>
-                검색
-              </button>
-            </form>
+            <ReviewSearch
+              value={searchKeyword}
+              onChange={setSearchKeyword}
+              onSubmit={handleSearchSubmit}
+            />
           </section>
 
           <section className={styles.contentArea}>

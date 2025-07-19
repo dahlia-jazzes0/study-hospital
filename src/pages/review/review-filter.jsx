@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { fetchReviewsFromApi } from '@/pages/review/review-api';
 import styles from '@/pages/review/review-page.module.css';
+import { fetchReviewsFromApi } from '@/pages/review/review-api';
 
 const categoryMap = {
   전체보기: '',

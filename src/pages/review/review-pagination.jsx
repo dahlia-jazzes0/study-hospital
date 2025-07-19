@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '@/pages/review/review-page.module.css';
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
