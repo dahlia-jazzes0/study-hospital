@@ -20,7 +20,13 @@ export function AppointmentPage() {
     submitAppointment,
     isAppointmentComplete,
   } = useAppointment();
-  const { holidays, handleNavigationChange, isHolidayDate } = useGetHoliday();
+  const {
+    holidays,
+    handleNavigationChange,
+    isHolidayDate,
+    isWeekend,
+    isDisabledDate,
+  } = useGetHoliday();
 
   const handleAppointmentSubmit = async () => {
     try {
@@ -54,6 +60,8 @@ export function AppointmentPage() {
         handleNavigationChange={handleNavigationChange}
         holidays={holidays}
         isHolidayDate={isHolidayDate}
+        isWeekend={isWeekend}
+        isDisabledDate={isDisabledDate}
       />
     </main>
   );

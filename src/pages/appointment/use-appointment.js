@@ -215,6 +215,17 @@ export function useGetHoliday() {
     return holidays.some((holiday) => holiday.locdate === dateNumber);
   };
 
+  // 주말 체크 함수 추가
+  const isWeekend = (date) => {
+    const day = date.getDay();
+    return day === 0 || day === 6; // 0: 일요일, 6: 토요일
+  };
+
+  // 주말 또는 공휴일 체크 함수 추가
+  const isDisabledDate = (date, holidays) => {
+    return isWeekend(date) || isHolidayDate(date, holidays);
+  };
+
   const processHolidayData = (apiResponse) => {
     const items = apiResponse?.response?.body?.items?.item;
 
@@ -257,5 +268,7 @@ export function useGetHoliday() {
     holidays,
     handleNavigationChange,
     isHolidayDate,
+    isWeekend,
+    isDisabledDate,
   };
 }

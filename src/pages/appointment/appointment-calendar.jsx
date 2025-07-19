@@ -16,6 +16,8 @@ export function AppointmentCalendar({
   handleNavigationChange,
   holidays,
   isHolidayDate,
+  isWeekend,
+  isDisabledDate,
 }) {
   // 공휴일 체크 함수
 
@@ -38,10 +40,15 @@ export function AppointmentCalendar({
           handleNavigationChange({ activeStartDate, view });
         }}
         tileClassName={({ date }) => {
-          return isHolidayDate(date, holidays) ? 'holiday' : null;
+          const isHoliday = isHolidayDate(date, holidays);
+          const isWeekendDay = isWeekend(date);
+
+          if (isHoliday) return 'holiday';
+          if (isWeekendDay) return 'weekend';
+          return null;
         }}
         tileDisabled={({ date }) => {
-          return isHolidayDate(date, holidays);
+          return isDisabledDate(date, holidays);
         }}
       />
 
