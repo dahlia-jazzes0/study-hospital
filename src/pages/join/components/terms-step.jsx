@@ -1,6 +1,6 @@
 import styles from '../join-page.module.css';
 
-export const TermsStep = () => {
+export const TermsStep = ({ agreeAll, setAgreeAll, agreeError }) => {
   return (
     <div className={styles.joinForm}>
       <h2 className={styles.srOnly}>회원가입 폼</h2>
@@ -443,8 +443,17 @@ export const TermsStep = () => {
         </div>
       </section>
 
-      <label htmlFor="agreeAllTerms" className={styles.agreeAllTerms}>
-        <input type="checkbox" id="agreeAllTerms" />위 약관에 모두 동의합니다
+      <label
+        htmlFor="agreeAllTerms"
+        className={`${styles.agreeAllTerms} ${agreeError ? styles.agreeErrorTerms : ''}`}
+      >
+        <input
+          type="checkbox"
+          id="agreeAllTerms"
+          checked={agreeAll}
+          onChange={(e) => setAgreeAll(e.target.checked)}
+        />
+        위 약관에 모두 동의합니다
       </label>
     </div>
   );

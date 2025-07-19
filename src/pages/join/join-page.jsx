@@ -10,6 +10,7 @@ import { JoinSuccessStep } from './components/join-success-step';
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [isIdChecked, setIsIdChecked] = useState(false);
+  const [agreeAll, setAgreeAll] = useState(false);
 
   const requiredFields = [
     'userId',
@@ -41,9 +42,15 @@ export function JoinPage() {
 
   const { formData, formErrors, handleChange, validate, submitRegistration } =
     useForm(requiredFields, initialFormData);
+  const [agreeError, setAgreeError] = useState(false);
 
   const handleNext = async () => {
     if (currentStep === 1) {
+      if (!agreeAll) {
+        setAgreeError(true);
+        return;
+      }
+      setAgreeError(false);
       window.scrollTo(0, 0);
       setCurrentStep(2);
       return;
@@ -86,7 +93,13 @@ export function JoinPage() {
 
       <section>
         <h2 className={styles.srOnly}>단계별 페이지 내용</h2>
-        {currentStep === 1 && <TermsStep />}
+        {currentStep === 1 && (
+          <TermsStep
+            agreeAll={agreeAll}
+            setAgreeAll={setAgreeAll}
+            agreeError={agreeError}
+          />
+        )}
         {currentStep === 2 && (
           <UserInfoStep
             formData={formData}

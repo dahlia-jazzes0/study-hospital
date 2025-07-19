@@ -205,6 +205,10 @@
   padding-bottom: 30px;
 }
 
+.agreeErrorTerms input {
+  outline: 2px solid blue;
+}
+
 .requiredLabel::after {
   content: '•';
   color: #d70b0b;
