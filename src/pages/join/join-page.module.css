@@ -209,6 +209,16 @@
   outline: 2px solid blue;
 }
 
+.inputGuide {
+  color: #4c4c4c;
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: 4px;
+
+  text-align: end;
+}
+
+.inputGuide::before,
 .requiredLabel::after {
   content: '•';
   color: #d70b0b;
