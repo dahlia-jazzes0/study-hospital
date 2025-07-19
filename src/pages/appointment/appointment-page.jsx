@@ -1,6 +1,10 @@
 import { DoctorList } from './appointment-doctor-list';
 import { AppointmentCalendar } from './appointment-calendar';
-import { useGetDoctors, useAppointment } from './use-appointment';
+import {
+  useGetDoctors,
+  useAppointment,
+  useGetHoliday,
+} from './use-appointment';
 import styles from './appointment-page.module.css';
 
 export function AppointmentPage() {
@@ -16,6 +20,7 @@ export function AppointmentPage() {
     submitAppointment,
     isAppointmentComplete,
   } = useAppointment();
+  const { holidays, handleNavigationChange, isHolidayDate } = useGetHoliday();
 
   const handleAppointmentSubmit = async () => {
     try {
@@ -46,6 +51,9 @@ export function AppointmentPage() {
         onTimeSelect={handleTimeSelect}
         onAppointmentSubmit={handleAppointmentSubmit}
         isAppointmentComplete={isAppointmentComplete}
+        handleNavigationChange={handleNavigationChange}
+        holidays={holidays}
+        isHolidayDate={isHolidayDate}
       />
     </main>
   );
