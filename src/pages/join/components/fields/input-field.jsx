@@ -28,7 +28,7 @@ export const InputField = ({
           id={id}
           placeholder={placeholder}
           onChange={onChange}
-          value={value}
+          value={value || ''}
           aria-label={ariaLabel}
           className={`${styles.formInput}`}
         />

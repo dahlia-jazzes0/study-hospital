@@ -30,14 +30,14 @@ export const EmailField = ({
             id={id}
             placeholder={placeholder}
             aria-label={ariaLabel}
-            value={emailIdValue}
+            value={emailIdValue || ''}
             onChange={onChange(emailIdFieldName)}
             className={`${styles.formInput}`}
           />
           <select
             id="joinEmailDomain"
             name="emailDomain"
-            value={emailDomainValue}
+            value={emailDomainValue || ''}
             onChange={onChange(emailDomainFieldName)}
             className={`${styles.formSelect} ${styles.joinEmailDomain} ${
               emailDomainValue && emailDomainValue !== '' ? styles.hasValue : ''
