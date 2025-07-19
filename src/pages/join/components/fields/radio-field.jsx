@@ -43,7 +43,7 @@ export const RadioField = ({
         </div>
         {hasError && (
           <span className={styles.errorText}>
-            {errorMessage || '필수 입력값입니다.'}
+            {errorMessage || '필수 항목입니다.'}
           </span>
         )}
       </div>

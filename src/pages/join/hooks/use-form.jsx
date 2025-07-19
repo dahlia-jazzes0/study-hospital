@@ -67,7 +67,7 @@ export function useForm(requiredFields, initialFormData) {
       errors.userId = true;
       hasAnyError = true;
     } else if (!isIdChecked) {
-      errors.userId = '아이디 중복확인을 해주세요.';
+      errors.userId = '필수 항목입니다.';
       hasAnyError = true;
     }
 
@@ -146,8 +146,24 @@ export function useForm(requiredFields, initialFormData) {
       );
       if (!response.ok) {
         const errorData = await response.json();
-        console.log('서버 에러 전체:', errorData);
-        throw new Error(errorData.error?.message || '회원가입 실패');
+        console.log(errorData);
+
+        const fieldMap = {
+          '/name': 'userId',
+          '/password': 'userPw',
+          '/phoneNumber': 'userNumber',
+          '/username': 'userName',
+          '/address': 'userAddress',
+          '/dateOfBirth': 'userBirth',
+        };
+
+        const fieldName = fieldMap[errorData.property];
+        if (fieldName) {
+          setFormErrors((prev) => ({
+            ...prev,
+            [fieldName]: '필수 항목입니다.',
+          }));
+        }
       }
 
       const result = await response.json();

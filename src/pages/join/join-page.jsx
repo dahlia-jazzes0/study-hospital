@@ -65,8 +65,6 @@ export function JoinPage() {
       if (result.success) {
         window.scrollTo(0, 0);
         setCurrentStep(3);
-      } else {
-        alert(result.error || '회원가입에 실패했습니다. 다시 시도해주세요.');
       }
     }
   };

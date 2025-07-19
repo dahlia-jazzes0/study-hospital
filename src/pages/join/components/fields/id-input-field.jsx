@@ -104,7 +104,7 @@ export const IdInputField = ({
           >
             {validationError ||
               errorMessage ||
-              (hasError && '필수 입력값입니다.')}
+              (hasError && '필수 항목입니다.')}
           </span>
         )}
       </div>
