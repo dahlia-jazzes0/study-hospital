@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { fetchReviewsFromApi } from '@/pages/review/review-api';
 import styles from '@/pages/review/review-page.module.css';
 import { ReviewList } from '@/pages/review/review-list';
@@ -16,7 +16,7 @@ export const ReviewPage = () => {
 
   // const [selectedDept, setSelectedDept] = useState('');
 
-  const fetchDataWithFilters = async () => {
+  const fetchDataWithFilters = useCallback(async () => {
     try {
       const result = await fetchReviewsFromApi({
         page: currentPage,
@@ -27,7 +27,7 @@ export const ReviewPage = () => {
     } catch (e) {
       console.error('API 호출 실패:', e);
     }
-  };
+  }, [currentPage, searchKeyword]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -37,8 +37,7 @@ export const ReviewPage = () => {
 
   useEffect(() => {
     fetchDataWithFilters();
-  }, [currentPage, searchKeyword]);
-  // , searchKeyword, selectedDept
+  }, [fetchDataWithFilters]);
 
   return (
     <>
