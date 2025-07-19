@@ -67,7 +67,7 @@ export function useForm(requiredFields, initialFormData) {
       errors.userId = true;
       hasAnyError = true;
     } else if (!isIdChecked) {
-      errors.userId = '필수 항목입니다.';
+      errors.userId = '필수입력란 입니다.';
       hasAnyError = true;
     }
 
@@ -161,7 +161,7 @@ export function useForm(requiredFields, initialFormData) {
         if (fieldName) {
           setFormErrors((prev) => ({
             ...prev,
-            [fieldName]: '필수 항목입니다.',
+            [fieldName]: '필수입력란 입니다.',
           }));
         }
       }

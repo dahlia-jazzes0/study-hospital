@@ -57,7 +57,9 @@ export const EmailField = ({
             ))}
           </select>
         </div>
-        {hasError && <span className={styles.errorText}>필수 힝목입니다.</span>}
+        {hasError && (
+          <span className={styles.errorText}>필수입력란 입니다.</span>
+        )}
       </div>
     </div>
   );

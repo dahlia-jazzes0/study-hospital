@@ -159,7 +159,7 @@ export const AddressField = ({
             />
             {hasError && (
               <span className={styles.errorText}>
-                {errorMessage || '필수 힝목입니다.'}
+                {errorMessage || '필수입력란 입니다.'}
               </span>
             )}
           </div>

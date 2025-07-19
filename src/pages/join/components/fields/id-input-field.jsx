@@ -20,7 +20,7 @@ export const IdInputField = ({
     const regex = /^[a-zA-Z0-9_]+$/;
 
     if (!value) {
-      setValidationError('필수 입력값입니다.');
+      setValidationError('필수입력란 입니다.');
       return;
     }
 
@@ -104,7 +104,7 @@ export const IdInputField = ({
           >
             {validationError ||
               errorMessage ||
-              (hasError && '필수 항목입니다.')}
+              (hasError && '필수입력란 입니다.')}
           </span>
         )}
       </div>
