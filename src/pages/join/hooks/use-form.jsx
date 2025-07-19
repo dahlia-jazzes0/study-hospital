@@ -144,26 +144,42 @@ export function useForm(requiredFields, initialFormData) {
           body: JSON.stringify(apiData),
         }
       );
+
       if (!response.ok) {
         const errorData = await response.json();
-        console.log(errorData);
+        // console.log('서버 에러:', errorData);
 
         const fieldMap = {
-          '/name': 'userId',
+          '/name': 'userName',
+          '/username': 'userId',
           '/password': 'userPw',
           '/phoneNumber': 'userNumber',
-          '/username': 'userName',
           '/address': 'userAddress',
           '/dateOfBirth': 'userBirth',
         };
 
-        const fieldName = fieldMap[errorData.property];
-        if (fieldName) {
-          setFormErrors((prev) => ({
-            ...prev,
-            [fieldName]: '필수입력란 입니다.',
-          }));
+        const newErrors = {};
+
+        if (Array.isArray(errorData.errors)) {
+          errorData.errors.forEach((err) => {
+            const fieldName = fieldMap[err.path];
+            if (fieldName) {
+              newErrors[fieldName] = '필수입력란 입니다.';
+            }
+          });
+        } else {
+          const fieldName = fieldMap[errorData.property];
+          if (fieldName) {
+            newErrors[fieldName] = '필수입력란 입니다.';
+          }
         }
+
+        setFormErrors((prev) => ({
+          ...prev,
+          ...newErrors,
+        }));
+
+        return { success: false };
       }
 
       const result = await response.json();
