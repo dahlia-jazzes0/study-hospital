@@ -1,0 +1,23 @@
+.container {
+  container-type: inline-size;
+  max-width: 1332px;
+  margin: 0 auto;
+}
+@media (max-width: 1332px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+.mainColor {
+  color: var(---main-color);
+}
+
+.subColor {
+  color: var(---sub-color);
+}
+
+.bold {
+  font-weight: 700;
+}
