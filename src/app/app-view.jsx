@@ -11,6 +11,7 @@ import { DepartmentInternalPage } from '@/pages/departments/internal/department-
 import { DepartmentOrthopedicPage } from '@/pages/departments/orthopedic/department-orthopedic-page.jsx';
 import { DepartmentGynecologyPage } from '@/pages/departments/gynecology/department-gynecology-page.jsx';
 import { DepartmentPediatricsPage } from '@/pages/departments/pediatrics/department-pediatrics-page.jsx';
+import { DepartmentBariatricPage } from '@/pages/departments/bariatric/department-bariatric-page.jsx';
 
 export function AppView() {
   return (
@@ -28,6 +29,7 @@ export function AppView() {
           <Route path="orthopedic" element={<DepartmentOrthopedicPage />} />
           <Route path="gynecology" element={<DepartmentGynecologyPage />} />
           <Route path="pediatrics" element={<DepartmentPediatricsPage />} />
+          <Route path="bariatric" element={<DepartmentBariatricPage />} />
         </Route>
       </Route>
     </Routes>
