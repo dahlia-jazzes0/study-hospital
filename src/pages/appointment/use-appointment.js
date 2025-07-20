@@ -202,7 +202,7 @@ export function useGetHoliday() {
     if (view !== 'month') return;
 
     const year = activeStartDate.getFullYear();
-    const month = activeStartDate.getMonth() + 1;
+    const month = String(activeStartDate.getMonth() + 1).padStart(2, '0');
 
     setDateForApi((prev) => ({ ...prev, year, month }));
   };
@@ -215,13 +215,11 @@ export function useGetHoliday() {
     return holidays.some((holiday) => holiday.locdate === dateNumber);
   };
 
-  // 주말 체크 함수 추가
   const isWeekend = (date) => {
     const day = date.getDay();
     return day === 0 || day === 6; // 0: 일요일, 6: 토요일
   };
 
-  // 주말 또는 공휴일 체크 함수 추가
   const isDisabledDate = (date, holidays) => {
     return isWeekend(date) || isHolidayDate(date, holidays);
   };
