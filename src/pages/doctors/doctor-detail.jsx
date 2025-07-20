@@ -14,7 +14,7 @@ function DoctorDetail({ doctor }) {
           ))}
       </div>
       <Link
-        to={`/appointment/${doctor.id}`}
+        to={`/appointment?doctorId=${doctor.id}`}
         className={styles.reservationButton}
       >
         예약하기
