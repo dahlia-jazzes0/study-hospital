@@ -1,4 +1,5 @@
 import styles from './appointment-page.module.css';
+import { formattedTime, formatToKoreanDate } from './util';
 
 export function CancleModal({ onClose, appointmentData }) {
   return (
@@ -6,8 +7,8 @@ export function CancleModal({ onClose, appointmentData }) {
       <div className={styles.modalMessage}>
         <p>{appointmentData?.doctor?.name} 고객님의 예약 일시는</p>
         <p>
-          {appointmentData?.date} / &nbsp;
-          {appointmentData?.time} 입니다
+          {formatToKoreanDate(appointmentData?.date)} / &nbsp;
+          {formattedTime(appointmentData?.time)} 시 입니다
         </p>
       </div>
       <div className={styles.modalButtons}>

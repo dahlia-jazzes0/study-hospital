@@ -1,4 +1,5 @@
 import styles from './appointment-page.module.css';
+import { formatToKoreanDate, formattedTime } from './util';
 
 export function ConfirmModal({
   appointmentData,
@@ -9,8 +10,8 @@ export function ConfirmModal({
     <>
       <div className={styles.modalMessage}>
         <p>
-          {appointmentData?.date} / &nbsp;
-          {appointmentData?.time}
+          {formatToKoreanDate(appointmentData?.date)} / &nbsp;
+          {formattedTime(appointmentData?.time)} 시
         </p>
         <p>예약하시겠습니까?</p>
       </div>

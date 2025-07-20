@@ -34,3 +34,9 @@ export function dateToNumber(date) {
   const day = String(date.getDate()).padStart(2, '0');
   return parseInt(`${year}${month}${day}`, 10);
 }
+
+export function formatToKoreanDate(date) {
+  const format = date.split('-');
+
+  return `${format[0]}년 ${format[1]}월 ${format[2]}일`;
+}
