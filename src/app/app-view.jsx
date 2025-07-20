@@ -12,8 +12,10 @@ import { DepartmentOrthopedicPage } from '@/pages/departments/orthopedic/departm
 import { DepartmentGynecologyPage } from '@/pages/departments/gynecology/department-gynecology-page.jsx';
 import { DepartmentPediatricsPage } from '@/pages/departments/pediatrics/department-pediatrics-page.jsx';
 import { DepartmentBariatricPage } from '@/pages/departments/bariatric/department-bariatric-page.jsx';
+import { useDepartments } from '@/pages/departments/_hooks/use-departments.js';
 
 export function AppView() {
+  useDepartments(); // preload
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
