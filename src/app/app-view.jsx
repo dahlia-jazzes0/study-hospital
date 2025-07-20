@@ -7,6 +7,7 @@ import { LoginPage } from '@/pages/login-page.jsx';
 import { JoinPage } from '@/pages/join/join-page.jsx';
 import { AppointmentPage } from '@/pages/appointment/appointment-page.jsx';
 import { DepartmentsLayout } from '@/pages/departments/departments-layout.jsx';
+import { DepartmentInternalPage } from '@/pages/departments/internal/department-internal-page.jsx';
 
 export function AppView() {
   return (
@@ -18,7 +19,10 @@ export function AppView() {
         <Route path="login" element={<LoginPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="appointment" element={<AppointmentPage />} />
-        <Route path="departments" element={<DepartmentsLayout />}></Route>
+        <Route path="departments" element={<DepartmentsLayout />}>
+          <Route index element={<DepartmentInternalPage />} />
+          <Route path="internal" element={<DepartmentInternalPage />} />
+        </Route>
       </Route>
     </Routes>
   );
