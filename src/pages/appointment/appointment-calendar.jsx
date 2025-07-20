@@ -19,8 +19,6 @@ export function AppointmentCalendar({
   isWeekend,
   isDisabledDate,
 }) {
-  // 공휴일 체크 함수
-
   return (
     <section className={styles.appointmentCalendar}>
       <h2 className={styles.srOnly}>예약 달력</h2>

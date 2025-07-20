@@ -179,46 +179,81 @@
 .medicalBookingCalendar :global(.react-calendar__tile) {
   width: 80px !important;
   height: 80px !important;
-
   font-size: 30px;
 }
 
 /* calendar 헤더 높이 조절 */
 .medicalBookingCalendar :global(.react-calendar__navigation) {
   height: 100px !important;
-
   font-size: 30px;
 }
 
 /* calendar 요일 헤더 높이 조절 */
 .medicalBookingCalendar :global(.react-calendar__month-view__weekdays) {
   height: 80px !important;
-
   font-size: 30px;
 }
 
-/* 공휴일 비활성화 스타일 */
-.react-calendar__tile.holiday:disabled {
+.medicalBookingCalendar :global(.react-calendar__tile:disabled) {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+.medicalBookingCalendar :global(.react-calendar__tile:disabled:hover),
+.medicalBookingCalendar :global(.react-calendar__tile:disabled:focus),
+.medicalBookingCalendar :global(.react-calendar__tile:disabled:active) {
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  background-color: inherit !important;
+}
+
+/* 공휴일 비활성화 */
+.medicalBookingCalendar :global(.react-calendar__tile.holiday:disabled) {
   background-color: #f5f5f5 !important;
   color: #bdbdbd !important;
   cursor: not-allowed !important;
+  pointer-events: none !important;
   opacity: 0.6;
-  text-decoration: line-through;
 }
 
 /* 공휴일 호버 효과 제거 */
-.react-calendar__tile.holiday:disabled:hover {
+.medicalBookingCalendar :global(.react-calendar__tile.holiday:disabled:hover) {
   background-color: #f5f5f5 !important;
   color: #bdbdbd !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
 }
 
 /* 주말 스타일 */
+.medicalBookingCalendar :global(.weekend) {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+}
+
+/* 주말 비활성화 */
+.medicalBookingCalendar :global(.weekend:disabled) {
+  background-color: #f5f5f5 !important;
+  color: #bdbdbd !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.6;
+}
+
+/* 주말 비활성화 호버 효과 제거 */
+.medicalBookingCalendar :global(.weekend:disabled:hover) {
+  background-color: #f5f5f5 !important;
+  color: #bdbdbd !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* 주말 */
 .weekend {
   background-color: #f3e5f5;
   color: #7b1fa2;
 }
 
-/* 주말 비활성화 스타일 */
+/* 주말 비활성화 */
 .weekend.react-calendar__tile--disabled {
   background-color: #f5f5f5 !important;
   color: #bdbdbd !important;
@@ -298,32 +333,36 @@
 
 .appointmentInfo > h4 {
   margin-top: 33px;
+
   font-size: 32px;
   font-weight: 500;
   background-color: transparent;
 }
 
 .infoTable {
+  position: relative;
   margin-top: 28px;
   width: 100%;
+
   border-collapse: collapse;
-  position: relative;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .infoTable::before {
-  content: '';
   position: absolute;
+  width: 13px;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 13px;
+
+  content: '';
   background-color: #fe7352;
 }
 
 .infoTable td {
   padding: 20px 50px;
+
   border: 2px solid #d8d8d8;
   font-size: 32px;
   vertical-align: middle;
