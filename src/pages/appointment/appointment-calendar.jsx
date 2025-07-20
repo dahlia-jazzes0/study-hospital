@@ -11,13 +11,13 @@ export function AppointmentCalendar({
   isTimeTableLoading,
   onDateSelect,
   onTimeSelect,
-  onAppointmentSubmit,
   isAppointmentComplete,
   handleNavigationChange,
   holidays,
   isHolidayDate,
   isWeekend,
   isDisabledDate,
+  handleCloseModal,
 }) {
   return (
     <section className={styles.appointmentCalendar}>
@@ -71,9 +71,9 @@ export function AppointmentCalendar({
       )}
 
       <AppointmentDescription
-        onAppointmentSubmit={onAppointmentSubmit}
         isAppointmentComplete={isAppointmentComplete}
         appointmentData={appointmentData}
+        handleCloseModal={handleCloseModal}
       />
     </section>
   );

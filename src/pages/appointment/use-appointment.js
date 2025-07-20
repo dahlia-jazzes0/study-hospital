@@ -269,3 +269,16 @@ export function useGetHoliday() {
     isDisabledDate,
   };
 }
+
+export function useModal() {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setShowModal(!showModal);
+  };
+
+  return {
+    showModal,
+    handleCloseModal,
+  };
+}

@@ -4,8 +4,10 @@ import {
   useGetDoctors,
   useAppointment,
   useGetHoliday,
+  useModal,
 } from './use-appointment';
 import styles from './appointment-page.module.css';
+import { Modal } from './appointment-modal';
 
 export function AppointmentPage() {
   const { doctors, isLoading } = useGetDoctors();
@@ -28,11 +30,14 @@ export function AppointmentPage() {
     isDisabledDate,
   } = useGetHoliday();
 
+  const { showModal, handleCloseModal } = useModal();
+
   const handleAppointmentSubmit = async () => {
     try {
       await submitAppointment();
       alert('예약이 완료되었습니다!');
       resetAppointment();
+      handleCloseModal();
     } catch (error) {
       alert(error.message);
     }
@@ -55,14 +60,21 @@ export function AppointmentPage() {
         isTimeTableLoading={isTimeTableLoading}
         onDateSelect={handleDateSelect}
         onTimeSelect={handleTimeSelect}
-        onAppointmentSubmit={handleAppointmentSubmit}
         isAppointmentComplete={isAppointmentComplete}
         handleNavigationChange={handleNavigationChange}
         holidays={holidays}
         isHolidayDate={isHolidayDate}
         isWeekend={isWeekend}
         isDisabledDate={isDisabledDate}
+        handleCloseModal={handleCloseModal}
       />
+      {showModal && (
+        <Modal
+          appointmentData={appointmentData}
+          onClose={handleCloseModal}
+          onAppointmentSubmit={handleAppointmentSubmit}
+        />
+      )}
     </main>
   );
 }

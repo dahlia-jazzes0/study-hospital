@@ -2,9 +2,9 @@ import styles from './appointment-page.module.css';
 import { formattedTime } from './util';
 
 export function AppointmentDescription({
-  onAppointmentSubmit,
   isAppointmentComplete,
   appointmentData,
+  handleCloseModal,
 }) {
   return (
     <div className={styles.appointmentDescription}>
@@ -62,15 +62,16 @@ export function AppointmentDescription({
       <div className={styles.appointmentButtonWrap}>
         <button
           className={styles.appointmentButton}
-          onClick={onAppointmentSubmit}
+          onClick={handleCloseModal}
           disabled={!isAppointmentComplete}
         >
           {isAppointmentComplete
             ? '예약하기'
             : '"의사/날짜/시간"을 모두 선택해주세요'}
         </button>
-
-        <button className={styles.appointmentButton}>예약 확인·취소</button>
+        <button className={styles.appointmentButton} onClick={handleCloseModal}>
+          예약 확인·취소
+        </button>
       </div>
     </div>
   );
