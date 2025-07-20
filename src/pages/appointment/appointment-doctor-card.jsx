@@ -3,7 +3,7 @@ import styles from './appointment-page.module.css';
 export function DoctorCard({ doctor, isSelected, onSelect }) {
   return (
     <li
-      className={`${styles.doctorCard} ${isSelected ? styles.selected : ''}`} //doctor card selected css 추가
+      className={`${styles.doctorCard} ${isSelected ? styles.selected : ''}`}
       onClick={onSelect}
     >
       <img src={doctor.image} alt={doctor.name} />
