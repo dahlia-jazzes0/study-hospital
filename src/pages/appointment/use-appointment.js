@@ -251,7 +251,6 @@ export function useGetHoliday() {
 
         const data = await response.json();
         const result = processHolidayData(data);
-        console.log(result);
 
         setHolidays(result);
       } catch (error) {

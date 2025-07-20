@@ -170,7 +170,7 @@
 
 .medicalBookingCalendar {
   width: 783px !important;
-  height: 650px !important;
+  height: 700px !important;
   max-width: none !important;
   margin-top: 104px;
 }
@@ -194,17 +194,48 @@
   font-size: 30px;
 }
 
+/* 요일 헤더 밑줄 제거 */
+.medicalBookingCalendar :global(abbr[title]) {
+  text-decoration: none !important;
+}
+
+/* 일요일과 토요일 글씨색 빨간색 */
+.medicalBookingCalendar
+  :global(.react-calendar__month-view__weekdays__weekday:first-child),
+.medicalBookingCalendar
+  :global(.react-calendar__month-view__weekdays__weekday:last-child) {
+  color: #d32f2f !important;
+}
+
+/* 오늘 날짜 스타일 */
+.medicalBookingCalendar :global(.react-calendar__tile--now) {
+  background-color: #e3f2fd !important;
+  color: #1976d2 !important;
+  font-weight: 900 !important;
+}
+
+/* 오늘 날짜 호버 스타일 */
+.medicalBookingCalendar :global(.react-calendar__tile--now:hover) {
+  background-color: #bbdefb !important;
+  color: #1976d2 !important;
+}
+
+/* 모든 비활성화된 타일 통일 스타일 */
 .medicalBookingCalendar :global(.react-calendar__tile:disabled) {
+  background-color: #f5f5f5 !important;
+  color: #bdbdbd !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
+  opacity: 0.6 !important;
 }
 
 .medicalBookingCalendar :global(.react-calendar__tile:disabled:hover),
 .medicalBookingCalendar :global(.react-calendar__tile:disabled:focus),
 .medicalBookingCalendar :global(.react-calendar__tile:disabled:active) {
+  background-color: #f5f5f5 !important;
+  color: #bdbdbd !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
-  background-color: inherit !important;
 }
 
 /* 공휴일 비활성화 */
@@ -213,7 +244,7 @@
   color: #bdbdbd !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
-  opacity: 0.6;
+  opacity: 0.6 !important;
 }
 
 /* 공휴일 호버 효과 제거 */
@@ -224,19 +255,18 @@
   pointer-events: none !important;
 }
 
-/* 주말 스타일 */
+/* 주말 스타일 (활성화 상태) */
 .medicalBookingCalendar :global(.weekend) {
   background-color: #f3e5f5;
-  color: #7b1fa2;
 }
 
-/* 주말 비활성화 */
+/* 주말 비활성화 (통일 스타일과 동일) */
 .medicalBookingCalendar :global(.weekend:disabled) {
   background-color: #f5f5f5 !important;
   color: #bdbdbd !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
-  opacity: 0.6;
+  opacity: 0.6 !important;
 }
 
 /* 주말 비활성화 호버 효과 제거 */
@@ -245,20 +275,6 @@
   color: #bdbdbd !important;
   cursor: not-allowed !important;
   pointer-events: none !important;
-}
-
-/* 주말 */
-.weekend {
-  background-color: #f3e5f5;
-  color: #7b1fa2;
-}
-
-/* 주말 비활성화 */
-.weekend.react-calendar__tile--disabled {
-  background-color: #f5f5f5 !important;
-  color: #bdbdbd !important;
-  cursor: not-allowed !important;
-  opacity: 0.6;
 }
 
 /* timeTable */
