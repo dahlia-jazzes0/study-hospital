@@ -17,12 +17,13 @@ export function AppointmentCalendar({
   isHolidayDate,
   isWeekend,
   isDisabledDate,
-  handleCloseModal,
+  handleCloseConfirmModal,
+  handleCloseCancleModal,
+  myAppointments,
 }) {
   return (
     <section className={styles.appointmentCalendar}>
       <h2 className={styles.srOnly}>예약 달력</h2>
-
       <Calendar
         className={styles.medicalBookingCalendar}
         onChange={onDateSelect}
@@ -73,7 +74,9 @@ export function AppointmentCalendar({
       <AppointmentDescription
         isAppointmentComplete={isAppointmentComplete}
         appointmentData={appointmentData}
-        handleCloseModal={handleCloseModal}
+        handleCloseConfirmModal={handleCloseConfirmModal}
+        handleCloseCancleModal={handleCloseCancleModal}
+        myAppointments={myAppointments}
       />
     </section>
   );

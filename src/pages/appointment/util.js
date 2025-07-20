@@ -40,3 +40,31 @@ export function formatToKoreanDate(date) {
 
   return `${format[0]}년 ${format[1]}월 ${format[2]}일`;
 }
+
+export function getDoctorName(doctorId) {
+  let doctorName = '';
+  switch (doctorId) {
+    case '1':
+      doctorName = '최재호';
+      break;
+    case '2':
+      doctorName = '양호진';
+      break;
+    case '3':
+      doctorName = '남현정';
+      break;
+    case '4':
+      doctorName = '김성현';
+      break;
+    case '5':
+      doctorName = '이혜민';
+      break;
+    case '6':
+      doctorName = '김유빈';
+      break;
+    case '7':
+      doctorName = '박다솜';
+      break;
+  }
+  return doctorName;
+}

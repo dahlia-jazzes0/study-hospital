@@ -5,9 +5,11 @@ import {
   useAppointment,
   useGetHoliday,
   useModal,
+  useGetAppointment,
 } from './use-appointment';
 import styles from './appointment-page.module.css';
-import { Modal } from './appointment-modal';
+import { ConfirmModal } from './appointment-confirm-modal';
+import { CancleModal } from './appointment-cancle-modal';
 
 export function AppointmentPage() {
   const { doctors, isLoading } = useGetDoctors();
@@ -29,15 +31,21 @@ export function AppointmentPage() {
     isWeekend,
     isDisabledDate,
   } = useGetHoliday();
-
-  const { showModal, handleCloseModal } = useModal();
+  const {
+    showConfirmModal,
+    showCancleModal,
+    handleCloseConfirmModal,
+    handleCloseCancleModal,
+  } = useModal();
+  const { myAppointments, getMyAppointment } = useGetAppointment();
 
   const handleAppointmentSubmit = async () => {
     try {
       await submitAppointment();
       alert('예약이 완료되었습니다!');
       resetAppointment();
-      handleCloseModal();
+      handleCloseConfirmModal();
+      await getMyAppointment();
     } catch (error) {
       alert(error.message);
     }
@@ -66,13 +74,21 @@ export function AppointmentPage() {
         isHolidayDate={isHolidayDate}
         isWeekend={isWeekend}
         isDisabledDate={isDisabledDate}
-        handleCloseModal={handleCloseModal}
+        handleCloseConfirmModal={handleCloseConfirmModal}
+        handleCloseCancleModal={handleCloseCancleModal}
+        myAppointments={myAppointments}
       />
-      {showModal && (
-        <Modal
+      {showConfirmModal && (
+        <ConfirmModal
           appointmentData={appointmentData}
-          onClose={handleCloseModal}
+          onClose={handleCloseConfirmModal}
           onAppointmentSubmit={handleAppointmentSubmit}
+        />
+      )}
+      {showCancleModal && (
+        <CancleModal
+          myAppointments={myAppointments}
+          onClose={handleCloseCancleModal}
         />
       )}
     </main>

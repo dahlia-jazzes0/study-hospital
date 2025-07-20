@@ -4,7 +4,9 @@ import { formattedTime } from './util';
 export function AppointmentDescription({
   isAppointmentComplete,
   appointmentData,
-  handleCloseModal,
+  handleCloseConfirmModal,
+  handleCloseCancleModal,
+  myAppointments,
 }) {
   return (
     <div className={styles.appointmentDescription}>
@@ -62,16 +64,21 @@ export function AppointmentDescription({
       <div className={styles.appointmentButtonWrap}>
         <button
           className={styles.appointmentButton}
-          onClick={handleCloseModal}
+          onClick={handleCloseConfirmModal}
           disabled={!isAppointmentComplete}
         >
           {isAppointmentComplete
             ? '예약하기'
             : '"의사/날짜/시간"을 모두 선택해주세요'}
         </button>
-        <button className={styles.appointmentButton} onClick={handleCloseModal}>
-          예약 확인·취소
-        </button>
+        {myAppointments.length && (
+          <button
+            className={styles.appointmentButton}
+            onClick={handleCloseCancleModal}
+          >
+            예약 확인·취소
+          </button>
+        )}
       </div>
     </div>
   );

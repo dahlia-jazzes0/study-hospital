@@ -159,14 +159,13 @@ export function useAppointment() {
           }),
         }
       );
-      console.log('submit res : ', response);
 
       if (!response.ok) {
         throw new Error('예약 실패!');
       }
 
       const result = await response.json();
-      console.log(result);
+
       return result;
     } catch (error) {
       console.error(error);
@@ -190,6 +189,7 @@ export function useAppointment() {
   };
 }
 
+// 공휴일 데이터 불러오기
 export function useGetHoliday() {
   const now = new Date();
   const [dateForApi, setDateForApi] = useState({
@@ -270,15 +270,60 @@ export function useGetHoliday() {
   };
 }
 
+// 모달 동작
 export function useModal() {
-  const [showModal, setShowModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showCancleModal, setShowCancleModal] = useState(false);
 
-  const handleCloseModal = () => {
-    setShowModal(!showModal);
+  const handleCloseConfirmModal = () => {
+    setShowConfirmModal(!showConfirmModal);
+  };
+
+  const handleCloseCancleModal = () => {
+    setShowCancleModal(!showCancleModal);
   };
 
   return {
-    showModal,
-    handleCloseModal,
+    showConfirmModal,
+    showCancleModal,
+    handleCloseConfirmModal,
+    handleCloseCancleModal,
   };
+}
+
+// 예약 정보 불러오기
+export function useGetAppointment() {
+  const [myAppointments, setMyAppointments] = useState([]);
+
+  const accessToken =
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyLTEiLCJ1c2VybmFtZSI6Im1pbnN1X2tpbSIsIm5hbWUiOiLquYDrr7zsiJgiLCJpYXQiOjE3NTI2NzcyOTc5NDksImp0aSI6IjB2bnpqcSIsImV4cCI6MTc1MjY3ODE5Nzk0OX0.xbMFJT8ImTPJPnBUM9WgRWZqUT6xLm4Uk9BbuVA9hjY'; // 임시 토큰
+  const getMyAppointment = async () => {
+    try {
+      const response = await fetch(
+        `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.APPOINTMENTS}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('예약 정보를 조회하는데 실패했습니다.');
+      }
+
+      const data = await response.json();
+
+      setMyAppointments(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getMyAppointment();
+  }, []);
+  return { myAppointments, getMyAppointment };
 }
