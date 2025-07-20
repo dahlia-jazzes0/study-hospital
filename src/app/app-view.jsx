@@ -8,6 +8,7 @@ import { JoinPage } from '@/pages/join/join-page.jsx';
 import { AppointmentPage } from '@/pages/appointment/appointment-page.jsx';
 import { DepartmentsLayout } from '@/pages/departments/departments-layout.jsx';
 import { DepartmentInternalPage } from '@/pages/departments/internal/department-internal-page.jsx';
+import { DepartmentOrthopedicPage } from '@/pages/departments/orthopedic/department-orthopedic-page.jsx';
 
 export function AppView() {
   return (
@@ -22,6 +23,7 @@ export function AppView() {
         <Route path="departments" element={<DepartmentsLayout />}>
           <Route index element={<DepartmentInternalPage />} />
           <Route path="internal" element={<DepartmentInternalPage />} />
+          <Route path="orthopedic" element={<DepartmentOrthopedicPage />} />
         </Route>
       </Route>
     </Routes>

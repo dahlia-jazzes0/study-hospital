@@ -1,0 +1,11 @@
+.container {
+  color: #565656;
+  ---main-color: #194294;
+  ---sub-color: #ffe100;
+}
+
+.title {
+  color: var(---main-color);
+  font-size: 48px;
+  font-weight: bold;
+}
