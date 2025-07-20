@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+}
+
+.img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.img[data-type='ghost'] {
+  animation: show var(---duration, 200ms) ease-in-out forwards;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
