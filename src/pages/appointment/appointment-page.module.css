@@ -14,6 +14,7 @@
   position: relative;
   overflow: hidden;
   padding: 104px 204px;
+  max-width: 1920px;
 }
 
 .doctorList {
@@ -44,13 +45,13 @@
 }
 
 .doctorCard > img {
-  width: 368px;
+  width: 340px;
 
   border-radius: 16px 0 0 16px;
 }
 
 .doctorDescription {
-  padding: 50px 30px 39px 34px;
+  padding: 50px 20px 39px 24px;
 
   border-radius: 0 16px 16px 0;
 }
