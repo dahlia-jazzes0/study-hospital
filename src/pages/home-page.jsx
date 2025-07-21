@@ -1,8 +1,5 @@
+import { HeroSection } from '@/pages/main/hero-section.jsx';
+
 export function HomePage() {
-  return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the hospital management system.</p>
-    </div>
-  );
+  return <HeroSection />;
 }
