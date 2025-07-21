@@ -41,18 +41,6 @@ export function AppointmentPage() {
   const { myAppointments, getMyAppointment } = useGetAppointment();
   const { deleteAppointment } = useDeleteAppointment();
 
-  const handleAppointmentSubmit = async () => {
-    try {
-      await submitAppointment();
-      alert('예약이 완료되었습니다!');
-      resetAppointment();
-      handleCloseConfirmModal();
-      await getMyAppointment();
-    } catch (error) {
-      alert(error.message);
-    }
-  };
-
   return (
     <main className={styles.appointment}>
       <h1>진료예약</h1>
@@ -83,15 +71,18 @@ export function AppointmentPage() {
       {showConfirmModal && (
         <ConfirmModal
           appointmentData={appointmentData}
+          getMyAppointment={getMyAppointment}
+          resetAppointment={resetAppointment}
+          submitAppointment={submitAppointment}
           onClose={handleCloseConfirmModal}
-          onAppointmentSubmit={handleAppointmentSubmit}
         />
       )}
       {showCancleModal && (
         <CancleModal
+          getMyAppointment={getMyAppointment}
           myAppointments={myAppointments}
-          onClose={handleCloseCancleModal}
           deleteAppointment={deleteAppointment}
+          onClose={handleCloseCancleModal}
         />
       )}
     </main>

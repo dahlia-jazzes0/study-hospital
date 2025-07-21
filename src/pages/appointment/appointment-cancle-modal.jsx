@@ -2,10 +2,16 @@ import { Modal } from './appointment-modal';
 import styles from './appointment-page.module.css';
 import { formattedTime, formatToKoreanDate, getDoctorName } from './util';
 
-export function CancleModal({ myAppointments, onClose, deleteAppointment }) {
+export function CancleModal({
+  getMyAppointment,
+  myAppointments,
+  onClose,
+  deleteAppointment,
+}) {
   const handleDeleteAppointment = async (id) => {
     try {
       await deleteAppointment(id, onClose);
+      getMyAppointment();
     } catch (error) {
       console.error(error);
     }

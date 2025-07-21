@@ -4,9 +4,22 @@ import { formatToKoreanDate, formattedTime } from './util';
 
 export function ConfirmModal({
   appointmentData,
+  getMyAppointment,
+  resetAppointment,
+  submitAppointment,
   onClose,
-  onAppointmentSubmit,
 }) {
+  const handleAppointmentSubmit = async () => {
+    try {
+      await submitAppointment();
+      alert('예약이 완료되었습니다!');
+      resetAppointment();
+      onClose();
+      await getMyAppointment();
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <Modal onClose={onClose}>
       <>
@@ -21,7 +34,10 @@ export function ConfirmModal({
           <button className={styles.confirmButton} onClick={onClose}>
             취소
           </button>
-          <button className={styles.cancelButton} onClick={onAppointmentSubmit}>
+          <button
+            className={styles.cancelButton}
+            onClick={handleAppointmentSubmit}
+          >
             예약 확정
           </button>
         </div>
