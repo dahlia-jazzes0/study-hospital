@@ -52,7 +52,10 @@ export function DoctorCard() {
 
       <ul className={styles.doctorList}>
         {doctors.map((doctor) => (
-          <li key={doctor.id} className={styles.doctorCard}>
+          <li
+            key={doctor.id}
+            className={`${styles.doctorCard} ${isOpen[doctor.id] ? styles.open : ''}`}
+          >
             <img
               src={`${import.meta.env.BASE_URL}images/doctor-${doctor.id}.png`}
               alt={`${doctor.name} 이미지`}
