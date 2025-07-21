@@ -12,36 +12,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(40px, 8vw, 79px);
+  gap: 79px;
 }
 
 .loginPageHeader {
-  margin-top: clamp(80px, 15vw, 207px);
+  margin-top: 207px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(30px, 6vw, 58px);
+  gap: 58px;
 }
 
 .logo {
-  width: clamp(350px, 60%, 600px);
+  width: 600px;
 }
 
 .loginPageHeader > p {
   color: #888888;
-  font-size: clamp(16px, 4vw, 32px);
+  font-size: 32px;
 }
 
 .loginPageMain {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 4vw, 40px);
+  gap: 40px;
 
-  width: clamp(300px, 70%, 831px);
+  width: 831px;
 
-  padding: clamp(20px, 10%, 80px) clamp(10px, 10%, 97px);
-  margin-bottom: clamp(100px, 20vw, 220px);
+  padding: 80px 97px;
+  margin-bottom: 220px;
 
   border: solid 1px #d2d2d2;
   border-radius: 16px;
@@ -50,20 +50,20 @@
 .loginInputBox {
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 2.5vw, 20px);
+  gap: 20px;
 }
 
 .userId,
 .userPw,
 .remember,
 .findIdPw > * {
-  font-size: clamp(16px, 2.5vw, 22px);
+  font-size: 22px;
 }
 
 .userId,
 .userPw {
   width: 100%;
-  padding: clamp(12px, 2vw, 17px);
+  padding: 17px;
 
   color: #acacac;
 
@@ -100,24 +100,24 @@
 .remember {
   display: flex;
   align-items: center;
-  gap: clamp(6px, 1.5vw, 10px);
+  gap: 10px;
 
   color: #6b6b6b;
 }
 
 .remember input {
-  width: clamp(20px, 4vw, 38px);
-  height: clamp(20px, 4vw, 38px);
+  width: 38px;
+  height: 38px;
 
   cursor: pointer;
 }
 
 .loginSubmit,
 .joinBtn {
-  font-size: clamp(18px, 3vw, 26px);
+  font-size: 26px;
 
   width: 100%;
-  height: clamp(60px, 8vw, 75px);
+  height: 75px;
 
   border: solid 2px #fe7352;
   border-radius: 16px;
@@ -137,7 +137,7 @@
 .findIdPw {
   display: flex;
   justify-content: center;
-  gap: clamp(12px, 2.5vw, 20px);
+  gap: 20px;
 }
 
 .findIdPw > * {
@@ -145,6 +145,6 @@
 }
 
 .joinBtn {
-  margin-top: clamp(20px, 4vw, 35px);
+  margin-top: 35px;
   color: #fe7352;
 }
