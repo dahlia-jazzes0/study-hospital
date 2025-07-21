@@ -74,21 +74,36 @@ const preloadImages = () => {
 export function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [pendingSlideId, setPendingSlideId] = useState(null);
 
   useEffect(() => {
     preloadImages();
   }, []);
 
   const handleSlideChange = (slideId) => {
-    if (slideId === activeSlide || isTransitioning) return;
+    if (slideId === activeSlide) return;
 
+    if (isTransitioning) {
+      setPendingSlideId(slideId);
+      return;
+    }
+
+    startTransition(slideId);
+  };
+
+  const startTransition = (slideId) => {
     setIsTransitioning(true);
+    setPendingSlideId(null);
 
     setTimeout(() => {
       setActiveSlide(slideId);
 
       setTimeout(() => {
         setIsTransitioning(false);
+
+        if (pendingSlideId && pendingSlideId !== slideId) {
+          startTransition(pendingSlideId);
+        }
       }, 100);
     }, 500);
   };
