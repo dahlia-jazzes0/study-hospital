@@ -71,13 +71,15 @@ export function AppointmentDescription({
             ? '예약하기'
             : '"의사/날짜/시간"을 모두 선택해주세요'}
         </button>
-        {myAppointments.length && (
+        {myAppointments.length ? (
           <button
             className={styles.appointmentButton}
             onClick={handleCloseCancleModal}
           >
             예약 확인·취소
           </button>
+        ) : (
+          ''
         )}
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   useGetHoliday,
   useModal,
   useGetAppointment,
+  useDeleteAppointment,
 } from './use-appointment';
 import styles from './appointment-page.module.css';
 import { ConfirmModal } from './appointment-confirm-modal';
@@ -38,6 +39,7 @@ export function AppointmentPage() {
     handleCloseCancleModal,
   } = useModal();
   const { myAppointments, getMyAppointment } = useGetAppointment();
+  const { deleteAppointment } = useDeleteAppointment();
 
   const handleAppointmentSubmit = async () => {
     try {
@@ -89,6 +91,7 @@ export function AppointmentPage() {
         <CancleModal
           myAppointments={myAppointments}
           onClose={handleCloseCancleModal}
+          deleteAppointment={deleteAppointment}
         />
       )}
     </main>

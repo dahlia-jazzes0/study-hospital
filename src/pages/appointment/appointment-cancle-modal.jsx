@@ -2,7 +2,14 @@ import { Modal } from './appointment-modal';
 import styles from './appointment-page.module.css';
 import { formattedTime, formatToKoreanDate, getDoctorName } from './util';
 
-export function CancleModal({ onClose, myAppointments }) {
+export function CancleModal({ myAppointments, onClose, deleteAppointment }) {
+  const handleDeleteAppointment = async (id) => {
+    try {
+      await deleteAppointment(id, onClose);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <Modal onClose={onClose}>
       <>
@@ -23,7 +30,10 @@ export function CancleModal({ onClose, myAppointments }) {
                     {getDoctorName(myAppointment?.doctorId)} 선생님 예약입니다.
                   </p>
                 </div>
-                <button className={styles.cancelButton} onClick={onClose}>
+                <button
+                  className={styles.cancelButton}
+                  onClick={() => handleDeleteAppointment(myAppointment.id)}
+                >
                   예약 취소
                 </button>
               </div>
