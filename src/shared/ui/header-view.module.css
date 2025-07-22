@@ -20,6 +20,10 @@
   font-size: 0.75rem;
 }
 
+.headerWrap h1 {
+  flex-shrink: 0;
+}
+
 .authSection {
   flex-shrink: 0;
 }
