@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 import { ReviewCard } from '@/pages/main/components/review-card.jsx';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './review-section.module.css';
@@ -15,7 +16,7 @@ async function fetchReviewsFromApi({ page = 1, limit = 6 }) {
   const res = await fetch(`${API_BASE_URL}?${params}`, { headers });
 
   if (!res.ok) {
-    throw new Error('리뷰 데이터를 불러오지 못했습니다');
+    throw new Error('리뷰를 불러오지 못했습니다');
   }
 
   return await res.json();
@@ -31,17 +32,13 @@ export function ReviewSection() {
         const data = await fetchReviewsFromApi({ limit: 6 });
         setReviewData(data.articles || []);
       } catch (error) {
-        console.error('리뷰 데이터 로딩 실패:', error);
+        console.error('리뷰 로딩 실패:', error);
         setReviewData([]);
       }
     };
 
     loadReviews();
   }, []);
-
-  const handleCardClick = (reviewId) => {
-    console.log(`리뷰 ${reviewId} 클릭`);
-  };
 
   const handlePrevClick = () => {
     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
@@ -60,13 +57,11 @@ export function ReviewSection() {
 
   return (
     <section className={styles.reviewSection}>
-      <h2 className="sr-only">슬라이드 이미지</h2>
-
-      <div className={styles.reviewWrap}>
-        <header className={styles.reviewTitle}>
+      <header className={styles.reviewWrap}>
+        <div className={styles.reviewTitle}>
           <h2>모두한방 치료후기</h2>
           <p>모두한의원의 생생한 치료후기를 확인하세요!</p>
-        </header>
+        </div>
 
         <nav
           className={styles.carouselControls}
@@ -87,9 +82,9 @@ export function ReviewSection() {
             <ChevronRight className={styles.arrowNext} />
           </button>
         </nav>
-      </div>
+      </header>
 
-      <main className={styles.reviewCardsContainer}>
+      <div className={styles.reviewCardsContainer}>
         <ul
           className={styles.reviewCards}
           style={{
@@ -98,17 +93,17 @@ export function ReviewSection() {
         >
           {reviewData.map((review) => (
             <li key={review.id}>
-              <ReviewCard
-                title={review.title}
-                date={formatDate(review.createdAt)}
-                onClick={() => {
-                  handleCardClick(review.id);
-                }}
-              />
+              <Link to={`/review/${review.id}`}>
+                <ReviewCard
+                  title={review.title}
+                  date={formatDate(review.createdAt)}
+                  thumbnail={review.thumbnail}
+                />
+              </Link>
             </li>
           ))}
         </ul>
-      </main>
+      </div>
     </section>
   );
 }
