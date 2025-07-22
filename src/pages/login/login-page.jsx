@@ -25,6 +25,12 @@ export function LoginPage() {
     setShowPassword((value) => !value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   const handleLogin = async () => {
     if (!userId || !userPw) {
       setErrorMessage('아이디와 비밀번호를 입력해주세요.');
@@ -45,7 +51,7 @@ export function LoginPage() {
         navigate('/');
         window.scrollTo(0, 0);
       } else {
-        setErrorMessage(result.error);
+        setErrorMessage('아이디와 비밀번호를 입력해주세요.');
       }
     } catch (err) {
       setErrorMessage('로그인 중 오류가 발생했습니다.');
@@ -72,6 +78,7 @@ export function LoginPage() {
               className={styles.userId}
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
           </label>
           <label htmlFor="userPw" className={styles.userPwBox}>
@@ -82,6 +89,7 @@ export function LoginPage() {
               className={styles.userPw}
               value={userPw}
               onChange={(e) => setUserPw(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
             <button
               className={styles.showPwdBtn}
