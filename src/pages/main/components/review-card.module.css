@@ -34,7 +34,7 @@
 .cardContent h3 {
   margin: 2.9rem 0 2.8rem 0;
 
-  color: var(---text-color-primary);
+  color: var(--text-color-primary);
   font-size: 1.06rem;
   font-weight: 600;
   line-height: 1.4;
