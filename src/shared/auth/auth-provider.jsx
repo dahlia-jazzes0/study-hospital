@@ -1,17 +1,28 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { AuthContext } from './auth-context';
 
 export const AuthProvider = ({ children }) => {
+  const accessTokenRef = useRef(null);
+  const refreshTokenRef = useRef(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [accessToken, setAccessToken] = useState(null);
-  const [refreshToken, setRefreshToken] = useState(null);
 
   const clearTokens = useCallback(() => {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
-    setAccessToken(null);
-    setRefreshToken(null);
+    accessTokenRef.current = null;
+    refreshTokenRef.current = null;
     setIsAuthenticated(false);
+  }, []);
+
+  const saveTokensToStorage = useCallback((accessToken, refreshToken) => {
+    try {
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      accessTokenRef.current = accessToken;
+      refreshTokenRef.current = refreshToken;
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
   const loadTokensFromStorage = useCallback(() => {
@@ -19,8 +30,8 @@ export const AuthProvider = ({ children }) => {
       const storedAccessToken = localStorage.getItem('accessToken');
       const storedRefreshToken = localStorage.getItem('refreshToken');
       if (storedAccessToken && storedRefreshToken) {
-        setAccessToken(storedAccessToken);
-        setRefreshToken(storedRefreshToken);
+        accessTokenRef.current = storedAccessToken;
+        refreshTokenRef.current = storedRefreshToken;
         setIsAuthenticated(true);
       }
     } catch (error) {
@@ -29,16 +40,8 @@ export const AuthProvider = ({ children }) => {
     }
   }, [clearTokens]);
 
-  const saveTokensToStorage = useCallback((accessToken, refreshToken) => {
-    try {
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
   const refreshAccessToken = useCallback(async () => {
+    const refreshToken = refreshTokenRef.current;
     if (!refreshToken) {
       throw new Error('리프레시 토큰이 없습니다.');
     }
@@ -48,12 +51,8 @@ export const AuthProvider = ({ children }) => {
         'https://hospital-api.dahlia-jazzes0.workers.dev/api/auth/refresh',
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            refreshToken: refreshToken,
-          }),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refreshToken }),
         }
       );
 
@@ -62,16 +61,17 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.error?.message || '토큰 갱신 실패');
       }
 
-      setAccessToken(data.accessToken);
-      setRefreshToken(data.refreshToken);
+      accessTokenRef.current = data.accessToken;
+      refreshTokenRef.current = data.refreshToken;
       saveTokensToStorage(data.accessToken, data.refreshToken);
+
       return data.accessToken;
     } catch (error) {
       console.error(error);
       clearTokens();
       throw error;
     }
-  }, [refreshToken, saveTokensToStorage, clearTokens]);
+  }, [saveTokensToStorage, clearTokens]);
 
   const login = useCallback(
     async (userId, password) => {
@@ -80,13 +80,8 @@ export const AuthProvider = ({ children }) => {
           'https://hospital-api.dahlia-jazzes0.workers.dev/api/auth/login',
           {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              username: userId,
-              password: password,
-            }),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: userId, password }),
           }
         );
 
@@ -98,14 +93,12 @@ export const AuthProvider = ({ children }) => {
           };
         }
 
-        setAccessToken(data.accessToken);
-        setRefreshToken(data.refreshToken);
+        accessTokenRef.current = data.accessToken;
+        refreshTokenRef.current = data.refreshToken;
         setIsAuthenticated(true);
         saveTokensToStorage(data.accessToken, data.refreshToken);
 
-        return {
-          success: true,
-        };
+        return { success: true };
       } catch (error) {
         console.error(error);
         return {
@@ -122,10 +115,11 @@ export const AuthProvider = ({ children }) => {
   }, [clearTokens]);
 
   useEffect(() => {
-    if (!accessToken) return;
+    const token = accessTokenRef.current;
+    if (!token) return;
 
     try {
-      const tokenPayload = JSON.parse(atob(accessToken.split('.')[1]));
+      const tokenPayload = JSON.parse(atob(token.split('.')[1]));
       const expirationTime = tokenPayload.exp * 1000;
       const currentTime = Date.now();
       const timeUntilExpiry = expirationTime - currentTime;
@@ -142,7 +136,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-  }, [accessToken, refreshAccessToken]);
+  }, [refreshAccessToken]);
 
   useEffect(() => {
     loadTokensFromStorage();
@@ -152,6 +146,7 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     login,
     logout,
+    getAccessToken: () => accessTokenRef.current,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

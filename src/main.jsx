@@ -2,7 +2,7 @@ import { AppView } from '@/app/app-view.jsx';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router';
-import { AuthProvider } from './contexts/auth-provider';
+import { AuthProvider } from './shared/auth/auth-provider';
 
 import '@/shared/styles/reset.css';
 

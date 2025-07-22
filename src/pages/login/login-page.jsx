@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 import { LogoView as Logo } from '../../shared/ui/logo/logo-view.jsx';
-import { useAuth } from '../../contexts/auth-context.jsx';
+import { useAuth } from '../../shared/auth/auth-context.jsx';
 import styles from './login-page.module.css';
 
 export function LoginPage() {
