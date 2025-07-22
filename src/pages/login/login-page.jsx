@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LogoView as Logo } from '../../shared/ui/logo/logo-view.jsx';
 import { useAuth } from '../../contexts/auth-context.jsx';
 import styles from './login-page.module.css';
@@ -10,7 +10,16 @@ export function LoginPage() {
   const [userId, setUserId] = useState('');
   const [userPw, setUserPw] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [remember, setRemember] = useState(false);
   const { login } = useAuth();
+
+  useEffect(() => {
+    const savedId = localStorage.getItem('savedUserId');
+    if (savedId) {
+      setUserId(savedId);
+      setRemember(true);
+    }
+  }, []);
 
   const handlePw = () => {
     setShowPassword((value) => !value);
@@ -27,6 +36,12 @@ export function LoginPage() {
     try {
       const result = await login(userId, userPw);
       if (result.success) {
+        if (remember) {
+          localStorage.setItem('savedUserId', userId);
+        } else {
+          localStorage.removeItem('savedUserId');
+        }
+
         goHome('/');
         window.scrollTo(0, 0);
       } else {
@@ -81,7 +96,12 @@ export function LoginPage() {
           </label>
           {errorMessage && <p className={styles.errorMsg}>{errorMessage}</p>}
           <label htmlFor="remember" className={styles.remember}>
-            <input type="checkbox" id="remember" />
+            <input
+              type="checkbox"
+              id="remember"
+              checked={remember}
+              onChange={(e) => setRemember(e.target.checked)}
+            />
             아이디 저장
           </label>
         </section>
