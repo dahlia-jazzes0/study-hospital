@@ -10,11 +10,17 @@
   clip-path: inset(50%);
 }
 
+.appointmentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .appointment {
   position: relative;
   overflow: hidden;
   padding: 104px 204px;
-  max-width: 1920px;
+  /* max-width: 1920px; */
 }
 
 .doctorList {
@@ -168,6 +174,7 @@
 .appointmentCalendar {
   float: right;
   max-width: 783px;
+  margin-left: 40px;
 }
 
 .medicalBookingCalendar {
