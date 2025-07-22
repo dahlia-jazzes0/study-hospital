@@ -10,7 +10,7 @@ export function HeaderView() {
       <div className={styles.headerWrap}>
         <h1>
           <Link to="/">
-            <LogoView className={styles.headerogo} />
+            <LogoView size={68} />
           </Link>
         </h1>
 
