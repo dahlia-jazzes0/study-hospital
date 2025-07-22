@@ -108,6 +108,13 @@
   cursor: pointer;
 }
 
+.errorMsg {
+  color: #e70202;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 6px;
+}
+
 .loginSubmit,
 .joinBtn {
   font-size: 26px;
