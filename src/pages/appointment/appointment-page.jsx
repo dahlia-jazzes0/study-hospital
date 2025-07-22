@@ -1,16 +1,14 @@
+import { useGetDoctors } from './_hooks/use-get-doctors';
+import { useAppointment } from './_hooks/use-appointment';
+import { useGetHoliday } from './_hooks/use-get-holiday';
+import { useGetAppointment } from './_hooks/use-get-appointment';
+import { useDeleteAppointment } from './_hooks/use-delete-appointment';
+import { ConfirmModal } from './_ui/appointment-confirm-modal';
+import { CancleModal } from './_ui/appointment-cancle-modal';
 import { DoctorList } from './appointment-doctor-list';
-import { AppointmentCalendar } from './appointment-calendar';
-import {
-  useGetDoctors,
-  useAppointment,
-  useGetHoliday,
-  useModal,
-  useGetAppointment,
-  useDeleteAppointment,
-} from './use-appointment';
+import { AppointmentInformation } from './appointment-information';
+import { useModal } from './_hooks/use-modal';
 import styles from './appointment-page.module.css';
-import { ConfirmModal } from './appointment-confirm-modal';
-import { CancleModal } from './appointment-cancle-modal';
 
 export function AppointmentPage() {
   const { doctors, isLoading } = useGetDoctors();
@@ -53,7 +51,7 @@ export function AppointmentPage() {
           onDoctorSelect={handleDoctorSelect}
         />
 
-        <AppointmentCalendar
+        <AppointmentInformation
           timeTable={timeTable}
           appointmentData={appointmentData}
           isTimeTableLoading={isTimeTableLoading}
@@ -69,6 +67,7 @@ export function AppointmentPage() {
           handleCloseCancleModal={handleCloseCancleModal}
           myAppointments={myAppointments}
         />
+
         {showConfirmModal && (
           <ConfirmModal
             appointmentData={appointmentData}
@@ -78,6 +77,7 @@ export function AppointmentPage() {
             onClose={handleCloseConfirmModal}
           />
         )}
+
         {showCancleModal && (
           <CancleModal
             getMyAppointment={getMyAppointment}

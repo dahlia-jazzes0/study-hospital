@@ -1,0 +1,51 @@
+.appointmentInfo {
+  margin: 0 auto;
+}
+
+.appointmentInfo > h4 {
+  margin-top: 33px;
+
+  font-size: 32px;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.infoTable {
+  position: relative;
+  margin-top: 28px;
+  width: 100%;
+
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.infoTable::before {
+  position: absolute;
+  width: 13px;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  content: '';
+  background-color: #fe7352;
+}
+
+.infoTable td {
+  padding: 20px 50px;
+
+  border: 2px solid #d8d8d8;
+  font-size: 32px;
+  vertical-align: middle;
+}
+
+.infoLabel {
+  font-weight: 500;
+  color: #888888;
+}
+
+.infoValue {
+  background-color: #ffffff;
+  color: #888888;
+  font-weight: 400;
+}

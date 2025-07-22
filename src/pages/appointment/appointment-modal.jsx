@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
-import styles from './appointment-page.module.css';
+
+import styles from './appointment-modal.module.css';
 
 export function Modal({ children, onClose }) {
   return createPortal(

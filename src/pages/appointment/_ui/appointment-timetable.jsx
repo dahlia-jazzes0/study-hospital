@@ -1,15 +1,16 @@
-import styles from './appointment-page.module.css';
-import { formattedTime } from './util';
+import React from 'react';
+import { formattedTime } from '../util';
+import styles from './appointment-timetable.module.css';
 
 export function TimeTable({ time, available, isSelected, onTimeSelect }) {
-  const handleClick = () => {
+  const handleClick = React.useCallback(() => {
     if (available) {
       onTimeSelect();
     }
-  };
+  }, [available, onTimeSelect]);
 
   return (
-    <li>
+    <li className={styles.timeslot}>
       <button
         className={isSelected ? styles.selected : ''}
         onClick={handleClick}

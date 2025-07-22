@@ -10,14 +10,13 @@
   clip-path: inset(50%);
 }
 
-.appointmentWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.doctorList {
+  float: left;
 }
 
-.appointment {
-  position: relative;
-  overflow: hidden;
-  padding: 104px 204px;
+.cardList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 104px;
+  gap: 16px;
 }

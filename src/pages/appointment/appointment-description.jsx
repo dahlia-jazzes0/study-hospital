@@ -1,13 +1,6 @@
-import styles from './appointment-page.module.css';
-import { formattedTime } from './util';
+import styles from './appointment-description.module.css';
 
-export function AppointmentDescription({
-  isAppointmentComplete,
-  appointmentData,
-  handleCloseConfirmModal,
-  handleCloseCancleModal,
-  myAppointments,
-}) {
+export function AppointmentDescription() {
   return (
     <div className={styles.appointmentDescription}>
       <h3>간편예약 확인 / 취소</h3>
@@ -26,65 +19,6 @@ export function AppointmentDescription({
           온라인상 예약은 로그인 한 회원에 한 해 진행하실 수 있으며 예약 확인 및
           취소는 하단의 버튼을 눌러 진행해주십시오.
         </p>
-      </div>
-      {(appointmentData.doctor ||
-        appointmentData.date ||
-        appointmentData.time) && (
-        <div className={styles.appointmentInfo}>
-          <h4>선택된 예약 정보</h4>
-          <table className={styles.infoTable}>
-            <tbody>
-              <tr>
-                <td className={styles.infoLabel}>의 료 진</td>
-                <td className={`${styles.infoValue} ${styles.doctorName}`}>
-                  {appointmentData.doctor.id
-                    ? `${appointmentData.doctor.name} (?두방 내꽈?)`
-                    : '선택되지 않음'}
-                </td>
-              </tr>
-              <tr>
-                <td className={styles.infoLabel}>예 약 날 짜</td>
-                <td className={`${styles.infoValue} ${styles.appointmentDate}`}>
-                  {appointmentData.date || '선택되지 않음'}
-                </td>
-              </tr>
-              <tr>
-                <td className={styles.infoLabel}>예 약 시 간</td>
-                <td className={`${styles.infoValue} ${styles.appointmentTime}`}>
-                  {appointmentData.time
-                    ? formattedTime(appointmentData.time)
-                    : '선택되지 않음'}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      <div className={styles.appointmentButtonWrap}>
-        <button
-          className={styles.appointmentButton}
-          onClick={handleCloseConfirmModal}
-          disabled={!isAppointmentComplete}
-        >
-          {isAppointmentComplete ? (
-            '예약하기'
-          ) : (
-            <>
-              의사/날짜/시간
-              <br />
-              선택해주세요
-            </>
-          )}
-        </button>
-        {myAppointments.length > 0 && (
-          <button
-            className={styles.appointmentButton}
-            onClick={handleCloseCancleModal}
-          >
-            예약 확인·취소
-          </button>
-        )}
       </div>
     </div>
   );
