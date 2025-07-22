@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import { TimeTable } from './appointment-timetable';
 import { AppointmentDescription } from './appointment-description';
 import styles from './appointment-page.module.css';
+import { SkeletonTimeTable } from './appointment-skelton-timetable';
 
 export function AppointmentCalendar({
   timeTable,
@@ -54,7 +55,7 @@ export function AppointmentCalendar({
       {appointmentData.doctor && appointmentData.date && (
         <div className={styles.timeTableContainer}>
           {isTimeTableLoading ? (
-            <div className={styles.loadingMessage}>시간표 로딩 중...</div> // titmeTable skelton 구현 및 css 추가
+            <SkeletonTimeTable />
           ) : (
             <ul className={styles.timeTable}>
               {timeTable.map((times, index) => (

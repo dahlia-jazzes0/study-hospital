@@ -264,12 +264,12 @@
   pointer-events: none !important;
 }
 
-/* 주말 스타일 (활성화 상태) */
+/* 주말 스타일 */
 .medicalBookingCalendar :global(.weekend) {
   background-color: #f3e5f5;
 }
 
-/* 주말 비활성화 (통일 스타일과 동일) */
+/* 주말 비활성화 */
 .medicalBookingCalendar :global(.weekend:disabled) {
   background-color: #f5f5f5 !important;
   color: #bdbdbd !important;
@@ -325,6 +325,28 @@
   border: none;
   color: #888888;
   background-color: #d8d8d8;
+}
+
+/* loadingTimeTable (skeleton UI)*/
+.skeletonTimeTable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 385px;
+  height: 70px;
+  border: solid 1px #d2d2d2;
+  border-radius: 16px;
+  background-color: #f5f5f5;
+  cursor: default;
+}
+
+.skeletonTimeTableText {
+  width: 120px;
+  height: 32px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
 /* appointmentDescription */
