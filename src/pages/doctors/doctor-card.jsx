@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from '@/pages/doctors/doctor-card.module.css';
 import { DoctorDetail } from './doctor-detail';
+import { ChevronDown } from 'lucide-react';
 
 export function DoctorCard({ doctor, departmentName }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,11 +57,7 @@ export function DoctorCard({ doctor, departmentName }) {
           </div>
         </dl>
         <button className={styles.toggleButton} onClick={toggleDetail}>
-          <img
-            src={`${import.meta.env.BASE_URL}images/arrow.png`}
-            alt="의료진 상세 정보 버튼"
-            className={styles.arrowIcon}
-          />
+          <ChevronDown className={styles.arrowIcon} />
         </button>
         {isOpen && <DoctorDetail doctor={doctor} />}
       </section>
