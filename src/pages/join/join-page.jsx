@@ -72,7 +72,7 @@ export function JoinPage() {
   return (
     <div className={styles.joinMain}>
       <section>
-        <h2 className={styles.srOnly}>회원가입 단계</h2>
+        <h2 className="sr-only">회원가입 단계</h2>
         <ul id="joinStepNav" className={styles.joinStepNav}>
           <li className={currentStep === 1 ? styles.joinActive : ''}>
             <span>STEP1</span>
@@ -90,7 +90,7 @@ export function JoinPage() {
       </section>
 
       <section>
-        <h2 className={styles.srOnly}>단계별 페이지 내용</h2>
+        <h2 className="sr-only">단계별 페이지 내용</h2>
         {currentStep === 1 && (
           <TermsStep
             agreeAll={agreeAll}

@@ -21,7 +21,7 @@ export const DoctorList = React.memo(function DoctorList({
 
   return (
     <section className={styles.doctorList}>
-      <h2 className={styles.srOnly}>의료진 목록</h2>
+      <h2 className="sr-only">의료진 목록</h2>
       <ul className={styles.cardList}>
         {!isLoading
           ? doctors.map((doctor) => (

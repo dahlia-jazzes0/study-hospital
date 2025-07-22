@@ -3,7 +3,7 @@ import styles from '../join-page.module.css';
 export const TermsStep = ({ agreeAll, setAgreeAll, agreeError }) => {
   return (
     <div className={styles.joinForm}>
-      <h2 className={styles.srOnly}>회원가입 폼</h2>
+      <h2 className="sr-only">회원가입 폼</h2>
 
       <section>
         <h3>회원가입약관</h3>

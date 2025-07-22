@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { formattedDate } from '../util';
-import { API_CONFIG } from '../api/config';
+import { API_CONFIG } from '../config';
 
 // 예약 전체 상태 관리
 export function useAppointment() {

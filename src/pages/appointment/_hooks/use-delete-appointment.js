@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { API_CONFIG } from '../api/config';
+import { API_CONFIG } from '../config';
 
 export function useDeleteAppointment() {
   const deleteAppointment = useCallback(async (id, onClose) => {

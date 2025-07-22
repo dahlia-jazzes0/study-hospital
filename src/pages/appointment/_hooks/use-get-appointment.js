@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { API_CONFIG } from '../api/config';
+import { API_CONFIG } from '../config';
 
 // 예약 정보 불러오기
 export function useGetAppointment() {

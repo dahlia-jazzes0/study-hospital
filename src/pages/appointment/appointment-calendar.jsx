@@ -35,7 +35,7 @@ export const AppointmentCalendar = React.memo(function AppointmentCalendar({
 
   return (
     <div className={styles.appointmentCalendar}>
-      <h2 className={styles.srOnly}>예약 달력</h2>
+      <h2 className="sr-only">예약 달력</h2>
       <Calendar
         className={styles.medicalBookingCalendar}
         onChange={onDateSelect}

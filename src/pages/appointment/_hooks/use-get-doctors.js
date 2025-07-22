@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { API_CONFIG } from '../api/config';
+import { API_CONFIG } from '../config';
 
 // 의사 목록 조회
 export function useGetDoctors() {
