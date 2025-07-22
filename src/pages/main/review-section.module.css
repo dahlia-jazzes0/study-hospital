@@ -89,6 +89,7 @@
   width: calc(17.5rem * 5 + 2.63rem * 4);
   margin: 0 0 0.63rem 0.31rem;
   padding: 0;
+  transition: transform 0.3s ease;
 }
 
 .reviewCards li {
