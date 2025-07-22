@@ -113,7 +113,7 @@ export function HeroSection() {
   return (
     <main className={styles.mainContainer}>
       <section className={styles.heroSection}>
-        <h2 className={styles.srOnly}>서브 메뉴 슬라이드</h2>
+        <h2 className="sr-only">서브 메뉴 슬라이드</h2>
         <div
           className={`${styles.heroSlide} ${!isTransitioning ? styles.active : ''}`}
           style={{ backgroundImage: `url('${currentSlide?.image}')` }}

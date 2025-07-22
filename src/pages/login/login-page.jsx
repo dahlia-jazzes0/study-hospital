@@ -23,7 +23,7 @@ export function LoginPage() {
 
       <div className={styles.loginPageMain}>
         <section className={styles.loginInputBox}>
-          <h2 className={styles.srOnly}>로그인창</h2>
+          <h2 className="sr-only">로그인창</h2>
 
           <label htmlFor="userId">
             <input
@@ -57,7 +57,7 @@ export function LoginPage() {
         <button className={styles.loginSubmit}>로그인</button>
 
         <section className={styles.findIdPw}>
-          <h2 className={styles.srOnly}>아이디 비밀번호 찾기</h2>
+          <h2 className="sr-only">아이디 비밀번호 찾기</h2>
 
           <Link to="/findId">아이디 찾기</Link>
           <span> | </span>
