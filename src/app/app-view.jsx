@@ -3,7 +3,7 @@ import { Layout } from './layout.jsx';
 import { HomePage } from '@/pages/home-page.jsx';
 import { AboutPage } from '@/pages/about-page.jsx';
 import { DoctorsPage } from '@/pages/doctors/doctors-page.jsx';
-import { LoginPage } from '@/pages/login-page.jsx';
+import { LoginPage } from '@/pages/login/login-page.jsx';
 import { JoinPage } from '@/pages/join/join-page.jsx';
 import { AppointmentPage } from '@/pages/appointment/appointment-page.jsx';
 import { DepartmentsLayout } from '@/pages/departments/departments-layout.jsx';

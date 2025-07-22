@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
+
+import { LogoView as Logo } from '../../shared/ui/logo/logo-view.jsx';
 import styles from './login-page.module.css';
 
 export function LoginPage() {
@@ -13,7 +15,7 @@ export function LoginPage() {
     <div className={styles.loginPage}>
       <section className={styles.loginPageHeader}>
         <h2 className={styles.logo}>
-          <img src="./images/logo.png" alt="모두한의원 로고" />
+          <Logo size={186} />
         </h2>
 
         <p>모두한의원 홈페이지에 방문하신 걸 환영합니다</p>
