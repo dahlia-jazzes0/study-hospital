@@ -4,7 +4,7 @@ import styles from '@/pages/doctors/doctor-card.module.css';
 function DoctorDetail({ doctor }) {
   return (
     <section className={styles.doctorDescription}>
-      <h4 className={styles.srOnly}>소개말</h4>
+      <h4 className="sr-only">소개말</h4>
       <div className={styles.descriptionText}>
         {doctor.description
           .split('.')
