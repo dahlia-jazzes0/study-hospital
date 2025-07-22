@@ -69,7 +69,7 @@ export function useAppointment() {
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            ...API_CONFIG.HEADERS,
             Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({
