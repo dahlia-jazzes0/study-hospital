@@ -5,7 +5,7 @@ import { useAuth } from '../../contexts/auth-context.jsx';
 import styles from './login-page.module.css';
 
 export function LoginPage() {
-  const goHome = useNavigate();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [userId, setUserId] = useState('');
   const [userPw, setUserPw] = useState('');
@@ -42,7 +42,7 @@ export function LoginPage() {
           localStorage.removeItem('savedUserId');
         }
 
-        goHome('/');
+        navigate('/');
         window.scrollTo(0, 0);
       } else {
         setErrorMessage(result.error);
