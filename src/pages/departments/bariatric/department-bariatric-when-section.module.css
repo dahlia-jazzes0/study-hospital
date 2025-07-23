@@ -1,0 +1,12 @@
+.container {
+  margin-top: 118px;
+  background: #f1eae5;
+  padding: 106px 0;
+}
+.title {
+  font-size: 40px;
+  font-weight: 700;
+}
+.titleHighlight {
+  color: #784f30;
+}

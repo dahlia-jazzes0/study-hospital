@@ -1,0 +1,13 @@
+.container {
+  margin-top: 118px;
+  margin-bottom: 96px;
+}
+.title {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.description {
+  margin-top: 16px;
+  font-size: 24px;
+}
