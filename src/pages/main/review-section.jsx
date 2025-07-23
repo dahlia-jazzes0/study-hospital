@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import { ReviewCard } from '@/pages/main/components/review-card.jsx';
+import { useAuth } from '@/shared/auth/auth-context.jsx';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './review-section.module.css';
 
@@ -25,6 +26,8 @@ async function fetchReviewsFromApi({ page = 1, limit = 6 }) {
 export function ReviewSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [reviewData, setReviewData] = useState([]);
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadReviews = async () => {
@@ -53,6 +56,15 @@ export function ReviewSection() {
 
   const formatDate = (dateString) => {
     return new Date(dateString).toISOString().slice(0, 10).replace(/-/g, '.');
+  };
+
+  const handleCardClick = (reviewId) => {
+    if (!isAuthenticated) {
+      alert('치료후기를 확인하시려면 로그인이 필요합니다!');
+      navigate('/login');
+      return;
+    }
+    navigate(`/reviews/${reviewId}`);
   };
 
   return (
@@ -93,13 +105,16 @@ export function ReviewSection() {
         >
           {reviewData.map((review) => (
             <li key={review.id}>
-              <Link to={`/reviews/${review.id}`}>
+              <div
+                onClick={() => handleCardClick(review.id)}
+                style={{ cursor: 'pointer' }}
+              >
                 <ReviewCard
                   title={review.title}
                   date={formatDate(review.createdAt)}
                   thumbnail={review.thumbnail}
                 />
-              </Link>
+              </div>
             </li>
           ))}
         </ul>
