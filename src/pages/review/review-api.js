@@ -35,10 +35,7 @@ export async function getReviewDetail(id) {
   const res = await fetch(url, { headers: createHeaders() });
 
   if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(
-      `리뷰 상세를 불러오지 못했습니다: ${res.status} - ${errorText}`
-    );
+    throw await res.json();
   }
 
   return await res.json();
