@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
 import { LogoView as Logo } from '@/shared/ui/logo/logo-view.jsx';
+import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/shared/auth/auth-context.jsx';
 import styles from './login-page.module.css';
 
@@ -93,12 +94,7 @@ export function LoginPage() {
                 onClick={handlePw}
                 type="button"
               >
-                <img
-                  src={
-                    showPassword ? './images/eye.png' : './images/eye-off.png'
-                  }
-                  alt="비밀번호 표시/비활성화 아이콘"
-                />
+                {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
               </button>
             </label>
             {errorMessage && <p className={styles.errorMsg}>{errorMessage}</p>}
