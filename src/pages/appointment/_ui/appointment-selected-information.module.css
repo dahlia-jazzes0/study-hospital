@@ -42,6 +42,7 @@
 .infoLabel {
   font-weight: 500;
   color: #888888;
+  letter-spacing: 10px;
 }
 
 .infoValue {

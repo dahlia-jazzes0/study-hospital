@@ -30,24 +30,24 @@
 }
 
 .confirmButton {
-  color: #ff7f50;
-  background-color: #ffffff;
-  border: 2px solid #ff7f50;
-}
-
-.confirmButton:hover {
-  color: #ffffff;
-  background-color: #ff7f50;
-}
-
-.cancelButton {
   color: #ffffff;
   background-color: #ff7f50;
   border: none;
   border-radius: 10px;
 }
 
-.cancelButton:hover {
+.confirmButton:hover {
   background-color: #ff6b42;
   border-color: #ff6b42;
+}
+
+.cancelButton {
+  color: #ff7f50;
+  background-color: #ffffff;
+  border: 2px solid #ff7f50;
+}
+
+.cancelButton:hover {
+  color: #ffffff;
+  background-color: #ff7f50;
 }

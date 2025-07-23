@@ -17,9 +17,10 @@ export function AppointmentInformation({
   isHolidayDate,
   isWeekend,
   isDisabledDate,
-  handleCloseConfirmModal,
-  handleCloseCancleModal,
+  openConfirmModal,
+  openCancelModal,
   myAppointments,
+  isLogin,
 }) {
   return (
     <section className={styles.appointmentInformationWapper}>
@@ -31,6 +32,7 @@ export function AppointmentInformation({
           isHolidayDate={isHolidayDate}
           isWeekend={isWeekend}
           isDisabledDate={isDisabledDate}
+          isLogin={isLogin}
         />
 
         {appointmentData.doctor && appointmentData.date && (
@@ -42,24 +44,20 @@ export function AppointmentInformation({
           />
         )}
 
-        <AppointmentDescription
-          isAppointmentComplete={isAppointmentComplete}
-          appointmentData={appointmentData}
-          handleCloseConfirmModal={handleCloseConfirmModal}
-          handleCloseCancleModal={handleCloseCancleModal}
-          myAppointments={myAppointments}
-        />
+        <AppointmentDescription />
         {(appointmentData.doctor ||
           appointmentData.date ||
           appointmentData.time) && (
           <SelectedInformation appointmentData={appointmentData} />
         )}
-        <AppointmentButtonWrap
-          handleCloseConfirmModal={handleCloseConfirmModal}
-          isAppointmentComplete={isAppointmentComplete}
-          myAppointments={myAppointments}
-          handleCloseCancleModal={handleCloseCancleModal}
-        />
+        {isLogin && (
+          <AppointmentButtonWrap
+            openConfirmModal={openConfirmModal}
+            isAppointmentComplete={isAppointmentComplete}
+            myAppointments={myAppointments}
+            openCancelModal={openCancelModal}
+          />
+        )}
       </div>
     </section>
   );

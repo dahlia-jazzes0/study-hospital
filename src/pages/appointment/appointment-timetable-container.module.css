@@ -1,7 +1,6 @@
 .timeTable {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-top: 34px;
   padding: 0;
   gap: 16px;
 

@@ -28,7 +28,7 @@
   background-color: #d8d8d8;
 }
 
-.selected {
+.timeslot .selected {
   outline: 5px solid #fe7352;
   outline-offset: 5px;
 }

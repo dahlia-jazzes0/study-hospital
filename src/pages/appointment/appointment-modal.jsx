@@ -7,7 +7,10 @@ export function Modal({ children, onClose }) {
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.logoIcon}>
-          <img src="./public/images/icon-logo-1.png" alt="모두한의원" />
+          <img
+            src={`${import.meta.env.BASE_URL}images/icon-logo-1.png`}
+            alt="모두한의원"
+          />
         </div>
         {children}
       </div>

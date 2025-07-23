@@ -48,30 +48,7 @@ export function formatToKoreanDate(date) {
   return `${year}년 ${month}월 ${day}일`;
 }
 
-export function getDoctorName(doctorId) {
-  let doctorName = '';
-  switch (doctorId) {
-    case '1':
-      doctorName = '최재호';
-      break;
-    case '2':
-      doctorName = '양호진';
-      break;
-    case '3':
-      doctorName = '남현정';
-      break;
-    case '4':
-      doctorName = '김성현';
-      break;
-    case '5':
-      doctorName = '이혜민';
-      break;
-    case '6':
-      doctorName = '김유빈';
-      break;
-    case '7':
-      doctorName = '박다솜';
-      break;
-  }
-  return doctorName;
+export function getAccessToken() {
+  const accessToken = localStorage.getItem('accessToken');
+  return accessToken;
 }

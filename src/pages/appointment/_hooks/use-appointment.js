@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { formattedDate } from '../util';
+import { formattedDate, getAccessToken } from '../util';
 import { API_CONFIG } from '../config';
 
 // 예약 전체 상태 관리
@@ -9,6 +9,7 @@ export function useAppointment() {
     doctor: {
       id: null,
       name: null,
+      departmentName: null,
     },
     date: null,
     time: null,
@@ -16,16 +17,16 @@ export function useAppointment() {
   const [isTimeTableLoading, setIsTimeTableLoading] = useState(false);
 
   // 의사 선택
-  const handleDoctorSelect = useCallback((id, name) => {
+  const selectDoctor = useCallback((id, name, departmentName) => {
     setAppointmentData((prev) => ({
       ...prev,
-      doctor: { id, name },
+      doctor: { id, name, departmentName },
       time: null,
     }));
   }, []);
 
   // 날짜 선택
-  const handleDateSelect = useCallback((selectedDate) => {
+  const selectDate = useCallback((selectedDate) => {
     const date = formattedDate(selectedDate);
     setAppointmentData((prev) => ({
       ...prev,
@@ -35,7 +36,7 @@ export function useAppointment() {
   }, []);
 
   // 시간 선택
-  const handleTimeSelect = useCallback((time) => {
+  const selectTime = useCallback((time) => {
     setAppointmentData((prev) => ({
       ...prev,
       time,
@@ -45,7 +46,7 @@ export function useAppointment() {
   // 예약 데이터 초기화
   const resetAppointment = useCallback(() => {
     setAppointmentData({
-      doctor: { id: null, name: null },
+      doctor: { id: null, name: null, departmentName: null },
       date: null,
       time: null,
     });
@@ -61,8 +62,7 @@ export function useAppointment() {
     }
 
     try {
-      const accessToken =
-        'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyLTEiLCJ1c2VybmFtZSI6Im1pbnN1X2tpbSIsIm5hbWUiOiLquYDrr7zsiJgiLCJpYXQiOjE3NTI2NzcyOTc5NDksImp0aSI6IjB2bnpqcSIsImV4cCI6MTc1MjY3ODE5Nzk0OX0.xbMFJT8ImTPJPnBUM9WgRWZqUT6xLm4Uk9BbuVA9hjY'; // 임시 토큰
+      const accessToken = getAccessToken();
 
       const response = await fetch(
         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.APPOINTMENTS}`,
@@ -93,10 +93,40 @@ export function useAppointment() {
     }
   }, [appointmentData]);
 
+  const appointmentDeletion = useCallback(async (id, onClose) => {
+    try {
+      const accessToken = getAccessToken();
+
+      const response = await fetch(
+        `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.APPOINTMENTS}${id}`,
+        {
+          method: 'DELETE',
+          headers: {
+            ...API_CONFIG.HEADERS,
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error('예약 삭제 실패!');
+      }
+
+      alert('예약이 삭제되었습니다!');
+
+      if (onClose) {
+        onClose();
+      }
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }, []);
+
   // 시간표 조회
+  const { doctor, date } = appointmentData;
+
   useEffect(() => {
     const fetchTimeTable = async () => {
-      const { doctor, date } = appointmentData;
       if (!doctor?.id || !date) {
         setTimeTable([]);
         return;
@@ -129,17 +159,18 @@ export function useAppointment() {
     };
 
     fetchTimeTable();
-  }, [appointmentData]);
+  }, [doctor?.id, date]);
 
   return {
     timeTable,
     appointmentData,
     isTimeTableLoading,
-    handleDoctorSelect,
-    handleDateSelect,
-    handleTimeSelect,
+    selectDoctor,
+    selectDate,
+    selectTime,
     resetAppointment,
     submitAppointment,
+    appointmentDeletion,
     // 예약 완료 여부 체크
     isAppointmentComplete: Boolean(
       appointmentData.doctor && appointmentData.date && appointmentData.time

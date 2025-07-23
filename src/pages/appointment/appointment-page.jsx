@@ -1,26 +1,27 @@
-import { useGetDoctors } from './_hooks/use-get-doctors';
+import { useDoctors } from './_hooks/use-doctors';
 import { useAppointment } from './_hooks/use-appointment';
-import { useGetHoliday } from './_hooks/use-get-holiday';
-import { useGetAppointment } from './_hooks/use-get-appointment';
-import { useDeleteAppointment } from './_hooks/use-delete-appointment';
+import { useHoliday } from './_hooks/use-holiday';
+import { useMyAppointment } from './_hooks/use-my-appointment';
 import { ConfirmModal } from './_ui/appointment-confirm-modal';
-import { CancleModal } from './_ui/appointment-cancle-modal';
+import { CancelModal } from './_ui/appointment-cancel-modal';
 import { DoctorList } from './appointment-doctor-list';
 import { AppointmentInformation } from './appointment-information';
 import { useModal } from './_hooks/use-modal';
 import styles from './appointment-page.module.css';
+import { useLoginCheck } from './_hooks/use-login-check';
 
 export function AppointmentPage() {
-  const { doctors, isLoading } = useGetDoctors();
+  const { doctors, isLoading } = useDoctors();
   const {
     timeTable,
     appointmentData,
     isTimeTableLoading,
-    handleDoctorSelect,
-    handleDateSelect,
-    handleTimeSelect,
+    selectDoctor,
+    selectDate,
+    selectTime,
     resetAppointment,
     submitAppointment,
+    appointmentDeletion,
     isAppointmentComplete,
   } = useAppointment();
   const {
@@ -29,15 +30,17 @@ export function AppointmentPage() {
     isHolidayDate,
     isWeekend,
     isDisabledDate,
-  } = useGetHoliday();
+  } = useHoliday();
   const {
-    showConfirmModal,
-    showCancleModal,
-    handleCloseConfirmModal,
-    handleCloseCancleModal,
+    isConfirmModalOpen,
+    isCancelModalOpen,
+    openConfirmModal,
+    closeConfirmModal,
+    openCancelModal,
+    closeCancelModal,
   } = useModal();
-  const { myAppointments, getMyAppointment } = useGetAppointment();
-  const { deleteAppointment } = useDeleteAppointment();
+  const { myAppointments, getMyAppointment } = useMyAppointment();
+  const { isLogin } = useLoginCheck();
 
   return (
     <div className={styles.appointmentWrapper}>
@@ -48,42 +51,43 @@ export function AppointmentPage() {
           doctors={doctors}
           isLoading={isLoading}
           selectedDoctorId={appointmentData.doctor.id}
-          onDoctorSelect={handleDoctorSelect}
+          isLogin={isLogin}
+          onDoctorSelect={selectDoctor}
         />
 
         <AppointmentInformation
           timeTable={timeTable}
           appointmentData={appointmentData}
           isTimeTableLoading={isTimeTableLoading}
-          onDateSelect={handleDateSelect}
-          onTimeSelect={handleTimeSelect}
+          onDateSelect={selectDate}
+          onTimeSelect={selectTime}
           isAppointmentComplete={isAppointmentComplete}
           handleNavigationChange={handleNavigationChange}
           holidays={holidays}
           isHolidayDate={isHolidayDate}
           isWeekend={isWeekend}
           isDisabledDate={isDisabledDate}
-          handleCloseConfirmModal={handleCloseConfirmModal}
-          handleCloseCancleModal={handleCloseCancleModal}
+          openConfirmModal={openConfirmModal}
+          openCancelModal={openCancelModal}
           myAppointments={myAppointments}
+          isLogin={isLogin}
         />
-
-        {showConfirmModal && (
+        {isConfirmModalOpen && (
           <ConfirmModal
             appointmentData={appointmentData}
             getMyAppointment={getMyAppointment}
             resetAppointment={resetAppointment}
             submitAppointment={submitAppointment}
-            onClose={handleCloseConfirmModal}
+            onClose={closeConfirmModal}
           />
         )}
 
-        {showCancleModal && (
-          <CancleModal
+        {isCancelModalOpen && (
+          <CancelModal
             getMyAppointment={getMyAppointment}
             myAppointments={myAppointments}
-            deleteAppointment={deleteAppointment}
-            onClose={handleCloseCancleModal}
+            deleteAppointment={appointmentDeletion}
+            onClose={closeCancelModal}
           />
         )}
       </div>

@@ -7,6 +7,7 @@ export const DoctorList = React.memo(function DoctorList({
   doctors,
   isLoading,
   selectedDoctorId,
+  isLogin,
   onDoctorSelect,
 }) {
   const skeletonCards = React.useMemo(
@@ -15,7 +16,13 @@ export const DoctorList = React.memo(function DoctorList({
   );
 
   const createDoctorSelectHandler = React.useCallback(
-    (doctorId, doctorName) => () => onDoctorSelect(doctorId, doctorName),
+    (doctorId, doctorName, departmentName, isLogin) => () => {
+      if (!isLogin) {
+        alert('로그인이 필요한 서비스입니다.');
+        return;
+      }
+      onDoctorSelect(doctorId, doctorName, departmentName);
+    },
     [onDoctorSelect]
   );
 
@@ -28,8 +35,13 @@ export const DoctorList = React.memo(function DoctorList({
               <DoctorCard
                 key={doctor.id}
                 doctor={doctor}
-                isSelected={selectedDoctorId === doctor.id}
-                onSelect={createDoctorSelectHandler(doctor.id, doctor.name)}
+                isSelected={isLogin && selectedDoctorId === doctor.id}
+                onSelect={createDoctorSelectHandler(
+                  doctor.id,
+                  doctor.name,
+                  doctor.departmentName,
+                  isLogin
+                )}
               />
             ))
           : skeletonCards}

@@ -8,21 +8,21 @@ export function SelectedInformation({ appointmentData }) {
       <table className={styles.infoTable}>
         <tbody>
           <tr>
-            <td className={styles.infoLabel}>의 료 진</td>
+            <td className={styles.infoLabel}>의료진</td>
             <td className={`${styles.infoValue} ${styles.doctorName}`}>
               {appointmentData.doctor.id
-                ? `${appointmentData.doctor.name} (?두방 내꽈?)`
+                ? `${appointmentData.doctor.name} (${appointmentData.doctor.departmentName})`
                 : '선택되지 않음'}
             </td>
           </tr>
           <tr>
-            <td className={styles.infoLabel}>예 약 날 짜</td>
+            <td className={styles.infoLabel}>예약날짜</td>
             <td className={`${styles.infoValue} ${styles.appointmentDate}`}>
               {appointmentData.date || '선택되지 않음'}
             </td>
           </tr>
           <tr>
-            <td className={styles.infoLabel}>예 약 시 간</td>
+            <td className={styles.infoLabel}>예약시간</td>
             <td className={`${styles.infoValue} ${styles.appointmentTime}`}>
               {appointmentData.time
                 ? formattedTime(appointmentData.time)

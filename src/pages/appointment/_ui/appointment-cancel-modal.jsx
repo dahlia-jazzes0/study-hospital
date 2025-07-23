@@ -1,8 +1,8 @@
 import { Modal } from '../appointment-modal';
-import { formattedTime, formatToKoreanDate, getDoctorName } from '../util';
-import styles from './appointment-cancle-modal.module.css';
+import { formattedTime, formatToKoreanDate } from '../util';
+import styles from './appointment-cancel-modal.module.css';
 
-export function CancleModal({
+export function CancelModal({
   getMyAppointment,
   myAppointments,
   onClose,
@@ -29,9 +29,7 @@ export function CancleModal({
                   &nbsp;/&nbsp;
                   {formattedTime(myAppointment?.appointmentTime)} 시
                 </p>
-                <p>
-                  {getDoctorName(myAppointment?.doctorId)} 선생님 예약입니다.
-                </p>
+                <p>{myAppointment?.doctorName} 선생님 예약입니다.</p>
               </div>
               <button
                 className={styles.cancelButton}

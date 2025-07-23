@@ -2,21 +2,21 @@ import { useState } from 'react';
 
 // 모달 동작
 export function useModal() {
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [showCancleModal, setShowCancleModal] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
 
-  const handleCloseConfirmModal = () => {
-    setShowConfirmModal(!showConfirmModal);
-  };
+  const openConfirmModal = () => setIsConfirmModalOpen(true);
+  const closeConfirmModal = () => setIsConfirmModalOpen(false);
 
-  const handleCloseCancleModal = () => {
-    setShowCancleModal(!showCancleModal);
-  };
+  const openCancelModal = () => setIsCancelModalOpen(true);
+  const closeCancelModal = () => setIsCancelModalOpen(false);
 
   return {
-    showConfirmModal,
-    showCancleModal,
-    handleCloseConfirmModal,
-    handleCloseCancleModal,
+    isConfirmModalOpen,
+    isCancelModalOpen,
+    openConfirmModal,
+    closeConfirmModal,
+    openCancelModal,
+    closeCancelModal,
   };
 }

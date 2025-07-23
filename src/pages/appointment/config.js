@@ -4,6 +4,8 @@ export const API_CONFIG = {
     DOCTORS: '/doctors/',
     AVAILABILITY: '/appointments/availability',
     APPOINTMENTS: '/appointments/',
+    HOLIDAYS: '/holidays/',
+    DEPARTMENTS: '/departments/',
   },
   HEADERS: {
     'Content-Type': 'application/json',
