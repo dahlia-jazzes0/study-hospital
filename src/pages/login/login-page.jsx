@@ -66,7 +66,7 @@ export function LoginPage() {
       </section>
       <div className={styles.loginPageMain}>
         <section>
-          <h2 className={styles.srOnly}>로그인창</h2>
+          <h2 className="sr-only">로그인창</h2>
           <form className={styles.loginInputBox} onSubmit={handleSubmit}>
             <label htmlFor="userId">
               <input
@@ -113,7 +113,7 @@ export function LoginPage() {
           </form>
         </section>
         <section className={styles.findIdPw}>
-          <h2 className={styles.srOnly}>아이디 비밀번호 찾기</h2>
+          <h2 className="sr-only">아이디 비밀번호 찾기</h2>
           <Link to="/findId">아이디 찾기</Link>
           <span> | </span>
           <Link to="/findPw">비밀번호 찾기</Link>

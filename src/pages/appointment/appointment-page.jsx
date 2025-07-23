@@ -144,7 +144,7 @@ export function AppointmentPage() {
       <main className={styles.appointment}>
         <h2>진료예약</h2>
         <section className={styles.doctorList}>
-          <h3 className={styles.srOnly}>의료진 목록</h3>
+          <h3 className="sr-only">의료진 목록</h3>
           <ul className={styles.cardList}>
             {doctors.map((doctor) => (
               <li key={doctor.id} className={styles.doctorCard}>
@@ -169,7 +169,7 @@ export function AppointmentPage() {
           </ul>
         </section>
         <section className={styles.appointmentCalendar}>
-          <h3 className={styles.srOnly}>예약 선택 달력</h3>
+          <h3 className="sr-only">예약 선택 달력</h3>
           <Calendar
             className={styles.medicalBookingCalendar}
             onChange={onChange}

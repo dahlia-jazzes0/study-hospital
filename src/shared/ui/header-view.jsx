@@ -1,5 +1,7 @@
 import { Link } from 'react-router';
 import { NavigationView } from '@/shared/ui/navigation-view.jsx';
+import { LogoView } from '@/shared/ui/logo/logo-view.jsx';
+import { UserRound } from 'lucide-react';
 import styles from './header-view.module.css';
 
 export function HeaderView() {
@@ -8,11 +10,7 @@ export function HeaderView() {
       <div className={styles.headerWrap}>
         <h1>
           <Link to="/">
-            <img
-              src="images/logo.png"
-              alt="모두한의원"
-              className={styles.logo}
-            />
+            <LogoView size={68} />
           </Link>
         </h1>
 
@@ -20,7 +18,7 @@ export function HeaderView() {
 
         <div className={styles.authSection}>
           <Link to="/login" className={styles.membershipBtn}>
-            멤버쉽
+            <UserRound className={styles.userIcon} /> 멤버쉽
           </Link>
         </div>
       </div>

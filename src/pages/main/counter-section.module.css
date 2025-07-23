@@ -1,0 +1,105 @@
+.mainCounter {
+  padding: 6.25rem 0 5rem 0;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.counterWrap {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  width: 76.93rem;
+  margin: 0 auto;
+}
+
+.counterTitle {
+  margin: 0 0 29px 0;
+  color: #000;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.mainCounter p {
+  color: #424242;
+  margin: 0 0 3.75rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.mainCounterStats {
+  display: flex;
+  justify-content: center;
+  gap: 7.5rem;
+
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.mainCounterStats li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 12.5rem;
+}
+
+.mainCounterStats img {
+  width: 5.63rem;
+  height: 5.63rem;
+  margin-bottom: 1.5rem;
+}
+
+.mainCounterStats strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 15.63rem;
+  margin-bottom: 1rem;
+  min-height: 3.62rem;
+
+  color: #333333;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.mainCounterStats p {
+  margin: 0;
+  color: #424242;
+
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* 📱 반응형 디자인 */
+@media (max-width: 768px) {
+  .mainCounter {
+    padding: 3.75rem 1.25rem;
+  }
+
+  .counterWrap {
+    width: 100%;
+    padding: 0 1.25rem;
+  }
+
+  .counterTitle {
+    font-size: 1.75rem;
+  }
+
+  .mainCounterStats {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .mainCounterStats li {
+    min-width: auto;
+  }
+
+  .mainCounterStats strong {
+    min-height: 3rem;
+    font-size: 2.5rem;
+  }
+}
