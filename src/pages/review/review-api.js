@@ -23,3 +23,21 @@ export async function fetchReviewsFromApi({
 
   return await res.json();
 }
+
+export async function getReviewDetail(id) {
+  const headers = {
+    'Content-Type': 'application/json',
+  };
+
+  const token = localStorage.getItem('accessToken');
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+
+  const res = await fetch(`${API_BASE_URL}${id}`, { headers });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`리뷰 상세를 불러오지 못했습니다: ${res.status} - ${text}`);
+  }
+
+  return await res.json();
+}

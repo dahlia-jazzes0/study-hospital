@@ -6,7 +6,7 @@ import { Pagination } from '@/pages/review/review-pagination';
 import { CategoryFilter } from '@/pages/review/review-filter';
 import { ReviewSearch } from '@/pages/review/review-search';
 
-export const ReviewPage = () => {
+export const ReviewPage = ({ onReviewClick = () => {} }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [reviews, setReviews] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -68,7 +68,7 @@ export const ReviewPage = () => {
           </section>
 
           <section className={styles.contentArea}>
-            <ReviewList sortedData={reviews} />
+            <ReviewList sortedData={reviews} onReviewClick={onReviewClick} />
           </section>
 
           <Pagination

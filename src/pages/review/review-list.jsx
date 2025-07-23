@@ -1,10 +1,15 @@
-import { useNavigate } from 'react-router';
 import styles from '@/pages/review/review-page.module.css';
 import reviewImg from '@/pages/review/review-img.png';
 
-export const ReviewList = ({ sortedData }) => {
-  const navigate = useNavigate();
+const departmentMap = {
+  internal: '한방내과',
+  orthopedic: '한방정형외과',
+  gynecology: '한방부인과',
+  pediatrics: '한방소아과',
+  obesity: '다이어트클리닉',
+};
 
+export const ReviewList = ({ sortedData, onReviewClick }) => {
   return (
     <>
       <section className={styles.mainContent} role="main">
@@ -12,11 +17,14 @@ export const ReviewList = ({ sortedData }) => {
           <article
             key={item.id}
             className={styles.contentBox}
-            onClick={() => navigate(`/review-page/${item.id}`)}
+            onClick={() => {
+              console.log('리스트 클릭됨:', item.id, typeof item.id);
+              onReviewClick(item.id);
+            }}
             role="link"
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === 'Enter') navigate(`/review-page/${item.id}`);
+              if (e.key === 'Enter') onReviewClick(item.id);
             }}
             style={{ cursor: 'pointer' }}
           >
@@ -26,8 +34,20 @@ export const ReviewList = ({ sortedData }) => {
               className={styles.thumbnail}
             />
             <div className={styles.textGroup}>
-              <h3 className={styles.title}>{item.title}</h3>
-              <p className={styles.dept}>{item.dept}</p>
+              <p className={styles.dept}>
+                {departmentMap[item.departmentId] || '모두한의원'}
+              </p>
+              <h3 className={styles.title}>
+                {item.title
+                  .replace(/[:,]/g, (match) => match + '\n')
+                  .split('\n')
+                  .map((line, i) => (
+                    <span key={i}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+              </h3>
               <p className={styles.date}>
                 {new Date(item.createdAt)
                   .toISOString()
