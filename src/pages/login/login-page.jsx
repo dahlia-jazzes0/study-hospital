@@ -25,13 +25,9 @@ export function LoginPage() {
     setShowPassword((value) => !value);
   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      handleLogin();
-    }
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleLogin = async () => {
     if (!userId || !userPw) {
       setErrorMessage('아이디와 비밀번호를 입력해주세요.');
       return;
@@ -68,54 +64,58 @@ export function LoginPage() {
         <p>모두한의원 홈페이지에 방문하신 걸 환영합니다</p>
       </section>
       <div className={styles.loginPageMain}>
-        <section className={styles.loginInputBox}>
+        <section>
           <h2 className={styles.srOnly}>로그인창</h2>
-          <label htmlFor="userId">
-            <input
-              type="text"
-              placeholder="아이디"
-              id="userId"
-              className={styles.userId}
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-          </label>
-          <label htmlFor="userPw" className={styles.userPwBox}>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="비밀번호"
-              id="userPw"
-              className={styles.userPw}
-              value={userPw}
-              onChange={(e) => setUserPw(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            <button
-              className={styles.showPwdBtn}
-              onClick={handlePw}
-              type="button"
-            >
-              <img
-                src={showPassword ? './images/eye.png' : './images/eye-off.png'}
-                alt="비밀번호 표시/비활성화 아이콘"
+          <form className={styles.loginInputBox} onSubmit={handleSubmit}>
+            <label htmlFor="userId">
+              <input
+                type="text"
+                placeholder="아이디"
+                id="userId"
+                name="userId"
+                className={styles.userId}
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
               />
+            </label>
+            <label htmlFor="userPw" className={styles.userPwBox}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="비밀번호"
+                id="userPw"
+                name="userPw"
+                className={styles.userPw}
+                value={userPw}
+                onChange={(e) => setUserPw(e.target.value)}
+              />
+              <button
+                className={styles.showPwdBtn}
+                onClick={handlePw}
+                type="button"
+              >
+                <img
+                  src={
+                    showPassword ? './images/eye.png' : './images/eye-off.png'
+                  }
+                  alt="비밀번호 표시/비활성화 아이콘"
+                />
+              </button>
+            </label>
+            {errorMessage && <p className={styles.errorMsg}>{errorMessage}</p>}
+            <label htmlFor="remember" className={styles.remember}>
+              <input
+                type="checkbox"
+                id="remember"
+                checked={remember}
+                onChange={(e) => setRemember(e.target.checked)}
+              />
+              아이디 저장
+            </label>
+            <button className={styles.loginSubmit} type="submit">
+              로그인
             </button>
-          </label>
-          {errorMessage && <p className={styles.errorMsg}>{errorMessage}</p>}
-          <label htmlFor="remember" className={styles.remember}>
-            <input
-              type="checkbox"
-              id="remember"
-              checked={remember}
-              onChange={(e) => setRemember(e.target.checked)}
-            />
-            아이디 저장
-          </label>
+          </form>
         </section>
-        <button className={styles.loginSubmit} onClick={handleLogin}>
-          로그인
-        </button>
         <section className={styles.findIdPw}>
           <h2 className={styles.srOnly}>아이디 비밀번호 찾기</h2>
           <Link to="/findId">아이디 찾기</Link>
