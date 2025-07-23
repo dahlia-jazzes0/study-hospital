@@ -2,6 +2,7 @@ import { AppView } from '@/app/app-view.jsx';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HashRouter } from 'react-router';
+import { AuthProvider } from './shared/auth/auth-provider';
 
 import '@/shared/styles/reset.css';
 
@@ -11,8 +12,10 @@ import '@/shared/styles/utils.css';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HashRouter>
-      <AppView />
-    </HashRouter>
+    <AuthProvider>
+      <HashRouter>
+        <AppView />
+      </HashRouter>
+    </AuthProvider>
   </StrictMode>
 );
