@@ -93,7 +93,7 @@ export function ReviewSection() {
         >
           {reviewData.map((review) => (
             <li key={review.id}>
-              <Link to={`/review/${review.id}`}>
+              <Link to={`/reviews/${review.id}`}>
                 <ReviewCard
                   title={review.title}
                   date={formatDate(review.createdAt)}
