@@ -28,12 +28,8 @@
   flex-shrink: 0;
 }
 
-.membershipBtn {
-  display: flex;
-  gap: 0.44rem;
-
+.authBtn {
   padding: 0.81rem 1.6rem;
-
   color: var(--text-color-primary);
   border: 1px solid #d9d9d9;
   border-radius: 1.78rem;
@@ -42,10 +38,19 @@
   white-space: nowrap;
 }
 
+.membershipBtn {
+  display: flex;
+  gap: 0.44rem;
+}
+
 .userIcon {
   width: 1.5rem;
   height: 1.5rem;
   stroke-width: 2;
+}
+
+.logoutBtn {
+  background-color: #fff;
 }
 
 /* 📱 반응형 디자인 */
