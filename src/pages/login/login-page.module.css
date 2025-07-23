@@ -73,7 +73,7 @@
   outline: none;
 }
 
-.loginPageMain .showPwdBtn img {
+.loginPageMain .showPwdBtn svg {
   position: absolute;
 
   right: 0;
@@ -82,6 +82,8 @@
   width: 36px;
   height: 36px;
   margin-right: 15px;
+
+  color: #949494;
 }
 
 .remember {
@@ -97,6 +99,13 @@
   height: 38px;
 
   cursor: pointer;
+}
+
+.errorMsg {
+  color: #e70202;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 6px;
 }
 
 .loginSubmit,
@@ -117,6 +126,7 @@
 }
 
 .loginSubmit {
+  margin-top: 12px;
   color: #fff;
   background-color: #fe7352;
 }

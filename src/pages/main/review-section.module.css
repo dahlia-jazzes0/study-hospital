@@ -1,0 +1,144 @@
+.reviewSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0 1.25rem 8.56rem 0;
+}
+
+.reviewWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  width: 76.94rem;
+  max-width: 100%;
+  margin-bottom: 3.56rem;
+}
+
+.reviewTitle h2 {
+  margin-bottom: 1.06rem;
+
+  color: var(--text-color-primary);
+  font-size: 2.25rem;
+  font-weight: 800;
+}
+
+.reviewTitle p {
+  color: var(--text-color-primary);
+  font-size: 1.06rem;
+}
+
+.carouselControls {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1.25rem;
+}
+
+.carouselControls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 3.19rem;
+  height: 3.19rem;
+  color: #666666;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.arrowPrev,
+.arrowNext {
+  width: 2.31rem;
+  height: 2.31rem;
+  stroke-width: 1.5;
+}
+
+.carouselControls button:hover:not(:disabled) {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.carouselControls button:disabled {
+  cursor: not-allowed;
+}
+
+.carouselControls button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.reviewCardsContainer {
+  position: relative;
+  width: calc(28.94rem * 3 + 1.25rem * 2 + 8.31rem);
+  max-width: none;
+
+  margin-left: auto;
+  overflow: hidden;
+}
+
+.reviewCards {
+  display: flex;
+  gap: 2.63rem;
+
+  width: calc(17.5rem * 5 + 2.63rem * 4);
+  margin: 0 0 0.63rem 0.31rem;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+.reviewCards li {
+  flex: 0 0 17.5rem;
+}
+
+/* 📱 반응형 디자인 */
+
+@media (max-width: 768px) {
+  .reviewSection {
+    margin: 0;
+    padding: 0 0.94rem 3.75rem 0.94rem;
+  }
+  .reviewCardsContainer {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .reviewCards {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.25rem;
+
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .reviewWrap {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 2.5rem;
+  }
+  .reviewTitle {
+    text-align: center;
+  }
+  .reviewTitle h2 {
+    font-size: 2.5rem;
+  }
+
+  .reviewTitle p {
+    font-size: 1.25rem;
+  }
+
+  .reviewCards li {
+    flex: 0 0 15rem;
+    min-width: 15rem;
+  }
+
+  .carouselControls {
+    display: none;
+  }
+}
