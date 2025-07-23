@@ -1,11 +1,11 @@
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import { getReviewDetail } from '@/pages/review/review-api';
 import styles from '@/pages/review/review-detail.module.css';
 
 export function ReviewDetailPage() {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const [review, setReview] = useState(null);
 
   useEffect(() => {
@@ -38,11 +38,13 @@ export function ReviewDetailPage() {
             </p>
           </div>
           <div className={styles.reviewItemBottomLine}></div>
-          <img
-            className={styles.reviewDetailThumbnail}
-            src={review.thumbnail}
-          />
-          <button className={styles.reviewListBtn}>목록</button>
+          <img className={styles.reviewDetailContent} src={review.content} />
+          <button
+            className={styles.reviewListBtn}
+            onClick={() => navigate('/review-list')}
+          >
+            목록
+          </button>
         </section>
       </main>
     </>

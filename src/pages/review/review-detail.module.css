@@ -6,10 +6,13 @@
 }
 
 .reviewContainer {
+  position: relative;
   max-width: 1460px;
   margin: 0 auto;
   padding: 20px;
   background-color: white;
+  flex: 1; /* 남은 공간 모두 차지 */
+  padding-bottom: 100px; /* 푸터 여백 확보용 */
 }
 
 .reviewDetailSection {
@@ -53,4 +56,27 @@
 
 .detailListBtn {
   font-size: 32px;
+}
+
+.reviewDetailContent {
+  width: 80%;
+  max-width: 1000px;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+}
+
+.reviewListBtn {
+  background-color: #222;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  margin-bottom: 20px;
 }

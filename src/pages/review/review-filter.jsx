@@ -8,7 +8,7 @@ const categoryMap = {
   한방정형외과: 'orthopedic',
   한방부인과: 'gynecology',
   한방소아과: 'pediatrics',
-  다이어트클리닉: 'obesity',
+  비만체형클리닉: 'bariatric',
 };
 
 export function CategoryFilter({ onChange }) {

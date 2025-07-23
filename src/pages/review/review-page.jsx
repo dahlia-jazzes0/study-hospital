@@ -14,8 +14,6 @@ export const ReviewPage = ({ onReviewClick = () => {} }) => {
   console.log('totalPages:', totalPages);
   const [searchKeyword, setSearchKeyword] = useState('');
 
-  // const [selectedDept, setSelectedDept] = useState('');
-
   const fetchDataWithFilters = useCallback(async () => {
     try {
       const result = await fetchReviewsFromApi({
