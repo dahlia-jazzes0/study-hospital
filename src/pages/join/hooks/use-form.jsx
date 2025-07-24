@@ -103,6 +103,21 @@ export function useForm(initialFormData) {
       }
     }
 
+    if (formData.userAddress) {
+      const allowedPattern = /^[a-zA-Z0-9가-힣\s\-#./()~`]*$/;
+      const onlyConsonantVowelPattern = /^[ㄱ-ㅎㅏ-ㅣ]+$/;
+
+      if (formData.userAddress.detail) {
+        if (onlyConsonantVowelPattern.test(formData.userAddress.detail)) {
+          errors.userAddress = '상세주소를 확인해주세요.';
+          hasAnyError = true;
+        } else if (!allowedPattern.test(formData.userAddress.detail)) {
+          errors.userAddress = '특수문자는 -, #, ., /, ( ), ~, `만 가능합니다.';
+          hasAnyError = true;
+        }
+      }
+    }
+
     if (formData.userBirth) {
       const birthDateStr = formData.userBirth.toString();
       const birthDateRegex =
