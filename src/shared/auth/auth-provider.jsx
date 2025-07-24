@@ -25,20 +25,48 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const loadTokensFromStorage = useCallback(() => {
+  const validateToken = useCallback(async (token) => {
+    if (!token) return false;
+
+    try {
+      const response = await fetch(
+        'https://hospital-api.dahlia-jazzes0.workers.dev/api/auth/validate',
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      return response.ok;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  }, []);
+
+  const loadTokensFromStorage = useCallback(async () => {
     try {
       const storedAccessToken = localStorage.getItem('accessToken');
       const storedRefreshToken = localStorage.getItem('refreshToken');
+
       if (storedAccessToken && storedRefreshToken) {
-        accessTokenRef.current = storedAccessToken;
-        refreshTokenRef.current = storedRefreshToken;
-        setIsAuthenticated(true);
+        const isValid = await validateToken(storedAccessToken);
+
+        if (isValid) {
+          accessTokenRef.current = storedAccessToken;
+          refreshTokenRef.current = storedRefreshToken;
+          setIsAuthenticated(true);
+        } else {
+          clearTokens();
+        }
       }
     } catch (error) {
       console.error(error);
       clearTokens();
     }
-  }, [clearTokens]);
+  }, [clearTokens, validateToken]);
 
   const login = useCallback(
     async (userId, password) => {
@@ -64,7 +92,6 @@ export const AuthProvider = ({ children }) => {
         refreshTokenRef.current = data.refreshToken;
         setIsAuthenticated(true);
         saveTokensToStorage(data.accessToken, data.refreshToken);
-
         return { success: true };
       } catch (error) {
         console.error(error);
@@ -81,6 +108,19 @@ export const AuthProvider = ({ children }) => {
     clearTokens();
   }, [clearTokens]);
 
+  const getValidAccessToken = useCallback(async () => {
+    const token = accessTokenRef.current;
+    if (!token) return null;
+
+    const isValid = await validateToken(token);
+    if (!isValid) {
+      clearTokens();
+      return null;
+    }
+
+    return token;
+  }, [validateToken, clearTokens]);
+
   useEffect(() => {
     loadTokensFromStorage();
   }, [loadTokensFromStorage]);
@@ -90,6 +130,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     getAccessToken: () => accessTokenRef.current,
+    getValidAccessToken,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
