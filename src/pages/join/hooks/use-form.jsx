@@ -78,6 +78,22 @@ export function useForm(initialFormData) {
       hasAnyError = true;
     }
 
+    if (formData.userName) {
+      const name = formData.userName;
+      const nameRegex = /^[가-힣a-zA-Z]{1,6}$/;
+
+      const hasOnlyHangulJamo = /^[ㄱ-ㅎㅏ-ㅣ]+$/.test(name);
+      const hasIncompleteHangul = [...name].some(
+        (char) =>
+          (char >= 'ㄱ' && char <= 'ㅎ') || (char >= 'ㅏ' && char <= 'ㅣ')
+      );
+
+      if (!nameRegex.test(name) || hasOnlyHangulJamo || hasIncompleteHangul) {
+        errors.userName = '필수입력란 입니다.';
+        hasAnyError = true;
+      }
+    }
+
     if (formData.userNumber) {
       const phoneRegex = /^\d+$/;
       const userNumberStr = formData.userNumber.toString();
