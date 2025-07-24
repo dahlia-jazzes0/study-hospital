@@ -4,10 +4,15 @@ export function useForm(initialFormData) {
   const [formData, setFormData] = useState(initialFormData);
   const [formErrors, setFormErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isIdChecked, setIsIdChecked] = useState(false);
 
   const handleChange = (field) => (e) => {
     setFormData((prev) => ({ ...prev, [field]: e.target.value }));
     setFormErrors((prev) => ({ ...prev, [field]: false }));
+
+    if (field === 'userId') {
+      setIsIdChecked(false);
+    }
   };
 
   const formatPhoneNumber = (number) => {
@@ -61,6 +66,11 @@ export function useForm(initialFormData) {
   const validate = () => {
     const errors = {};
     let hasAnyError = false;
+
+    if (formData.userId && !isIdChecked) {
+      errors.userId = '필수입력란 입니다.';
+      hasAnyError = true;
+    }
 
     const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/;
     if (formData.userPw && !pwRegex.test(formData.userPw)) {
@@ -229,5 +239,7 @@ export function useForm(initialFormData) {
     validate,
     submitRegistration,
     isLoading,
+    isIdChecked,
+    setIsIdChecked,
   };
 }
