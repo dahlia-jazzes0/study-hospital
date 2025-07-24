@@ -18,7 +18,7 @@ export function useHoliday() {
       const year = activeStartDate.getFullYear();
       const month = String(activeStartDate.getMonth() + 1).padStart(2, '0');
 
-      setDateForApi((prev) => ({ ...prev, year, month }));
+      setDateForApi({ year, month });
     },
     [setDateForApi]
   );

@@ -8,7 +8,7 @@ import { DoctorList } from './appointment-doctor-list';
 import { AppointmentInformation } from './appointment-information';
 import { useModal } from './_hooks/use-modal';
 import styles from './appointment-page.module.css';
-import { useLoginCheck } from './_hooks/use-login-check';
+import { useAuth } from '@/shared/auth/auth-context';
 
 export function AppointmentPage() {
   const { doctors, isLoading } = useDoctors();
@@ -40,7 +40,7 @@ export function AppointmentPage() {
     closeCancelModal,
   } = useModal();
   const { myAppointments, getMyAppointment } = useMyAppointment();
-  const { isLogin } = useLoginCheck();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className={styles.appointmentWrapper}>
@@ -51,7 +51,7 @@ export function AppointmentPage() {
           doctors={doctors}
           isLoading={isLoading}
           selectedDoctorId={appointmentData.doctor.id}
-          isLogin={isLogin}
+          isLogin={isAuthenticated}
           onDoctorSelect={selectDoctor}
         />
 
@@ -70,7 +70,7 @@ export function AppointmentPage() {
           openConfirmModal={openConfirmModal}
           openCancelModal={openCancelModal}
           myAppointments={myAppointments}
-          isLogin={isLogin}
+          isLogin={isAuthenticated}
         />
         {isConfirmModalOpen && (
           <ConfirmModal

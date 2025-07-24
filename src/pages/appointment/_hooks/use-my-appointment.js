@@ -6,9 +6,9 @@ import { getAccessToken } from '../util';
 export function useMyAppointment() {
   const [myAppointments, setMyAppointments] = useState([]);
 
-  const accessToken = getAccessToken();
-
   const getMyAppointment = useCallback(async () => {
+    const accessToken = getAccessToken();
+
     try {
       const myAppointmentResponse = await fetch(
         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.APPOINTMENTS}`,
@@ -53,7 +53,7 @@ export function useMyAppointment() {
     } catch (error) {
       console.error(error);
     }
-  }, [accessToken]);
+  }, []);
 
   useEffect(() => {
     getMyAppointment();
