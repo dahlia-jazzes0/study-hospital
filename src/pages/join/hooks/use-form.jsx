@@ -62,7 +62,7 @@ export function useForm(initialFormData) {
     const errors = {};
     let hasAnyError = false;
 
-    const pwRegex = /^[A-Za-z0-9]{6,20}$/;
+    const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/;
     if (formData.userPw && !pwRegex.test(formData.userPw)) {
       errors.userPw =
         '영문, 숫자 포함 6~20자리 구성, 특수기호 제외 입력해주세요.';
