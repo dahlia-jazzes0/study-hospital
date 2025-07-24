@@ -1,0 +1,53 @@
+.modalMessage {
+  margin-top: 58px;
+}
+
+.modalMessage > p {
+  color: #888888;
+  font-weight: 700;
+  font-size: 48px;
+}
+
+.modalButtons {
+  display: flex;
+  margin-top: 58px;
+  gap: 20px;
+}
+
+.modalButtons > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 290px;
+  height: 94px;
+
+  font-size: 48px;
+  font-weight: 700;
+  border-radius: 12px;
+
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.confirmButton {
+  color: #ffffff;
+  background-color: #ff7f50;
+  border: none;
+  border-radius: 10px;
+}
+
+.confirmButton:hover {
+  background-color: #ff6b42;
+  border-color: #ff6b42;
+}
+
+.cancelButton {
+  color: #ff7f50;
+  background-color: #ffffff;
+  border: 2px solid #ff7f50;
+}
+
+.cancelButton:hover {
+  color: #ffffff;
+  background-color: #ff7f50;
+}

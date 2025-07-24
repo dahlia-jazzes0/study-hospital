@@ -1,200 +1,96 @@
-import { Calendar } from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-
-import { useState } from 'react';
+import { useDoctors } from './_hooks/use-doctors';
+import { useAppointment } from './_hooks/use-appointment';
+import { useHoliday } from './_hooks/use-holiday';
+import { useMyAppointment } from './_hooks/use-my-appointment';
+import { ConfirmModal } from './_ui/appointment-confirm-modal';
+import { CancelModal } from './_ui/appointment-cancel-modal';
+import { DoctorList } from './appointment-doctor-list';
+import { AppointmentInformation } from './appointment-information';
+import { useModal } from './_hooks/use-modal';
 import styles from './appointment-page.module.css';
+import { useAuth } from '@/shared/auth/auth-context';
 
 export function AppointmentPage() {
-  const [value, onChange] = useState(new Date());
-  const timeTable = [
-    {
-      time: '10:00',
-      available: true,
-    },
-    {
-      time: '10:30',
-      available: false,
-    },
-    {
-      time: '11:00',
-      available: true,
-    },
-    {
-      time: '11:30',
-      available: true,
-    },
-    {
-      time: '12:00',
-      available: true,
-    },
-    {
-      time: '12:30',
-      available: true,
-    },
-    {
-      time: '13:00',
-      available: false,
-    },
-    {
-      time: '13:30',
-      available: false,
-    },
-    {
-      time: '14:00',
-      available: true,
-    },
-    {
-      time: '14:30',
-      available: true,
-    },
-    {
-      time: '15:00',
-      available: true,
-    },
-    {
-      time: '15:30',
-      available: true,
-    },
-    {
-      time: '16:00',
-      available: true,
-    },
-    {
-      time: '16:30',
-      available: true,
-    },
-    {
-      time: '17:00',
-      available: true,
-    },
-    {
-      time: '17:30',
-      available: true,
-    },
-    {
-      time: '18:00',
-      available: true,
-    },
-    {
-      time: '18:30',
-      available: true,
-    },
-    {
-      time: '19:00',
-      available: true,
-    },
-    {
-      time: '19:30',
-      available: true,
-    },
-  ];
-  const doctors = [
-    {
-      id: 1,
-      name: '최재호',
-      specialty: '한방내과 전문의',
-      positions: '대표원장',
-      medicaldepartment: [
-        '소화기계 질환',
-        '호흡기계 질환',
-        '내분비ㆍ대사 질환',
-      ],
-      image: '/',
-    },
-    {
-      id: 2,
-      name: '양호진',
-      specialty: '한방내과',
-      positions: '원장',
-      medicaldepartment: [
-        '교통사고 후유증',
-        '순환기계 질환',
-        '피로ㆍ면역력 저하',
-      ],
-      image: '/',
-    },
-    {
-      id: 3,
-      name: '양호진',
-      specialty: '한방내과',
-      positions: '원장',
-      medicaldepartment: [
-        '교통사고 후유증',
-        '순환기계 질환',
-        '피로ㆍ면역력 저하',
-      ],
-      image: '/',
-    },
-    {
-      id: 4,
-      name: '양호진',
-      specialty: '한방내과',
-      positions: '원장',
-      medicaldepartment: [
-        '교통사고 후유증',
-        '순환기계 질환',
-        '피로ㆍ면역력 저하',
-      ],
-      image: '/',
-    },
-  ];
+  const { doctors, isLoading } = useDoctors();
+  const {
+    timeTable,
+    appointmentData,
+    isTimeTableLoading,
+    selectDoctor,
+    selectDate,
+    selectTime,
+    resetAppointment,
+    submitAppointment,
+    appointmentDeletion,
+    isAppointmentComplete,
+  } = useAppointment();
+  const {
+    holidays,
+    handleNavigationChange,
+    isHolidayDate,
+    isWeekend,
+    isDisabledDate,
+  } = useHoliday();
+  const {
+    isConfirmModalOpen,
+    isCancelModalOpen,
+    openConfirmModal,
+    closeConfirmModal,
+    openCancelModal,
+    closeCancelModal,
+  } = useModal();
+  const { myAppointments, getMyAppointment } = useMyAppointment();
+  const { isAuthenticated } = useAuth();
 
   return (
-    <>
-      <main className={styles.appointment}>
-        <h2>진료예약</h2>
-        <section className={styles.doctorList}>
-          <h3 className="sr-only">의료진 목록</h3>
-          <ul className={styles.cardList}>
-            {doctors.map((doctor) => (
-              <li key={doctor.id} className={styles.doctorCard}>
-                <img src={doctor.image} alt={doctor.name} />
-                <div className={styles.doctorDescription}>
-                  <p>{doctor.specialty}</p>
-                  <p>
-                    {doctor.name} &nbsp;
-                    {doctor.positions}
-                  </p>
-                  <div className={styles.department}>
-                    <p>대표 진료과목</p>
-                    <ul>
-                      <li>{doctor.medicaldepartment[0]}</li>
-                      <li>{doctor.medicaldepartment[1]}</li>
-                      <li>{doctor.medicaldepartment[2]}</li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section className={styles.appointmentCalendar}>
-          <h3 className="sr-only">예약 선택 달력</h3>
-          <Calendar
-            className={styles.medicalBookingCalendar}
-            onChange={onChange}
-            value={value}
-            calendarType="gregory"
-            prev2Label={null}
-            next2Label={null}
-            showNeighboringMonth={false}
-            formatDay={(locale, date) => date.getDate()}
+    <div className={styles.appointmentWrapper}>
+      <div className={styles.appointment}>
+        <h1>진료예약</h1>
+
+        <DoctorList
+          doctors={doctors}
+          isLoading={isLoading}
+          selectedDoctorId={appointmentData.doctor.id}
+          isLogin={isAuthenticated}
+          onDoctorSelect={selectDoctor}
+        />
+
+        <AppointmentInformation
+          timeTable={timeTable}
+          appointmentData={appointmentData}
+          isTimeTableLoading={isTimeTableLoading}
+          onDateSelect={selectDate}
+          onTimeSelect={selectTime}
+          isAppointmentComplete={isAppointmentComplete}
+          handleNavigationChange={handleNavigationChange}
+          holidays={holidays}
+          isHolidayDate={isHolidayDate}
+          isWeekend={isWeekend}
+          isDisabledDate={isDisabledDate}
+          openConfirmModal={openConfirmModal}
+          openCancelModal={openCancelModal}
+          myAppointments={myAppointments}
+          isLogin={isAuthenticated}
+        />
+        {isConfirmModalOpen && (
+          <ConfirmModal
+            appointmentData={appointmentData}
+            getMyAppointment={getMyAppointment}
+            resetAppointment={resetAppointment}
+            submitAppointment={submitAppointment}
+            onClose={closeConfirmModal}
           />
-          <ul className={styles.timeTable}>
-            {timeTable.map((times, index) => (
-              <li key={index}>
-                <button
-                  className={
-                    times.available ? styles.available : styles.unavailable
-                  }
-                >
-                  {times.time}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </main>
-    </>
+        )}
+
+        {isCancelModalOpen && (
+          <CancelModal
+            getMyAppointment={getMyAppointment}
+            myAppointments={myAppointments}
+            deleteAppointment={appointmentDeletion}
+            onClose={closeCancelModal}
+          />
+        )}
+      </div>
+    </div>
   );
 }

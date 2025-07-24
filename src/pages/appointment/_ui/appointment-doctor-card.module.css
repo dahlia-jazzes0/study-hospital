@@ -1,0 +1,73 @@
+.doctorCard {
+  display: flex;
+  width: fit-content;
+
+  border: solid 1px #d2d2d2;
+  border-radius: 16px;
+
+  cursor: pointer;
+}
+
+.selected {
+  outline: 5px solid #fe7352;
+  outline-offset: 5px;
+}
+
+.doctorCard > img {
+  width: 340px;
+
+  border-radius: 16px 0 0 16px;
+}
+
+.doctorDescription {
+  padding: 50px 20px 39px 24px;
+
+  border-radius: 0 16px 16px 0;
+}
+
+.doctorDescription > p:nth-child(1) {
+  font-size: 20px;
+  font-weight: 500;
+}
+.doctorDescription > p:nth-child(2) {
+  margin-top: 7px;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.department {
+  display: flex;
+  margin-top: 50px;
+}
+
+.department > p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.department > ul {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  gap: 6px;
+}
+
+.department li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 184px;
+  padding: 10px;
+
+  font-weight: 500;
+  font-size: 16px;
+  border: solid 1px #fe7352;
+  border-radius: 19px;
+}
+
+.department li:first-child {
+  color: #ffffff;
+  border: none;
+  background-color: #fe7352;
+}
