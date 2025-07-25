@@ -1,30 +1,13 @@
 import styles from './join-page.module.css';
 import { useForm } from './hooks/use-form';
-
 import { useState } from 'react';
-
 import { TermsStep } from './components/terms-step';
 import { UserInfoStep } from './components/user-info-step';
 import { JoinSuccessStep } from './components/join-success-step';
 
 export function JoinPage() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [isIdChecked, setIsIdChecked] = useState(false);
   const [agreeAll, setAgreeAll] = useState(false);
-
-  const requiredFields = [
-    'userId',
-    'userPw',
-    'pwCheck',
-    'userName',
-    'userNumber',
-    'userBirth',
-    'emailId',
-    'emailDomain',
-    'userAddress',
-    'receiveEmail',
-    'receiveSMS',
-  ];
 
   const initialFormData = {
     userId: '',
@@ -40,8 +23,15 @@ export function JoinPage() {
     receiveSMS: '',
   };
 
-  const { formData, formErrors, handleChange, validate, submitRegistration } =
-    useForm(requiredFields, initialFormData);
+  const {
+    formData,
+    formErrors,
+    handleChange,
+    validate,
+    submitRegistration,
+    setIsIdChecked,
+  } = useForm(initialFormData);
+
   const [agreeError, setAgreeError] = useState(false);
 
   const handleNext = async () => {
@@ -57,11 +47,10 @@ export function JoinPage() {
     }
 
     if (currentStep === 2) {
-      const isValid = validate({ isIdChecked });
+      const isValid = validate();
       if (!isValid) return;
 
       const result = await submitRegistration();
-
       if (result.success) {
         window.scrollTo(0, 0);
         setCurrentStep(3);

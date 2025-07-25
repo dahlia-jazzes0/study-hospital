@@ -4,10 +4,15 @@ export function useForm(initialFormData) {
   const [formData, setFormData] = useState(initialFormData);
   const [formErrors, setFormErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isIdChecked, setIsIdChecked] = useState(false);
 
   const handleChange = (field) => (e) => {
     setFormData((prev) => ({ ...prev, [field]: e.target.value }));
     setFormErrors((prev) => ({ ...prev, [field]: false }));
+
+    if (field === 'userId') {
+      setIsIdChecked(false);
+    }
   };
 
   const formatPhoneNumber = (number) => {
@@ -62,7 +67,12 @@ export function useForm(initialFormData) {
     const errors = {};
     let hasAnyError = false;
 
-    const pwRegex = /^[A-Za-z0-9]{6,20}$/;
+    if (formData.userId && !isIdChecked) {
+      errors.userId = '필수입력란 입니다.';
+      hasAnyError = true;
+    }
+
+    const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,20}$/;
     if (formData.userPw && !pwRegex.test(formData.userPw)) {
       errors.userPw =
         '영문, 숫자 포함 6~20자리 구성, 특수기호 제외 입력해주세요.';
@@ -78,12 +88,43 @@ export function useForm(initialFormData) {
       hasAnyError = true;
     }
 
+    if (formData.userName) {
+      const name = formData.userName;
+      const nameRegex = /^[가-힣a-zA-Z]{1,6}$/;
+
+      const hasOnlyHangulJamo = /^[ㄱ-ㅎㅏ-ㅣ]+$/.test(name);
+      const hasIncompleteHangul = [...name].some(
+        (char) =>
+          (char >= 'ㄱ' && char <= 'ㅎ') || (char >= 'ㅏ' && char <= 'ㅣ')
+      );
+
+      if (!nameRegex.test(name) || hasOnlyHangulJamo || hasIncompleteHangul) {
+        errors.userName = '필수입력란 입니다.';
+        hasAnyError = true;
+      }
+    }
+
     if (formData.userNumber) {
       const phoneRegex = /^\d+$/;
       const userNumberStr = formData.userNumber.toString();
       if (!phoneRegex.test(userNumberStr)) {
         errors.userNumber = "'-' 제외 숫자만 입력하세요.";
         hasAnyError = true;
+      }
+    }
+
+    if (formData.userAddress) {
+      const allowedPattern = /^[a-zA-Z0-9가-힣\s\-#./()~`]*$/;
+      const onlyConsonantVowelPattern = /^[ㄱ-ㅎㅏ-ㅣ]+$/;
+
+      if (formData.userAddress.detail) {
+        if (onlyConsonantVowelPattern.test(formData.userAddress.detail)) {
+          errors.userAddress = '상세주소를 확인해주세요.';
+          hasAnyError = true;
+        } else if (!allowedPattern.test(formData.userAddress.detail)) {
+          errors.userAddress = '특수문자는 -, #, ., /, ( ), ~, `만 가능합니다.';
+          hasAnyError = true;
+        }
       }
     }
 
@@ -198,5 +239,7 @@ export function useForm(initialFormData) {
     validate,
     submitRegistration,
     isLoading,
+    isIdChecked,
+    setIsIdChecked,
   };
 }
