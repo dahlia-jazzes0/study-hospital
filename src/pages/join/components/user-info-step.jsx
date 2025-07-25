@@ -122,6 +122,7 @@ export const UserInfoStep = ({
           value={formData.userAddress}
           onChange={handleChange('userAddress')}
           hasError={formErrors.userAddress}
+          errorMessage={formErrors.userAddress}
           required={true}
         />
 
