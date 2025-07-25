@@ -41,6 +41,7 @@ export function AppointmentInformation({
             timeTable={timeTable}
             appointmentData={appointmentData}
             onTimeSelect={onTimeSelect}
+            isLogin={isLogin}
           />
         )}
 

@@ -8,10 +8,21 @@ export const DoctorCard = React.memo(function DoctorCard({
 }) {
   const HEAD_ID = '1';
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onSelect();
+    }
+  };
+
   return (
     <li
       className={`${styles.doctorCard} ${isSelected ? styles.selected : ''}`}
       onClick={onSelect}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-pressed={isSelected}
     >
       <img
         src={`images/appointment/doctor-profile-${doctor.id}.png`}

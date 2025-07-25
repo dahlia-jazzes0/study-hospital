@@ -8,6 +8,7 @@ export const TimeTableContainer = React.memo(function TimeTableContainer({
   timeTable,
   appointmentData,
   onTimeSelect,
+  isLogin,
 }) {
   const skeletonItems = React.useMemo(
     () =>
@@ -24,19 +25,21 @@ export const TimeTableContainer = React.memo(function TimeTableContainer({
 
   return (
     <div className={styles.timeTableContainer}>
-      <ul className={styles.timeTable}>
-        {isTimeTableLoading
-          ? skeletonItems
-          : timeTable.map((times, index) => (
-              <TimeTable
-                key={index}
-                time={times.time}
-                available={times.available}
-                isSelected={appointmentData.time === times.time}
-                onTimeSelect={createTimeSelectHandler(times.time)}
-              />
-            ))}
-      </ul>
+      {isLogin && (
+        <ul className={styles.timeTable}>
+          {isTimeTableLoading
+            ? skeletonItems
+            : timeTable.map((times, index) => (
+                <TimeTable
+                  key={index}
+                  time={times.time}
+                  available={times.available}
+                  isSelected={appointmentData.time === times.time}
+                  onTimeSelect={createTimeSelectHandler(times.time)}
+                />
+              ))}
+        </ul>
+      )}
     </div>
   );
 });
