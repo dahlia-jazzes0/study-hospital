@@ -47,8 +47,3 @@ export function formatToKoreanDate(date) {
 
   return `${year}년 ${month}월 ${day}일`;
 }
-
-export function getAccessToken() {
-  const accessToken = localStorage.getItem('accessToken');
-  return accessToken;
-}
