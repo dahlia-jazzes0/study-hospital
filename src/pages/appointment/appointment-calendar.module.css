@@ -15,7 +15,7 @@
   margin-top: 104px;
   margin-bottom: 34px;
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 9999;
+  z-index: 10;
   cursor: not-allowed;
 }
 
@@ -49,6 +49,10 @@
 .medicalBookingCalendar :global(.react-calendar__navigation) {
   height: 100px;
   font-size: 30px;
+}
+
+.medicalBookingCalendar :global(.react-calendar__navigation__label) {
+  pointer-events: none;
 }
 
 /* calendar 요일 헤더 높이 조절 */
