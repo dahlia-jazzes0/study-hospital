@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { API_CONFIG } from '../config';
-import { getAccessToken } from '../util';
+import { getAccessToken } from '@/shared/auth/auth';
 
 // 예약 정보 불러오기
 export function useMyAppointment() {
   const [myAppointments, setMyAppointments] = useState([]);
 
   const getMyAppointment = useCallback(async () => {
-    const accessToken = getAccessToken();
+    const accessToken = await getAccessToken();
 
     try {
       const myAppointmentResponse = await fetch(

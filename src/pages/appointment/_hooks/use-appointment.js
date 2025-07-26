@@ -1,6 +1,7 @@
+import { getAccessToken } from '@/shared/auth/auth';
 import { useCallback, useEffect, useState } from 'react';
-import { formattedDate, getAccessToken } from '../util';
 import { API_CONFIG } from '../config';
+import { formattedDate } from '../util';
 
 // 예약 전체 상태 관리
 export function useAppointment() {
@@ -62,7 +63,7 @@ export function useAppointment() {
     }
 
     try {
-      const accessToken = getAccessToken();
+      const accessToken = await getAccessToken();
 
       const response = await fetch(
         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.APPOINTMENTS}`,
@@ -95,7 +96,7 @@ export function useAppointment() {
 
   const appointmentDeletion = useCallback(async (id, onClose) => {
     try {
-      const accessToken = getAccessToken();
+      const accessToken = await getAccessToken();
 
       const response = await fetch(
         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.APPOINTMENTS}${id}`,
