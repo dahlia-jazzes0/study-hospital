@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import styles from './review-page.module.css';
+import styles from '@/pages/review/review-page.module.css';
 
 export function ReviewLayout() {
   return (

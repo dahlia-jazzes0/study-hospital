@@ -22,6 +22,7 @@ export function ReviewDetailPage() {
           review: null,
           error: error.error,
         });
+
         console.error('리뷰 불러오기 실패:', error);
       });
   }, [id]);

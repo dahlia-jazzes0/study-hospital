@@ -13,8 +13,11 @@ export const ReviewPage = () => {
   const totalCount = result?.total ?? 0;
   const totalPages = result?.totalPages ?? 0;
   const [selectedCategory, setSelectedCategory] = useState('');
-  console.log('totalPages:', totalPages);
   const [searchKeyword, setSearchKeyword] = useState('');
+  const handleCategoryChange = (newCategory) => {
+    setSelectedCategory(newCategory); // 선택된 카테고리 설정
+    setCurrentPage(1); // ✅ 페이지를 1로 초기화
+  };
 
   useEffect(() => {
     (async () => {
@@ -40,7 +43,7 @@ export const ReviewPage = () => {
           <nav className={styles.categoryTags} aria-label="카테고리">
             <CategoryFilter
               selectedCategory={selectedCategory}
-              setSelectedCategory={setSelectedCategory}
+              setSelectedCategory={handleCategoryChange}
             />
           </nav>
         </header>
