@@ -28,7 +28,7 @@ export function FooterView() {
           </div>
 
           <dl className={styles.footerDetails}>
-            <dt className={styles.srOnly}>사업자 정보</dt>
+            <dt className="sr-only">사업자 정보</dt>
             <dd>
               사업자 등록번호 : 123-45-67890 | 통신판매업 신고번호:
               제2024-서울성동-00123호

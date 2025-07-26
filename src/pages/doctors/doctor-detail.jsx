@@ -1,9 +1,10 @@
+import { Link } from 'react-router';
 import styles from '@/pages/doctors/doctor-card.module.css';
 
 function DoctorDetail({ doctor }) {
   return (
     <section className={styles.doctorDescription}>
-      <h4 className={styles.srOnly}>소개말</h4>
+      <h4 className="sr-only">소개말</h4>
       <div className={styles.descriptionText}>
         {doctor.description
           .split('.')
@@ -12,7 +13,12 @@ function DoctorDetail({ doctor }) {
             <p key={i}>{text}.</p>
           ))}
       </div>
-      <button className={styles.reservationButton}>예약하기</button>
+      <Link
+        to={`/appointment?doctorId=${doctor.id}`}
+        className={styles.reservationButton}
+      >
+        예약하기
+      </Link>
     </section>
   );
 }

@@ -1,0 +1,12 @@
+.container {
+  color: #565656;
+  ---main-color: #ff8a31;
+}
+
+.title {
+  color: var(---main-color);
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgb(213, 208, 208, 42%);
+  font-size: 48px;
+  font-weight: bold;
+}

@@ -5,7 +5,7 @@ export function NavigationView() {
   const navigationItems = [
     { label: '진료과목', path: '/departments' },
     { label: '의료진소개', path: '/doctors' },
-    { label: '치료후기', path: '/review-page' },
+    { label: '치료후기', path: '/reviews' },
     { label: '진료예약', path: '/appointment' },
     { label: '병원안내', path: '/info' },
   ];

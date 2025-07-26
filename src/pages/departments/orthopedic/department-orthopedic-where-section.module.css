@@ -1,0 +1,19 @@
+.container {
+  margin-top: 121px;
+}
+.title {
+  font-size: 48px;
+  font-weight: 700;
+}
+.list {
+  margin: 48px auto 0;
+  border-radius: 16px;
+  padding: 50px 116px;
+  background: #132c5e;
+  color: white;
+  box-shadow: 1px 4px 4px 3px rgb(0, 0, 0, 6%);
+}
+
+.listItem {
+  font-size: 24px;
+}

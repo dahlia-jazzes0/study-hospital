@@ -1,0 +1,22 @@
+.appointmentDescription {
+  margin-top: 42px;
+}
+
+.appointmentDescription > h3 {
+  padding: 29px 0;
+
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.appointmentDetail {
+  margin-top: 16px;
+  padding: 17px 0;
+  border-top: solid 3px #d8d8d8;
+  border-bottom: solid 3px #d8d8d8;
+}
+
+.appointmentDetail > p {
+  color: #888888;
+  font-size: 28px;
+}

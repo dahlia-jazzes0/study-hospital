@@ -1,4 +1,10 @@
 import styles from '@/pages/review/review-page.module.css';
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from 'lucide-react';
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pagesPerGroup = 5;
@@ -9,18 +15,18 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <nav className={styles.pagination} aria-label="페이지 네비게이션">
       <button
-        className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ''}`}
+        className={styles.paginationItem}
         onClick={() => onPageChange(1)}
         disabled={currentPage === 1}
       >
-        «
+        <ChevronsLeft />
       </button>
       <button
-        className={`${styles.paginationItem} ${currentPage === 1 ? styles.disabled : ''}`}
+        className={styles.paginationItem}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        ‹
+        <ChevronLeft />
       </button>
 
       {Array.from({ length: endPage - startPage + 1 }, (_, i) => (
@@ -36,18 +42,18 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       ))}
 
       <button
-        className={`${styles.paginationItem} ${currentPage === totalPages ? styles.disabled : ''}`}
+        className={styles.paginationItem}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        ›
+        <ChevronRight />
       </button>
       <button
-        className={`${styles.paginationItem} ${currentPage === totalPages ? styles.disabled : ''}`}
+        className={styles.paginationItem}
         onClick={() => onPageChange(totalPages)}
         disabled={currentPage === totalPages}
       >
-        »
+        <ChevronsRight />
       </button>
     </nav>
   );

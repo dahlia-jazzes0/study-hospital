@@ -1,0 +1,110 @@
+.quickMenu {
+  position: fixed;
+  top: 50%;
+  right: 2.81rem;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.quickMenu ul {
+  padding: 1.25rem 0;
+  margin-bottom: 0.94rem;
+
+  border-radius: 3.2rem;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15);
+}
+
+.quickMenu li {
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.quickMenu a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 5rem;
+  height: 5rem;
+
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0 0.94rem;
+  padding: 0.3rem 0;
+}
+
+.quickMenu li:last-child {
+  padding-bottom: 1.6rem;
+}
+
+.quickMenu li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 4.3rem;
+  border: 1px solid rgba(213, 208, 208, 0.42);
+}
+
+.quickMenuIcon {
+  width: 1.93rem;
+  height: 1.93rem;
+  margin-bottom: 0.5rem;
+
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.topButton {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 3.4rem;
+  height: 3.4rem;
+
+  color: white;
+  background-color: var(--point-color);
+  border: none;
+  border-radius: 50%;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.topBtnWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  line-height: 0.5;
+  margin-top: -0.63rem;
+}
+
+.topArrow {
+  margin: 0;
+  padding: 0;
+  stroke-width: 2;
+}
+
+/* 접근성을 위한 :not(:focus-visible) 속성 적용 */
+.topButton:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 📱 반응형 디자인 */
+@media (max-width: 768px) {
+  .quickMenu ul {
+    display: none;
+  }
+
+  .topButton {
+    bottom: -25rem;
+  }
+}

@@ -1,0 +1,147 @@
+/* style.css */
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 79px;
+}
+
+.loginPageHeader {
+  margin-top: 207px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 58px;
+}
+
+.loginPageHeader > p {
+  color: #888888;
+  font-size: 32px;
+}
+
+.loginPageMain {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  width: 831px;
+
+  padding: 80px 97px;
+  margin-bottom: 220px;
+
+  border: solid 1px #d2d2d2;
+  border-radius: 16px;
+}
+
+.loginInputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.userId,
+.userPw,
+.remember,
+.findIdPw > * {
+  font-size: 22px;
+}
+
+.userId,
+.userPw {
+  width: 100%;
+  padding: 17px;
+
+  color: #acacac;
+
+  border: solid 1px #d2d2d2;
+  cursor: text;
+}
+
+.userPwBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.showPwdBtn {
+  border: none;
+  padding: 0;
+}
+
+.showPwdBtn:focus {
+  outline: none;
+}
+
+.loginPageMain .showPwdBtn svg {
+  position: absolute;
+
+  right: 0;
+  transform: translateY(-50%);
+
+  width: 36px;
+  height: 36px;
+  margin-right: 15px;
+
+  color: #949494;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #6b6b6b;
+}
+
+.remember input {
+  width: 38px;
+  height: 38px;
+
+  cursor: pointer;
+}
+
+.errorMsg {
+  color: #e70202;
+  font-size: 16px;
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.loginSubmit,
+.joinBtn {
+  font-size: 26px;
+
+  width: 100%;
+  height: 75px;
+
+  border: solid 2px #fe7352;
+  border-radius: 16px;
+}
+
+.joinBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginSubmit {
+  margin-top: 12px;
+  color: #fff;
+  background-color: #fe7352;
+}
+
+.findIdPw {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.findIdPw > * {
+  color: #6b6b6b;
+}
+
+.joinBtn {
+  margin-top: 35px;
+  color: #fe7352;
+}
