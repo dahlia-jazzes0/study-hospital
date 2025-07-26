@@ -5,9 +5,8 @@ export const AuthContext = createContext();
 /**
  * @typedef {object} Auth
  * @prop {boolean} isAuthenticated 로그인 여부
- * @prop {(userId: string, password: string) => Promise<{ success: true; error?: never; } | { success: false; error: unknown; }>} login 로그인 함수
+ * @prop {(userId: string, password: string) => Promise<any>} login 로그인 함수
  * @prop {() => void} logout 로그아웃 함수
- * @prop {() => string | null} getAccessToken accessToken을 가져오는 함수. 없다면 null이 반환됨
  */
 
 /**
