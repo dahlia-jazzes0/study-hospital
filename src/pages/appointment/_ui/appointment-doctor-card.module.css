@@ -8,6 +8,11 @@
   cursor: pointer;
 }
 
+.doctorCard:focus {
+  outline: 5px solid #fe7352;
+  outline-offset: 5px;
+}
+
 .selected {
   outline: 5px solid #fe7352;
   outline-offset: 5px;

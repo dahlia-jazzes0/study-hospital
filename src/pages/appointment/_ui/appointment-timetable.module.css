@@ -14,7 +14,8 @@
   transition: all 0.2s ease;
 }
 
-.timeslot > button:hover {
+.timeslot > button:hover,
+.timeslot > button:focus {
   color: #ffffff;
   border: none;
   background-color: #fe7352;
