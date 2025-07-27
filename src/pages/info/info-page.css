@@ -1,0 +1,492 @@
+/* ----------
+    숨김 처리
+---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: polygon(0 0, 0 0, 0 0);
+  white-space: nowrap;
+}
+
+/* ----------
+    header
+---------- */
+/* 선택 배너 */
+.header-banner {
+  background: #d9d9d9;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 0;
+  margin-bottom: 80px;
+}
+
+.banner-tabs {
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transform: translateY(50%);
+  width: 600px;
+}
+
+.tab {
+  padding: 18px 40px;
+  background: #ffffff;
+  color: #666666;
+  font-weight: 400;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  flex: 1;
+  text-align: center;
+  margin: 0 5px;
+}
+
+.tab:first-child {
+  margin-left: 0;
+}
+
+.tab:last-child {
+  margin-right: 0;
+}
+
+.tab.active {
+  color: #fe7352;
+  font-weight: 500;
+  border-bottom: 3px solid #fe7352;
+}
+
+.tab:hover:not(.active) {
+  color: #000000;
+}
+
+/* ----------
+    main
+---------- */
+/* 진료 안내 */
+main {
+  margin-bottom: 6rem;
+}
+
+.container {
+  max-width: 67.5rem;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.info-section {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variation-settings: 'wght' 700;
+  color: #000000;
+  margin-bottom: 2rem;
+  padding-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-variation-settings: 'wght' 700;
+  color: #888888;
+  margin-bottom: 1rem;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+.schedule-day {
+  font-weight: 500;
+  color: #888888;
+  width: 6rem;
+  flex-shrink: 0;
+}
+
+.schedule-time {
+  color: #888888;
+  margin-left: 1rem;
+}
+
+.schedule-note {
+  font-size: 0.875rem;
+  color: #888888;
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.department-tag {
+  background: #ffffff;
+  border: 0.125rem solid #fe7352;
+  padding: 0.5rem 0.75rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888888;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.department-tag:hover {
+  background: #fe7352;
+  color: #ffffff;
+  border-color: #fe7352;
+}
+
+.image-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.hospital-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 층별 안내 */
+.floor-guide-section {
+  max-width: 67.5rem;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-bottom: 6rem;
+}
+
+.floor-guide-container {
+  display: flex;
+  gap: 0;
+  background: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.floor-tabs {
+  background: #f5f5f5;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+}
+
+.floor-tab {
+  padding: 1.5rem 2rem;
+  background: #f5f5f5;
+  color: #666666;
+  font-weight: 500;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  position: relative;
+}
+
+.floor-tab:first-child {
+  border-top: none;
+}
+
+.floor-tab.active {
+  background: #fe7352;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.floor-tab:hover:not(.active) {
+  background: #e8e8e8;
+  color: #000000;
+}
+
+.floor-content {
+  flex: 1;
+  padding: 2rem;
+  background: #ffffff;
+}
+
+.main-image-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.main-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.main-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.image-description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(231, 225, 225, 0.62);
+  color: #ffffff;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.image-navigation {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+  padding: 0 1rem;
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #333333;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.1);
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail-wrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.thumbnail-group {
+  display: flex;
+  gap: 1rem;
+  min-width: 100%;
+  justify-content: center;
+}
+
+.thumbnail {
+  width: 120px;
+  height: 120px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+
+.thumbnail:hover {
+  transform: translateY(-2px);
+}
+
+.thumbnail.active {
+  border-color: #fe7352;
+  transform: translateY(-2px);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover img {
+  transform: scale(1.05);
+}
+
+/* 오시는 길 */
+.directions-section {
+  max-width: 67.5rem;
+  margin: 0 auto;
+  padding: 2rem;
+  margin-bottom: 6rem;
+}
+
+.map-container {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.map-wrapper {
+  width: 100%;
+  max-width: 700px;
+  height: 400px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#kakaoMap {
+  width: 500px;
+  height: 400px;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.directions-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.transport-section {
+  width: 100%;
+}
+
+.transport-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1.5rem;
+}
+
+.transport-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.transport-icon {
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.transport-details {
+  flex: 1;
+}
+
+.transport-details strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 0.5rem;
+}
+
+.transport-details p {
+  font-size: 0.875rem;
+  color: #666666;
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
+}
+
+/* 시외에서 오시는 길 */
+.external-directions-section {
+  width: 100%;
+}
+
+.external-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1.5rem;
+}
+
+.directions-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.directions-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.category-cell {
+  background-color: #d4d4d4;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #333333;
+  padding: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  width: 120px;
+  min-width: 120px;
+}
+
+.route-cell {
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #666666;
+  line-height: 1.4;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  vertical-align: top;
+}
+
+.route-cell br {
+  margin-bottom: 0.5rem;
+}
