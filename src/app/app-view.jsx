@@ -6,6 +6,7 @@ import { ReviewPage } from '@/pages/review/review-page.jsx';
 import { ReviewDetailPage } from '@/pages/review/review-detail';
 import { DoctorsPage } from '@/pages/doctors/doctors-page.jsx';
 import { LoginPage } from '@/pages/login/login-page.jsx';
+import { InfoPage } from '@/pages/info/info-page.jsx';
 import { JoinPage } from '@/pages/join/join-page.jsx';
 import { AppointmentPage } from '@/pages/appointment/appointment-page.jsx';
 import { ReviewLayout } from '@/pages/review/review-layout.js';
@@ -32,6 +33,7 @@ export function AppView() {
         <Route path="login" element={<LoginPage />} />
         <Route path="join" element={<JoinPage />} />
         <Route path="appointment" element={<AppointmentPage />} />
+        <Route path="/info" element={<InfoPage />} />
         <Route path="departments" element={<DepartmentsLayout />}>
           <Route index element={<DepartmentInternalPage />} />
           <Route path="internal" element={<DepartmentInternalPage />} />
