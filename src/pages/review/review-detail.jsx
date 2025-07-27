@@ -8,8 +8,6 @@ export function ReviewDetailPage() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    console.log('넘어오는 id 값:', id, typeof id);
-
     getReviewDetail(id)
       .then((review) => {
         setData({
@@ -22,6 +20,7 @@ export function ReviewDetailPage() {
           review: null,
           error: error.error,
         });
+
         console.error('리뷰 불러오기 실패:', error);
       });
   }, [id]);

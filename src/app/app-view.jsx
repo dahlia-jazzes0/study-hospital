@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router';
 import { Layout } from './layout.jsx';
 import { HomePage } from '@/pages/home-page.jsx';
 import { AboutPage } from '@/pages/about-page.jsx';
-import { ReviewPage } from '@/pages/review/review-page';
+import { ReviewPage } from '@/pages/review/review-page.jsx';
 import { ReviewDetailPage } from '@/pages/review/review-detail';
 import { DoctorsPage } from '@/pages/doctors/doctors-page.jsx';
 import { LoginPage } from '@/pages/login/login-page.jsx';
